@@ -5,3 +5,5 @@ Discovery phase
 * look over materials
 * demo ITA central
 * draft questions
+
+Next phase: Prototyping
