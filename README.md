@@ -6,4 +6,4 @@ Discovery phase
 * demo ITA central
 * draft questions
 
-Next phase: Prototyping
+Next phase: Design/Prototyping
