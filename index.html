@@ -3,15 +3,51 @@
   <head>
     <meta charset="UTF-8">
     <title>ITA Prinicipal Travel Project</title>
-
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/google-fonts.css">
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/handlebars/handlebars.min.js"></script>
     <script src="bower_components/backbone/backbone-min.js"></script>
-
-    <script src="js/app.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/backbone/app.js"></script>
+    <script src="js/backbone/views/countryview.js"></script>
   </head>
   <body>
-
+    <header class="usa-site-header">
+      <div class="usa-disclaimer">Development Site</div>
+      <nav class="usa-site-navbar">
+        <a class="usa-button" href="#">Menu</a>
+        <h1>ITA Principals Travel Project</h1>
+      </nav>
+    </header>
+    <div class="usa-grid" id="content">
+    </div>
+  <script type="text/x-handlebars-template" id="template1">
+    <div class="usa-width-one-half">
+       <h3>{{title}}</h3>
+       <p>{{description}}</p>
+       <svg id="box1">
+       </svg>
+    </div>
+  </script>
+  <script type="text/x-handlebars-template" id="template2">
+    <div class="usa-width-one-half">
+       <h3>{{title}}</h3>
+       <p>{{description}}</p>
+       <svg id="box2">
+       </svg>
+    </div>
+  </script>
+  <script type="text/x-handlebars-template" id="template3">
+    <div class="usa-width-one-half">
+       <h3>{{title}}</h3>
+       <p>{{description}}</p>
+       <svg id="box3">
+       </svg>
+    </div>
+  </script>
   </body>
 </html>
