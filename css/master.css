@@ -9,7 +9,6 @@ body{
 .usa-site-navbar{
   color: #ffffff;
 }
-/*#content{
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
-}*/
+.usa-width-one{
+  border-bottom: 2px solid #112e51;
+}

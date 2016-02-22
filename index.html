@@ -15,9 +15,13 @@
     <script src="js/components.js"></script>
     <script src="js/backbone/app.js"></script>
     <script src="js/backbone/routers/dataexplorer.js"></script>
+    <script src="js/backbone/models/country.js"></script>
+    <script src="js/backbone/collections/countries.js"></script>
     <script src="js/backbone/views/homeview.js"></script>
     <script src="js/backbone/views/countryview.js"></script>
     <script src="js/backbone/views/detailview.js"></script>
+    <script src="js/backbone/views/principalview.js"></script>
+
 
   </head>
   <body>
@@ -29,7 +33,7 @@
           <a class="usa-button usa-button-small usa-button-outline-inverse" href="#">Home</a>
           <a class="usa-button usa-button-small usa-button-outline-inverse" href="#overview">Overview</a>
           <a class="usa-button usa-button-small usa-button-outline-inverse" href="#country">Country Report</a>
-          <a class="usa-button usa-button-small usa-button-outline-inverse" href="#">Principal Report</a>
+          <a class="usa-button usa-button-small usa-button-outline-inverse" href="#principal">Principal Report</a>
 
         </nav>
       </div>
@@ -65,6 +69,28 @@
       <h2>Welcome to the Principals' Travel Tracker</h2>
       <p>This website was developed by the Commerce Data Service to allow bureaus within the U.S. Department of Commerce to track details of principals' travel schedule and generate reports using a database of travel information.
       </p>
+      <form>
+   <fieldset>
+     <legend class="usa-drop_text">Sign in</legend>
+     <span>or <a href="#">create an account</a></span>
+
+     <label for="username">Username or email address</label>
+     <input id="username" name="username" type="text" autocapitalize="off" autocorrect="off">
+
+     <label for="password">Password</label>
+     <input id="password" name="password" type="password">
+     <p class="usa-form-note">
+       <a title="Show password" href="#" class="usa-show_password" aria-controls="password">
+         Show password</a>
+     </p>
+
+     <input type="submit" value="Sign in">
+     <p><a href="#" title="Forgot username">
+       Forgot username?</a></p>
+     <p><a href="#" title="Forgot password">
+       Forgot password?</a></p>
+   </fieldset>
+ </form>
     </div>
   </script>
   </body>
