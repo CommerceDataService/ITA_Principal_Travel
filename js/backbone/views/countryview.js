@@ -28,8 +28,23 @@ App.Views.CountryView = Backbone.View.extend({
       rects.attr('x', 0).attr('y', function(d, i){return i*22}).attr('height', 20).attr('width', function(d){
         return linearScale(d.number)
       })
-      rects.attr('fill', function(d){
-        return "rgba(0, 0, 0," + d.number*0.02+")"
+      rects.attr('fill', function(d, i){
+        return "rgba(0, 0, 0," + d.number*0.04+")"
       })
+      var labels = d3
+      .select('#box1')
+      .selectAll('text')
+      .data(data)
+      .enter()
+      .append('text')
+      .text(function(d){
+        return d.country
+      });
+      labels
+      .attr('x', 0)
+      .attr('y', function(d, i){return (i*22)+15})
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "12px")
+      .attr("fill", "white");;
   }
 })
