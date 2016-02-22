@@ -1,5 +1,6 @@
 body{
-  background-color: #17406A;
+  background-color: #f1f1f1;
+  color: #205493;
 ;
 }
 .usa-site-header{
@@ -8,3 +9,7 @@ body{
 .usa-site-navbar{
   color: #ffffff;
 }
+/*#content{
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}*/

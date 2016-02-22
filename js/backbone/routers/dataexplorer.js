@@ -10,6 +10,10 @@ App.Routers.DataExplorer = Backbone.Router.extend({
     "overview": "showOverview"
   },
 
+  index: function(){
+    App.Views.homeView = new App.Views.HomeView();
+  },
+
   showCountry: function(){
     App.Views.countryView = new App.Views.CountryView();
   },
