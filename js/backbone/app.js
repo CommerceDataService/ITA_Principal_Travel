@@ -6,5 +6,6 @@ App = {
 }
 
 $(document).ready(function(){
-  App.Views.countryView = new App.Views.CountryView();
+  App.Routers.dataExplorer = new App.Routers.DataExplorer();
+  Backbone.history.start();
 })
