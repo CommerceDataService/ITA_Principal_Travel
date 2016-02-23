@@ -26,9 +26,9 @@ App.Views.CountryView = Backbone.View.extend({
       var temp = allTrips.where({'country': thisCountry})
       data.push(temp)
     })
-    data.sort(function(a, b){
-      return b.length - a.length
-    })
+    // data.sort(function(a, b){
+    //   return b.length - a.length;
+    // })
     var color = d3.scale.category20b()
     // .range(["#046b99", "#00a6d2", "#9bdaf1", "#e59393", "#cd2026", "#981b1e", "#f9c642", "#4aa564"]);
       var rects = d3
@@ -63,7 +63,23 @@ App.Views.CountryView = Backbone.View.extend({
       .attr("font-size", "11px")
       .attr("fill", "white");;
 
-      var width = 400,
+      var tripLengthData = [];
+      _.each(data, function(trips){
+        var sum = 0;
+        var country;
+        _.each(trips, function(trip){
+          var start = new Date(trip.attributes.start_date)
+          var end = new Date(trip.attributes.end_date)
+          var millisecondsPerDay = 24 * 60 * 60 * 1000;
+          sum += Math.abs(end-start)/millisecondsPerDay
+          country = trip.attributes.country
+        })
+        tripLengthData.push({'country': country, 'time': sum })
+      })
+      console.log(tripLengthData)
+
+
+    var width = 400,
     height = 300,
     radius = Math.min(width, height) / 2;
 
@@ -73,9 +89,7 @@ App.Views.CountryView = Backbone.View.extend({
     //     .outerRadius(radius - 40)
     //     .innerRadius(radius - 40);
 
-
     var svg = d3.select("#box2")
-      .append('svg')
       .attr("width", width)
       .attr("height", height)
       .append("g")
@@ -84,13 +98,14 @@ App.Views.CountryView = Backbone.View.extend({
     var arc = d3.svg.arc()
     .outerRadius(radius - 10)
     // .innerRadius(0);
-
     var pie = d3.layout.pie()
     .sort(null)
-    .value(function(d) { return d.length; });
+    .value(function(d) {
+      return d.time;
+     })
 
     var path = svg.selectAll('path')
-      .data(pie(data))
+      .data(pie(tripLengthData))
       .enter()
       .append('path')
       .attr('d', arc)
