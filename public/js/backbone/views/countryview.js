@@ -26,9 +26,11 @@ App.Views.CountryView = Backbone.View.extend({
       var temp = allTrips.where({'country': thisCountry})
       data.push(temp)
     })
-    // var data = [{country: "Sweden", number: 4, length:23}, {country: "Norway", number: 8, length: 12}, {country: "Denmark", number: 15, length: 45}];
-    var color = d3.scale.ordinal()
-    .range(["#046b99", "#00a6d2", "#9bdaf1", "#e59393", "#cd2026", "#981b1e", "#f9c642", "#4aa564"]);
+    data.sort(function(a, b){
+      return b.length - a.length
+    })
+    var color = d3.scale.category20b()
+    // .range(["#046b99", "#00a6d2", "#9bdaf1", "#e59393", "#cd2026", "#981b1e", "#f9c642", "#4aa564"]);
       var rects = d3
       .select('#box1')
       .selectAll('rect')
@@ -37,9 +39,10 @@ App.Views.CountryView = Backbone.View.extend({
       var max = d3.max(data, function(d){
         return d.length;
       })
-      var linearScale = d3.scale.linear().range([0, 300]).domain([0,max])
+
+      var linearScale = d3.scale.linear().range([0, 100]).domain([0,max])
       rects.attr('x', 0).attr('y', function(d, i){return i*22}).attr('height', 20).attr('width', function(d){
-        return linearScale(d.length)
+        return linearScale(d.length) + "%"
       })
       rects.attr('fill', function(d, i){
         return color(i)
@@ -54,10 +57,10 @@ App.Views.CountryView = Backbone.View.extend({
         return d;
       });
       labels
-      .attr('x', 0)
-      .attr('y', function(d, i){return (i*22)+15})
+      .attr('x', 5)
+      .attr('y', function(d, i){return (i*22)+13})
       .attr("font-family", "sans-serif")
-      .attr("font-size", "12px")
+      .attr("font-size", "11px")
       .attr("fill", "white");;
 
       var width = 400,
