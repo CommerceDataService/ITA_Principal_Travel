@@ -9,6 +9,7 @@ App.Views.CountryView = Backbone.View.extend({
     this.renderAll();
     this.renderViz();
     console.log(this)
+    this.listenTo(this.collection, 'sync', this.renderViz)
   },
 
   renderAll: function(){
@@ -18,6 +19,14 @@ App.Views.CountryView = Backbone.View.extend({
   },
 
   renderViz: function(){
+    var allTrips = this.collection;
+    var allCountries = _.uniq(allTrips.pluck('country'))
+    var data = []
+    _.each(allCountries, function(thisCountry){
+      var temp = allTrips.where({'country': thisCountry})
+      
+
+    })
     var data = [{country: "Sweden", number: 4, length:23}, {country: "Norway", number: 8, length: 12}, {country: "Denmark", number: 15, length: 45}];
     var color = d3.scale.ordinal()
     .range(["#046b99", "#00a6d2", "#9bdaf1", "#e59393", "#cd2026", "#981b1e", "#f9c642", "#4aa564"]);
