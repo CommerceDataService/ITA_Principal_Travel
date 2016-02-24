@@ -13,7 +13,6 @@ App.Views.CountryView = Backbone.View.extend({
   renderAll: function(){
     this.$el.append(this.vizTemplate({title: "Countries Ranked by the Number of Visits"}));
     this.$el.append(this.vizTemplate({title: "Days Spent In Each Country"}));
-    this.$el.append(this.vizTemplate({title: "Country Related Visualization"}));
   },
 
   renderViz: function(){
@@ -70,9 +69,7 @@ App.Views.CountryView = Backbone.View.extend({
     .attr("font-family", "sans-serif")
     .attr("font-size", "11px")
     .attr("fill", "white");;
-
-
-    ///------------second visualization ------////
+    ///begin second visualization
     var tripLengthData = [];
     _.each(data, function(trips){
       var sum = 0;
