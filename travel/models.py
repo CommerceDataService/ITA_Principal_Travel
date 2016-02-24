@@ -11,7 +11,7 @@ from django.db import models
 
 
 class Event(models.Model):
-    eventid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     host = models.CharField(max_length=255, blank=True, null=True)
     event_description = models.TextField(blank=True, null=True)
     iga_leg = models.CharField(max_length=10, blank=True, null=True)
@@ -26,10 +26,10 @@ class Event(models.Model):
 
 
 class EventLocPrincipalTravel(models.Model):
-    eventid = models.ForeignKey('Event')
-    locationid = models.ForeignKey('Location')
-    travelid = models.ForeignKey('Travel')
-    principalid = models.ForeignKey('Principal')
+    event_id = models.ForeignKey('Event')
+    location_id = models.ForeignKey('Location')
+    travel_id = models.ForeignKey('Travel')
+    principal_id = models.ForeignKey('Principal')
 
     class Meta:
         managed = False
@@ -37,8 +37,8 @@ class EventLocPrincipalTravel(models.Model):
 
 
 class EventLocation(models.Model):
-    eventid = models.ForeignKey('Event')
-    locationid = models.ForeignKey('Location')
+    event_id = models.ForeignKey('Event')
+    location_id = models.ForeignKey('Location')
 
     class Meta:
         managed = False
@@ -46,7 +46,7 @@ class EventLocation(models.Model):
 
 
 class Location(models.Model):
-    locationid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     city = models.CharField(max_length=255, blank=True, null=True)
     state = models.CharField(max_length=2, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
@@ -57,7 +57,7 @@ class Location(models.Model):
 
 
 class Principal(models.Model):
-    principalid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
     agency = models.CharField(max_length=255, blank=True, null=True)
@@ -69,8 +69,8 @@ class Principal(models.Model):
 
 
 class PrincipalTravel(models.Model):
-    travelid = models.ForeignKey('Travel')
-    principalid = models.ForeignKey('Principal')
+    travel_id = models.ForeignKey('Travel')
+    principal_id = models.ForeignKey('Principal')
 
     class Meta:
         managed = False
@@ -78,7 +78,7 @@ class PrincipalTravel(models.Model):
 
 
 class Travel(models.Model):
-    travelid = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     category = models.CharField(max_length=32, blank=True, null=True)
