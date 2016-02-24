@@ -32,17 +32,19 @@ _* If the `docker-compose build` command hangs, we may need to investigate how t
 Connect to the DB with psql:
     docker-compose run db psql -h db -U postgres
 
-    Run management commands:
-       docker-compose run web python manage.py <command>
+Run management commands:
+   docker-compose run web python manage.py <command>
+
+Wipe the database and start fresh:
+    chmod u+x wipe_db.sh
+    ./wipe_db.sh
 
 ## DB Initialization:
 
-This setup will get immortalized in the Docker config at some point, but right now, after spinning up the containers, you'll need to connect to the DB and load the schema and the data.
-(The schema is in the repo-- ask a CDS team member for the data file).
+Run:
+    
+    docker-compose run db python manage.py migrate
+    docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
+    docker-compose run db python manage.py createsuperuser
 
-```
-docker-compose run db psql -h db -U postgres -f sql/ita_schema.sql
-docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
-```
-
-test
+_Note: The ita_data.sql is being .gitignored. Get the file from a CDS team member._
