@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from travel.views import TripList
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/trips', TripList.as_view(), name='trip_list'),
 ]
