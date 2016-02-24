@@ -8,9 +8,10 @@ App.Routers.DataExplorer = Backbone.Router.extend({
 
   routes: {
     "": "index",
-    "country": "showCountry",
+    "location": "showCountry",
     "principal": "showPrincipal",
-    "overview": "showOverview"
+    "overview": "showOverview",
+    "time": "showTime"
   },
 
   index: function(){
@@ -27,5 +28,9 @@ App.Routers.DataExplorer = Backbone.Router.extend({
 
   showPrincipal: function(){
     App.Views.principalView = new App.Views.PrincipalView();
+  },
+
+  showTime: function(){
+    App.Views.timeView = new App.Views.TimeView({collection: App.Collections.countries});
   }
 })

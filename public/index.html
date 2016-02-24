@@ -21,6 +21,7 @@
     <script src="js/backbone/views/countryview.js"></script>
     <script src="js/backbone/views/detailview.js"></script>
     <script src="js/backbone/views/principalview.js"></script>
+    <script src="js/backbone/views/timeview.js"></script>
 
 
   </head>
@@ -29,41 +30,27 @@
       <div class="usa-disclaimer">Demo Only Application</div>
       <div class="usa-grid">
         <nav class="usa-site-navbar">
-          <h1>ITA Principals Travel Project</h1>
+          <h1>Principals Travel Project</h1>
           <a class="usa-button usa-button-small usa-button-outline-inverse" href="#">Home</a>
           <a class="usa-button usa-button-small usa-button-outline-inverse" href="#overview">Overview</a>
-          <a class="usa-button usa-button-small usa-button-outline-inverse" href="#country">Country Report</a>
+          <a class="usa-button usa-button-small usa-button-outline-inverse" href="#location">Location Report</a>
           <a class="usa-button usa-button-small usa-button-outline-inverse" href="#principal">Principal Report</a>
+          <a class="usa-button usa-button-small usa-button-outline-inverse" href="#time">Time Report</a>
 
         </nav>
       </div>
     </header>
     <div class="usa-grid" id="content">
     </div>
-  <script type="text/x-handlebars-template" id="template1">
+  <script type="text/x-handlebars-template" id="viz-template">
     <div class="usa-width-one">
        <h3>{{title}}</h3>
        <p>{{description}}</p>
-       <svg id="box1">
-       </svg>
-    </div>
-  </script>
-  <script type="text/x-handlebars-template" id="template2">
-    <div class="usa-width-one">
-       <h3>{{title}}</h3>
-       <p>{{description}}</p>
-       <div id="box2">
+       <div class="chart">
        </div>
     </div>
   </script>
-  <script type="text/x-handlebars-template" id="template3">
-    <div class="usa-width-one">
-       <h3>{{title}}</h3>
-       <p>{{description}}</p>
-       <svg id="box3">
-       </svg>
-    </div>
-  </script>
+
   <script type="text/x-handlebars-template" id="welcome">
     <div class="usa-width-one">
       <h2>Welcome to the Principals' Travel Tracker</h2>
