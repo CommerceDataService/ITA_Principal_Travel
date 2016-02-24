@@ -24,7 +24,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE event (
-    eventid integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     host character varying,
     event_description character varying,
     iga_leg character varying,
@@ -38,32 +38,11 @@ CREATE TABLE event (
 ALTER TABLE event OWNER TO postgres;
 
 --
--- Name: event_eventid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE event_eventid_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE event_eventid_seq OWNER TO postgres;
-
---
--- Name: event_eventid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE event_eventid_seq OWNED BY event.eventid;
-
-
---
 -- Name: event_loc_principal_travel; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE event_loc_principal_travel (
-    eventid integer,
+    event_id integer,
     locationid integer,
     travelid integer,
     principalid integer
@@ -77,8 +56,8 @@ ALTER TABLE event_loc_principal_travel OWNER TO postgres;
 --
 
 CREATE TABLE event_location (
-    eventid integer,
-    locationid integer
+    event_id integer,
+    location_id integer
 );
 
 
@@ -89,7 +68,7 @@ ALTER TABLE event_location OWNER TO postgres;
 --
 
 CREATE TABLE location (
-    locationid integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     city character varying,
     state character(2),
     country character varying
@@ -99,32 +78,11 @@ CREATE TABLE location (
 ALTER TABLE location OWNER TO postgres;
 
 --
--- Name: location_locationid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE location_locationid_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE location_locationid_seq OWNER TO postgres;
-
---
--- Name: location_locationid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE location_locationid_seq OWNED BY location.locationid;
-
-
---
 -- Name: principal; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE principal (
-    principalid integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     name character varying,
     title character varying,
     agency character varying,
@@ -133,27 +91,6 @@ CREATE TABLE principal (
 
 
 ALTER TABLE principal OWNER TO postgres;
-
---
--- Name: principal_principalid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE principal_principalid_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE principal_principalid_seq OWNER TO postgres;
-
---
--- Name: principal_principalid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE principal_principalid_seq OWNED BY principal.principalid;
-
 
 --
 -- Name: principal_travel; Type: TABLE; Schema: public; Owner: postgres
@@ -172,7 +109,7 @@ ALTER TABLE principal_travel OWNER TO postgres;
 --
 
 CREATE TABLE travel (
-    travelid integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     start_date date,
     end_date date,
     category character varying,
@@ -181,27 +118,6 @@ CREATE TABLE travel (
 
 
 ALTER TABLE travel OWNER TO postgres;
-
---
--- Name: travel_travelid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE travel_travelid_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE travel_travelid_seq OWNER TO postgres;
-
---
--- Name: travel_travelid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE travel_travelid_seq OWNED BY travel.travelid;
-
 
 --
 -- Name: vw_principal_travel; Type: VIEW; Schema: public; Owner: postgres
