@@ -27,3 +27,22 @@ docker-machine ip
 
 _* If the `docker-compose build` command hangs, we may need to investigate how to set up and use HTTP_PROXY._
 
+### Administration
+
+Connect to the DB with psql:
+    docker-compose run db psql -h db -U postgres
+
+    Run management commands:
+       docker-compose run web python manage.py <command>
+
+## DB Initialization:
+
+This setup will get immortalized in the Docker config at some point, but right now, after spinning up the containers, you'll need to connect to the DB and load the schema and the data.
+(The schema is in the repo-- ask a CDS team member for the data file).
+
+```
+docker-compose run db psql -h db -U postgres -f sql/ita_schema.sql
+docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
+```
+
+test
