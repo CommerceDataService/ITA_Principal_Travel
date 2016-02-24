@@ -41,6 +41,8 @@ Wipe the database and start fresh:
 
 ## DB Initialization:
 
+Place the ita_data.sql file in the /sql directory
+
 Run:
     
     docker-compose run db python manage.py migrate
