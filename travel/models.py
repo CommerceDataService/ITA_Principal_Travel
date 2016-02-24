@@ -20,30 +20,8 @@ class Event(models.Model):
     no_of_travelers = models.IntegerField(blank=True, null=True)
     no_of_travelers_note = models.CharField(max_length=32, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'event'
-
-
-class EventLocPrincipalTravel(models.Model):
-    event_id = models.ForeignKey('Event')
-    location_id = models.ForeignKey('Location')
-    travel_id = models.ForeignKey('Travel')
-    principal_id = models.ForeignKey('Principal')
-
-    class Meta:
-        managed = False
-        db_table = 'event_loc_principal_travel'
-
-
-class EventLocation(models.Model):
-    event_id = models.ForeignKey('Event')
-    location_id = models.ForeignKey('Location')
-
-    class Meta:
-        managed = False
-        db_table = 'event_location'
-
+    def __str__(self):
+        return "{}".format(self.event_description)
 
 class Location(models.Model):
     id = models.AutoField(primary_key=True)
@@ -51,10 +29,8 @@ class Location(models.Model):
     state = models.CharField(max_length=2, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'location'
-
+    def __str__(self):
+        return "{}, {}, {}".format(self.city, self.state, self.country)
 
 class Principal(models.Model):
     id = models.AutoField(primary_key=True)
@@ -63,19 +39,8 @@ class Principal(models.Model):
     agency = models.CharField(max_length=255, blank=True, null=True)
     principal_poc = models.CharField(max_length=255, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'principal'
-
-
-class PrincipalTravel(models.Model):
-    travel_id = models.ForeignKey('Travel')
-    principal_id = models.ForeignKey('Principal')
-
-    class Meta:
-        managed = False
-        db_table = 'principal_travel'
-
+    def __str__(self):
+        return "{}, {}, {}".format(self.name, self.title, self.agency)
 
 class Travel(models.Model):
     id = models.AutoField(primary_key=True)
@@ -84,6 +49,17 @@ class Travel(models.Model):
     category = models.CharField(max_length=32, blank=True, null=True)
     format = models.CharField(max_length=32, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'travel'
+    def __str__(self):
+        return "{}, {}, {}".format(self.start_date, self.end_date, self.format)
+
+
+class EventLocationPrincipalTravel(models.Model):
+    id = models.AutoField(primary_key=True)
+    event = models.ForeignKey('Event', null=True)
+    location = models.ForeignKey('Location', null=True)
+    principal = models.ForeignKey('Principal', null=True)
+    travel = models.ForeignKey('Travel', null=True)
+
+    def __str__(self):
+        return "{} {} {} {}".format(self.event, self.location, self.principal, self.travel)
+
