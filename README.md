@@ -1,10 +1,4 @@
-# ITA_Principal_Travel
-
-Discovery phase
-* survey
-* look over materials
-* demo ITA central
-* draft questions
+# ITA Principal Travel
 
 ## Prototype
 
@@ -41,7 +35,7 @@ Wipe the database and start fresh:
 
 ## DB Initialization:
 
-Place the ita_data.sql file in the /sql directory
+Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the /sql directory
 
 Run:
     
@@ -50,5 +44,3 @@ Run:
     docker-compose run web python manage.py createsuperuser
 
 The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
-
-_Note: The ita_data.sql is being .gitignored. Get the file from a CDS team member._
