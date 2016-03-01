@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/CommerceDataService/ITA_Principal_Travel.png?label=ready&title=Ready)](https://waffle.io/CommerceDataService/ITA_Principal_Travel)
 # ITA Principal Travel
 
 ## Prototype
