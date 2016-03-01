@@ -15,11 +15,11 @@ Discovery phase
 3. Run the following*:
 
 ```
-eval $(docker-machine env)
 docker-machine create -d virtualbox default
 docker-machine start default
+eval $(docker-machine env)
 docker-compose build
-docker-compose up
+docker-compose up -d
 docker-machine ip
 ```
 
@@ -45,8 +45,10 @@ Place the ita_data.sql file in the /sql directory
 
 Run:
     
-    docker-compose run db python manage.py migrate
+    docker-compose run web python manage.py migrate
     docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
-    docker-compose run db python manage.py createsuperuser
+    docker-compose run web python manage.py createsuperuser
+
+The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
 
 _Note: The ita_data.sql is being .gitignored. Get the file from a CDS team member._
