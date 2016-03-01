@@ -1,0 +1,3 @@
+FROM postgres:latest
+RUN mkdir /sql
+WORKDIR /sql
