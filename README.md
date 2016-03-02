@@ -1,10 +1,5 @@
-# ITA_Principal_Travel
-
-Discovery phase
-* survey
-* look over materials
-* demo ITA central
-* draft questions
+[![Stories in Ready](https://badge.waffle.io/CommerceDataService/ITA_Principal_Travel.png?label=ready&title=Ready)](https://waffle.io/CommerceDataService/ITA_Principal_Travel)
+# ITA Principal Travel
 
 ## Prototype
 
@@ -15,11 +10,11 @@ Discovery phase
 3. Run the following*:
 
 ```
-eval $(docker-machine env)
 docker-machine create -d virtualbox default
 docker-machine start default
+eval $(docker-machine env)
 docker-compose build
-docker-compose up
+docker-compose up -d
 docker-machine ip
 ```
 
@@ -32,17 +27,21 @@ _* If the `docker-compose build` command hangs, we may need to investigate how t
 Connect to the DB with psql:
     docker-compose run db psql -h db -U postgres
 
-    Run management commands:
-       docker-compose run web python manage.py <command>
+Run management commands:
+   docker-compose run web python manage.py <command>
+
+Wipe the database and start fresh:
+    chmod u+x wipe_db.sh
+    ./wipe_db.sh
 
 ## DB Initialization:
 
-This setup will get immortalized in the Docker config at some point, but right now, after spinning up the containers, you'll need to connect to the DB and load the schema and the data.
-(The schema is in the repo-- ask a CDS team member for the data file).
+Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the /sql directory
 
-```
-docker-compose run db psql -h db -U postgres -f sql/ita_schema.sql
-docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
-```
+Run:
+    
+    docker-compose run web python manage.py migrate
+    docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
+    docker-compose run web python manage.py createsuperuser
 
-test
+The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
