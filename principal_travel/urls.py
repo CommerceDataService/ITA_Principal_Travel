@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')), #USE FOR ONE STEP REGISTRATION
     # url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^$', 'travel.views.home', name='home')
 
 ]

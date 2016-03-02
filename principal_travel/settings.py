@@ -41,10 +41,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'travel',
     'registration',
+    'crispy_forms',
+    'designstandards'
+    # 'compressor'
 ]
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
-
 REST_FRAMEWORK = {
     'page_size': 10,
 }
@@ -127,10 +129,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 2
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
 
-SITE_ID = 2
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#     # other finders..
+#     'compressor.finders.CompressorFinder',
+# )
