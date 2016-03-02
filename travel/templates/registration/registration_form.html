@@ -4,6 +4,7 @@
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
+<h2>User Registration</h2>
 <form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
