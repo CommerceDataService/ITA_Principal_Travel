@@ -47,6 +47,7 @@ PREREQ_APPS = [
 
 PROJECT_APPS = [
     'travel',
+    'cities_light'
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
@@ -138,3 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# cities light configuration
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
+#CITIES_LIGHT_INCLUDE_COUNTRIES = ['US']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL']
