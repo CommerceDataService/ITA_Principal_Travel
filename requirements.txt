@@ -1,4 +1,5 @@
 Django
 psycopg2
 djangorestframework
+-e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
 django-cities-light
