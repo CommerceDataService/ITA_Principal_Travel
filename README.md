@@ -45,3 +45,8 @@ Run:
     docker-compose run web python manage.py createsuperuser
 
 The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
+
+Run:
+    docker-compose run web python manage.py cities_light
+    
+The above will load the cities and countries from the cities_light module into the database tables so they are available for use in the form.
