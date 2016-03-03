@@ -16,13 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from travel.views import TripViewSet
-from rest_framework import routers
 from travel.views import EventLocationPrincipalTravelList
+from travel.views import EventLocationPrincipalTravelDetail
+from rest_framework import routers
+
 router = routers.DefaultRouter()
 router.register(r'trips', TripViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^itineraries/$',EventLocationPrincipalTravelList.as_view()),
+    url(r'^itineraries/$', EventLocationPrincipalTravelList.as_view()),
+    url(r'^itineraries/(?P<pk>[0-9]+)/$', EventLocationPrincipalTravelDetail.as_view())
 ]
