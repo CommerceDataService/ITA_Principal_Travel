@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>itineraries</h2>
+    <h2>Itineraries</h2>
     <ul>
         {% for event_location_principal_travel in object_list %}
             <li><a href="/itineraries/{{event_location_principal_travel.id}}">{{ event_location_principal_travel.principal.name}} traveling to {{event_location_principal_travel.location.country}} on {{event_location_principal_travel.travel.start_date }}</a></li>

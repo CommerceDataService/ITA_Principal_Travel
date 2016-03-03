@@ -2,7 +2,7 @@ from .models import EventLocationPrincipalTravel
 from .serializers import ELPTSerializer
 from rest_framework import viewsets
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
+from django.views.generic import DetailView
 
 # Create your views here.
 class TripViewSet(viewsets.ModelViewSet):
@@ -13,8 +13,8 @@ class EventLocationPrincipalTravelList(ListView):
     model = EventLocationPrincipalTravel
 
 class EventLocationPrincipalTravelDetail(DetailView):
-    model = EventLocationPrincipalTravel
+    queryset = EventLocationPrincipalTravel.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context = super(EventLocationPrincipalTravelDetail, self).get_context_data(**kwargs)
-        return context
+    def get_object(self):
+        object = super(EventLocationPrincipalTravelDetail, self).get_object()
+        return object
