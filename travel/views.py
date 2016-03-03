@@ -9,4 +9,5 @@ class TripViewSet(viewsets.ModelViewSet):
     serializer_class = ELPTSerializer
 
 def home(request):
-    return render(request, 'home.html')
+    print(request.user)
+    return render(request, 'home.html', {'current_user': request.user})

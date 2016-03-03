@@ -2,5 +2,4 @@ Django
 psycopg2
 djangorestframework
 django-registration-redux
-django-crispy-forms
 -e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards

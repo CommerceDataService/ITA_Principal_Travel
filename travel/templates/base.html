@@ -16,12 +16,21 @@
          <h1>Principal Travel Tracker</h1>
        </div>
        <ul class="usa-button-list usa-unstyled-list">
+          {% if current_user == AnonymousUser %}
           <li>
             <a class="usa-button" href="/accounts/register">Register</a>
           </li>
           <li>
             <a class="usa-button usa-button-outline" href="/accounts/login">Login</a>
           </li>
+          {% else%}
+          <li>
+            Hello, {{current_user}}
+          </li>
+          <li>
+            <a class="usa-button usa-button-outline" href="/accounts/logout">Logout</a>
+          </li>
+          {% endif %}
        </ul>
      </nav>
    </header>
