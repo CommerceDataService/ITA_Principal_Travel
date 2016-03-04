@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'registration',
     'designstandards'
 ]
-
+# Django-Registration-Redux Settings
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+
 REST_FRAMEWORK = {
     'page_size': 10,
 }
