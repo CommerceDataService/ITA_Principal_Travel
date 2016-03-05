@@ -43,14 +43,13 @@ PREREQ_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'cities_light',
+    'registration',
     'designstandards',
 ]
 
 PROJECT_APPS = [
     'travel',
-    'cities_light'
-    'registration',
-    'designstandards'
 ]
 # Django-Registration-Redux Settings
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
