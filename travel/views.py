@@ -10,4 +10,4 @@ class TripViewSet(viewsets.ModelViewSet):
 
 def home(request):
     print(request.user)
-    return render(request, 'home.html', {'current_user': request.user})
+    return render(request, 'travel/home.html', {'current_user': request.user})

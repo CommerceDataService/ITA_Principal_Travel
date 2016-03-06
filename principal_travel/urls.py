@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     # url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'travel.views.home', name='home')
-
 ]
