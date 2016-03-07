@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from travel.views import HomeView, TripViewSet
+from travel.views import TripViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -24,5 +24,7 @@ router.register(r'trips', TripViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^', HomeView.as_view()),
+    url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
+    # url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^$', 'travel.views.home', name='home')
 ]
