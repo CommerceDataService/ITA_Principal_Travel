@@ -4,7 +4,6 @@ services:
   - docker
 env:
   DOCKER_COMPOSE_VERSION: 1.6.0
-  DEBIAN_FRONTEND: noninteractive
 
 language: python
 
