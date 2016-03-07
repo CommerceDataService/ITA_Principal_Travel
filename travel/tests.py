@@ -21,10 +21,14 @@ class RegistrationModelTests(TestCase):
                          "Registration information for docemployee")
 
     def test_profile_retrieval(self):
-        # Testing User Information Retrieval for Login 
+        # Testing User Information Retrieval for Login
         new_user = UserModel().objects.create_user(**self.user_info)
         existing_user = UserModel().objects.get(username='docemployee')
 
         self.failUnless(existing_user.check_password('letstravel'))
         self.assertEqual(existing_user.email, 'doc@example.com')
         self.failUnless(existing_user.is_active)
+
+class TestTestCase(TestCase):
+    def test_test(self):
+        assert 1
