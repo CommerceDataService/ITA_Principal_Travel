@@ -4,13 +4,13 @@ services:
   - docker
 env:
   DOCKER_COMPOSE_VERSION: 1.6.0
-  DEBIAN_FRONTEND=noninteractive
+  DEBIAN_FRONTEND: noninteractive
 
 language: python
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -qy docker-engine
+  - sudo apt-get install -q -y docker-engine
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
