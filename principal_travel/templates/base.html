@@ -17,7 +17,7 @@
          <h1>Principal Travel Tracker</h1>
        </div>
        <ul class="usa-button-list usa-unstyled-list">
-          {% if current_user == AnonymousUser %}
+          {% if current_user.id == None %}
           <li>
             <a class="usa-button" href="/accounts/register">Register</a>
           </li>

@@ -44,8 +44,8 @@ PREREQ_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'cities_light',
-    'registration',
     'designstandards',
+    'registration',
 ]
 
 PROJECT_APPS = [
@@ -76,7 +76,7 @@ ROOT_URLCONF = 'principal_travel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
