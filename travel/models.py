@@ -34,8 +34,8 @@ class Event(models.Model):
     no_of_travelers = models.IntegerField(blank=True, null=True)
     no_of_travelers_note = models.CharField(max_length=32, blank=True, null=True)
 
-    cities_light_city_id = models.ForeignKey('cities_light.City',null=True)
-    cities_light_country_id = models.ForeignKey('cities_light.Country',null=True)
+    cities_light_city = models.ForeignKey('cities_light.City',null=True)
+    cities_light_country = models.ForeignKey('cities_light.Country',null=True)
 
     def __str__(self):
         return "{}".format(self.event_name)
@@ -64,12 +64,12 @@ class Principal(models.Model):
     first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
-
+    
     agency = models.CharField(max_length=255, blank=True, null=True)
 
-    agency_id = models.ForeignKey('Agency', null=True)
+    agency_id  = models.ForeignKey('Agency', null=True)
     career = models.BooleanField(default=False)
-    region_id = models.ForeignKey('Region', null=True)
+    region = models.ForeignKey('Region', null=True)
 
     def __str__(self):
         return "{}, {}, {}".format(self.first_name, self.last_name, self.title)
@@ -100,7 +100,7 @@ class Trip(models.Model):
     end_date = models.DateField(blank=True, null=True)
     no_of_travelers = models.IntegerField(blank=True, null=True)
     no_of_travelers_note = models.CharField(max_length=32, blank=True, null=True)
-    principal_id = models.ForeignKey('Principal', null=False)
+    principal = models.ForeignKey('Principal', null=False)
 
     def __str__(self):
         return "{}, {}, {}".format(self.start_date, self.end_date)
@@ -116,7 +116,7 @@ class TripEvent(models.Model):
 class Region(models.Model):
     id = models.AutoField(primary_key=True)
     region_name = models.CharField(max_length=255, blank=False, null=False)
-    agency_id = models.ForeignKey('Agency', null=True)
+    agency = models.ForeignKey('Agency', null=True)
 
     def __str__(self):
         return "{}".format(self.region_name)
@@ -138,7 +138,7 @@ class Agency(models.Model):
 class Office(models.Model):
     id = models.AutoField(primary_key=True)
     office_name = models.CharField(max_length=255, null=True)
-    agency_id = models.ForeignKey('Agency', null=True)
+    agency = models.ForeignKey('Agency', null=True)
 
     def __str__(self):
         return "{}".format(self.office_name)
