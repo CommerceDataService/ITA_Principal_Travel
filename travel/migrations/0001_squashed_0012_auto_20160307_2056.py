@@ -8,8 +8,6 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    replaces = [('travel', '0001_initial'), ('travel', '0002_auto_20160307_1407'), ('travel', '0003_auto_20160307_1440'), ('travel', '0004_remove_principal_name'), ('travel', '0005_country'), ('travel', '0006_auto_20160307_1509'), ('travel', '0007_auto_20160307_1523'), ('travel', '0008_auto_20160307_1702'), ('travel', '0009_country'), ('travel', '0010_auto_20160307_1844'), ('travel', '0011_auto_20160307_2017'), ('travel', '0012_auto_20160307_2056')]
-
     initial = True
 
     dependencies = [
