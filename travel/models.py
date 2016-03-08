@@ -27,7 +27,7 @@ class Event(models.Model):
     host = models.CharField(max_length=255, blank=True, null=True)
     event_name = models.CharField(max_length=255,blank=True, null=True)
     event_description = models.TextField(blank=True, null=True)
-    event_type_id = models.ForeignKey('EventType',null=True)
+    event_type = models.ForeignKey('EventType',null=True)
     press = models.NullBooleanField()
     press_note = models.CharField(max_length=255, blank=True, null=True)
 
