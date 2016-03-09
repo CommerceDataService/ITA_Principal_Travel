@@ -45,10 +45,6 @@ PREREQ_APPS = [
     'rest_framework',
     'cities_light',
     'designstandards',
-<<<<<<< HEAD
-    'cities_light',
-=======
->>>>>>> 69bccf2ddb981810766de3356e61ecc2b44345b0
     'registration',
 ]
 

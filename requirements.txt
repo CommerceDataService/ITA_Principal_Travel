@@ -1,13 +1,8 @@
 Django
 psycopg2
 djangorestframework
-<<<<<<< HEAD
-django-cities-light
-django-registration-redux
--e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
-=======
 -e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
 django-cities-light
 django-registration-redux
 django-debug-toolbar
->>>>>>> 69bccf2ddb981810766de3356e61ecc2b44345b0
+
