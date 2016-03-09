@@ -36,7 +36,7 @@ class Event(models.Model):
     
     def __str__(self):
         return "{}".format(self.event_name)
-
+'''
 class Location(models.Model):
     id = models.AutoField(primary_key=True)
     city = models.CharField(max_length=255, blank=True, null=True)
@@ -45,6 +45,7 @@ class Location(models.Model):
 
     def __str__(self):
         return "{}, {}, {}".format(self.city, self.state, self.country)
+'''
 
 class Principal(models.Model):
     '''
@@ -65,6 +66,7 @@ class Principal(models.Model):
     def __str__(self):
         return "{}, {}, {}".format(self.first_name, self.last_name, self.title)
 
+'''
 class Travel(models.Model):
     id = models.AutoField(primary_key=True)
     start_date = models.DateField(blank=True, null=True)
@@ -84,6 +86,7 @@ class EventLocationPrincipalTravel(models.Model):
 
     def __str__(self):
         return "{} {} {} {}".format(self.event, self.location, self.principal, self.travel)
+'''
 
 class Trip(models.Model):
     id = models.AutoField(primary_key=True)
