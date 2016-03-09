@@ -92,22 +92,16 @@ class Trip(models.Model):
     no_of_travelers = models.IntegerField(blank=True, null=True)
     no_of_travelers_note = models.CharField(max_length=32, blank=True, null=True)
     principal = models.ForeignKey('Principal', null=False)
+    events = models.ManyToManyField('Event')
 
     def __str__(self):
         return "{}, {}, {}".format(self.start_date, self.end_date)
-
-class TripEvent(models.Model):
-    id = models.AutoField(primary_key=True)
-    trip = models.ForeignKey('Trip', null=False)
-    event = models.ForeignKey('Event', null=False)
-
-    def __str__(self):
-        return "{}, {}".format(self.trip, self.event)
 
 class Region(models.Model):
     id = models.AutoField(primary_key=True)
     region_name = models.CharField(max_length=255, blank=False, null=False)
     agency = models.ForeignKey('Agency', null=True)
+    countries = models.ManyToManyField(Country, related_name="custom_region")
 
     def __str__(self):
         return "{}".format(self.region_name)
@@ -134,11 +128,3 @@ class Office(models.Model):
 
     def __str__(self):
         return "{}".format(self.office_name)
-
-class CountryRegion(models.Model):
-    id = models.AutoField(primary_key=True)
-    cities_light_country = models.ForeignKey('cities_light.Country', null=True)
-    region = models.ForeignKey('Region', null=True)
-
-    def __str__(self):
-        return "{}, {}".format(self.country, self.region)
