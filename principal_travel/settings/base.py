@@ -43,13 +43,16 @@ PREREQ_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'cities_light',
     'designstandards',
+    'registration',
 ]
 
 PROJECT_APPS = [
     'travel',
-    'cities_light'
 ]
+# Django-Registration-Redux Settings
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
@@ -73,7 +76,7 @@ ROOT_URLCONF = 'principal_travel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,7 +137,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/

@@ -13,21 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf import settings
+from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import TripViewSet
-from travel.views import HomeView
-from travel.views import EventLocationPrincipalTravelList
-from travel.views import EventLocationPrincipalTravelDetail
+from travel.views import TripViewSet, HomeView
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'trips', TripViewSet)
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view()),
+    # url(r'^$', HomeView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^itineraries/$', EventLocationPrincipalTravelList.as_view()),
-    url(r'^itineraries/(?P<pk>[0-9]+)/$', EventLocationPrincipalTravelDetail.as_view()),
+    url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
+    # url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^$', 'travel.views.home', name='home')
 ]
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += patterns('',
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
