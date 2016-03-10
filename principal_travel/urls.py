@@ -16,11 +16,9 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import TripViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'trips', TripViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
