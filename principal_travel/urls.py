@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import TripViewSet, HomeView, TripList, TripDetail
+from travel.views import HomeView, TripList, TripDetail
 from rest_framework import routers
 from django.contrib.staticfiles import views
 

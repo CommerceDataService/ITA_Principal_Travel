@@ -9,7 +9,8 @@
       </button>
       <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
         <p>Title: {{object.principal.title}}</p>
-        <p>Agency: {{object.principal.agency}}</p>
+        <p>Office: {{object.principal.office.long_name}} ({{object.principal.office.short_name}})</p>
+        <p>Agency: {{object.principal.office.agency.name}}</p>
         <p>Region: {{object.principal.region}}</p>
         <p>Career: {{object.principal.career}}</p>
       </div>
@@ -25,8 +26,8 @@
         {% for event in object.events.all %}
           <p>Event {{forloop.counter}}: {{event.event_name}}</p>
           <ul>
-            <li>Type: {{event.event_type.event_type_name}}</li>
-            <li>Description: {{event.event_description}}</li>
+            <li>Type: {{event.event_type.name}}</li>
+            <li>Description: {{event.description}}</li>
             <li>Location: {{event.cities_light_city}}, {{event.cities_light_country}}</li>
           </ul>
         {% endfor %}
