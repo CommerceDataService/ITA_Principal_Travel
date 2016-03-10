@@ -1,4 +1,4 @@
-# This is an auto-generated Django model module.
+This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
@@ -15,7 +15,7 @@ class Event(models.Model):
     host = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255,blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    type = models.ForeignKey('EventType',null=True)
+    event_type = models.ForeignKey('EventType',null=True)
     press = models.NullBooleanField()
     press_note = models.CharField(max_length=255, blank=True, null=True)
     cities_light_city = models.ForeignKey('cities_light.City',null=True)
