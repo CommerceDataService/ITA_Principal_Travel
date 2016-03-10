@@ -1,0 +1,57 @@
+.doc-logo {
+	width: 150px;
+	float: left;
+	padding-top: 10px;
+}
+
+.container{
+	width: 100%;
+}
+
+header{
+	background-color: #d6d7d9;
+	height: 175px;
+}
+
+.header-text{
+	margin-top: .5em;
+}
+nav{
+	float: right;
+}
+
+.landing-page-buttons{
+	float:right;
+}
+footer, .usa-footer-primary-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #d6d7d9;
+}
+
+.footer-text{
+	float:right;
+}
+
+.not-live {
+	background-color: grey;
+}
+
+.not-live:hover{
+	background-color: grey;
+}
+
+.usa-drop_text {
+  margin-bottom: 10; }
+
+form{
+	float: inherit;
+}
+
+fieldset {
+  border: none;
+  margin: 0 2px;
+  padding: 0; }

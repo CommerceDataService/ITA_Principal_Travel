@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,38 +7,60 @@
    <link rel="stylesheet" href="/static/css/normalize.min.css">
    <link rel="stylesheet" href="/static/css/google-fonts.css">
     <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="{% static "css/master.css" %}">
     <script src="static/js/vendor/jquery-1.11.3.min.js"></script>
     <script src="static/js/components.js"></script>
     {% block head %}{% endblock %}
   </head>
- <body>
-   <header class="usa-site-header">
-     <nav class="usa-site-navbar">
-       <div class="logo">
-         <h1>Principal Travel Tracker</h1>
-       </div>
-       <ul class="usa-button-list usa-unstyled-list">
+
+<body>
+<header>
+  <section class="usa-grid-full">
+    <div class="usa-width-one-half">
+        <img src="{% static "img/doc-logo.png" %}" class="doc-logo">
+  </div>
+
+  <nav class="usa-width-one-half">
+      <h1 class="header-text">Principal Travel Tracker</h1>
+        <div class="landing-page-buttons">
+
           {% if current_user.id == None %}
-          <li>
-            <a class="usa-button" href="/accounts/register">Register</a>
-          </li>
-          <li>
-            <a class="usa-button usa-button-outline" href="/accounts/login">Login</a>
-          </li>
+      <div class="landing-page-buttons">
+        <a class="usa-button" href="/accounts/login">Login</a>  <a class="usa-button" href="/accounts/register">Register</a>
+      </div>
+
           {% else%}
-          <li>
-            Hello, {{current_user}}
-          </li>
-          <li>
-            <a class="usa-button usa-button-outline" href="/accounts/logout">Logout</a>
-          </li>
+
+          <p>Hello, {{current_user}}</p>
+          <a class="usa-button usa-button-outline" href="/accounts/logout">Logout</a>
+
+
+
           {% endif %}
-       </ul>
+        </div>
+
+
      </nav>
+     </section>
    </header>
    <main class="usa-grid">
    {% block content %}
    {% endblock %}
    </main>
+
+<footer>
+<div class="usa-footer-primary-section">
+      <div class="usa-grid-full">
+        <div class="usa-footer-nav usa-width-one-half">
+          <p>International Trade Administration</p>
+        </div>
+        <div class="usa-footer-nav footer-text">
+          <p><a href="www.trade.gov">www.trade.gov</a></p>
+        </div>
+        </div>          
+      </div>
+    </div>
+</footer>
+
  </body>
 </html>
