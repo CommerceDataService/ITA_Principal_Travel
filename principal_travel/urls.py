@@ -21,7 +21,6 @@ from rest_framework import routers
 from django.contrib.staticfiles import views
 
 router = routers.DefaultRouter()
-router.register(r'trips', TripViewSet)
 
 urlpatterns = [
     # url(r'^$', HomeView.as_view()),

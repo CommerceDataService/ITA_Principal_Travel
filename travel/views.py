@@ -1,6 +1,4 @@
 from .models import Trip
-from .serializers import ELPTSerializer
-from rest_framework import viewsets
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
@@ -8,10 +6,6 @@ from django.template.loader import get_template
 from django.shortcuts import render
 
 # Create your views here.
-class TripViewSet(viewsets.ModelViewSet):
-    queryset = Trip.objects.all()
-    serializer_class = ELPTSerializer
-
 class TripList(ListView):
     model = Trip
 
