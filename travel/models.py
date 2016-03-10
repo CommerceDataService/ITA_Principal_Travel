@@ -41,7 +41,7 @@ class Principal(models.Model):
     first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
-    agency  = models.ForeignKey('Agency', null=True)
+    office = models.ForeignKey('Office', null=True)
     career = models.BooleanField(default=False)
     region = models.ForeignKey('Region', null=True)
     
