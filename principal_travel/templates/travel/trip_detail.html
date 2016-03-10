@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <p>{{object.start_date}}</p>
+  <div class="pizza">
+    <div class="usa-grid">
+      <div class="usa-width-one-half">{{object.principal.last_name}}, {{object.principal.first_name}}</div>
+      <div class="usa-width-one-half">{{object.principal.title}}</div>
+    </div>
+    <div class="usa-grid">
+      <div class="usa-width-one-third">Start Date: {{object.start_date}}</div>
+      <div class="usa-width-one-third">End Date: {{object.end_date}}</div>
+      <div class="usa-width-one-third">Number of Travelers: {{object.no_of_travelers}}<span>Note: {{object.no_of_travelers_note}}</span></div>
+    </div>
+    {% for event in object.events.all %}
+    <div class="usa-grid">
+      <div class="usa-width-one">{{event.event_description}}</div>
+    </div>
+    <div class="usa-grid">
+      <div class="usa-width-one-half">{{event.cities_light_city}}</div>
+      <div class="usa-width-one-half">{{event.cities_light_country}}</div>
+    </div>
+    {% endfor %}
+  </div>
 {% endblock %}

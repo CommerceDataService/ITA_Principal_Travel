@@ -18,6 +18,7 @@ from django.conf.urls import url, include, patterns
 from django.contrib import admin
 from travel.views import TripViewSet, HomeView, TripList, TripDetail
 from rest_framework import routers
+from django.contrib.staticfiles import views
 
 router = routers.DefaultRouter()
 router.register(r'trips', TripViewSet)
@@ -36,4 +37,6 @@ if settings.DEBUG:
     import debug_toolbar
     urlpatterns += patterns('',
         url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(r'^static/(?P<path>.*)$', views.serve),
+
     )
