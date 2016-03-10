@@ -1,24 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="pizza">
-    <div class="usa-grid">
-      <div class="usa-width-one-half">{{object.principal.last_name}}, {{object.principal.first_name}}</div>
-      <div class="usa-width-one-half">{{object.principal.title}}</div>
-    </div>
-    <div class="usa-grid">
-      <div class="usa-width-one-third">Start Date: {{object.start_date}}</div>
-      <div class="usa-width-one-third">End Date: {{object.end_date}}</div>
-      <div class="usa-width-one-third">Number of Travelers: {{object.no_of_travelers}}<span>Note: {{object.no_of_travelers_note}}</span></div>
-    </div>
-    {% for event in object.events.all %}
-    <div class="usa-grid">
-      <div class="usa-width-one">{{event.event_description}}</div>
-    </div>
-    <div class="usa-grid">
-      <div class="usa-width-one-half">{{event.cities_light_city}}</div>
-      <div class="usa-width-one-half">{{event.cities_light_country}}</div>
-    </div>
-    {% endfor %}
-  </div>
+<div class="usa-accordion-bordered">
+  <ul class="usa-unstyled-list">
+    <li>
+      <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
+      {{object.principal.first_name}} {{object.principal.last_name}}
+      </button>
+      <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
+        <p>Title: {{object.principal.title}}</p>
+        <p>Agency: {{object.principal.agency}}</p>
+        <p>Region: {{object.principal.region}}</p>
+        <p>Career: {{object.principal.career}}</p>
+      </div>
+    </li>
+
+    <li>
+      <button class="usa-button-unstyled" aria-expanded="true" aria-controls="collapsible-1">
+      Itinerary
+      </button>
+      <div id="collapsible-1" aria-hidden="false" class="usa-accordion-content">
+        <p>Start Date: {{object.start_date}}</p>
+        <p>End Date: {{object.end_date}}</p>
+        {% for event in object.events.all %}
+          <p>Event {{forloop.counter}}: {{event.event_name}}</p>
+          <ul>
+            <li>Type: {{event.event_type.event_type_name}}</li>
+            <li>Description: {{event.event_description}}</li>
+            <li>Location: {{event.cities_light_city}}, {{event.cities_light_country}}</li>
+          </ul>
+        {% endfor %}
+      </div>
+    </li>
+
+  </ul>
+</div>
+
 {% endblock %}
