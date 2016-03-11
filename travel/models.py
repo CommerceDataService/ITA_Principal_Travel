@@ -48,10 +48,16 @@ class Trip(models.Model):
     events = models.ManyToManyField('Event')
 
     @property
-    def city(self):
+    def country(self):
         city_List = [x.cities_light_country for x in self.events.all()]
         update_city_List = [str(name) for name in city_List]
         return ', '.join(update_city_List)
+    
+    @property
+    def event_name(self):
+        event_List = [x.name for x in self.events.all()]
+        update_event_List = [str(name) for name in event_List]
+        return ', '.join(update_event_List)
     
     
     def __str__(self):
