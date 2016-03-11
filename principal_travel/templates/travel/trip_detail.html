@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="usa-accordion-bordered">
+  <ul class="usa-unstyled-list">
+    <li>
+      <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
+      {{object.principal.first_name}} {{object.principal.last_name}}
+      </button>
+      <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
+        <p>Title: {{object.principal.title}}</p>
+        <p>Office: {{object.principal.office.long_name}} ({{object.principal.office.short_name}})</p>
+        <p>Agency: {{object.principal.office.agency.name}}</p>
+        <p>Region: {{object.principal.region}}</p>
+        <p>Career: {{object.principal.career}}</p>
+      </div>
+    </li>
+
+    <li>
+      <button class="usa-button-unstyled" aria-expanded="true" aria-controls="collapsible-1">
+      Itinerary
+      </button>
+      <div id="collapsible-1" aria-hidden="false" class="usa-accordion-content">
+        <p>Start Date: {{object.start_date}}</p>
+        <p>End Date: {{object.end_date}}</p>
+        {% for event in object.events.all %}
+          <p>Event {{forloop.counter}}: {{event.event_name}}</p>
+          <ul>
+            <li>Type: {{event.event_type.name}}</li>
+            <li>Description: {{event.description}}</li>
+            <li>Location: {{event.cities_light_city}}, {{event.cities_light_country}}</li>
+          </ul>
+        {% endfor %}
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+{% endblock %}
