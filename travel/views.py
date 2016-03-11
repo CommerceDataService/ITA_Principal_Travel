@@ -1,10 +1,10 @@
-from .models import Trip
-from .forms import TripForm
+from .models import Trip, Event, Principal
+from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
 from django.template.loader import get_template
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 class TripDetail(DetailView):
@@ -29,6 +29,7 @@ def TripNew(request):
         form = TripForm(request.POST)
         trip = form.save(commit=False)
         trip.save()
+        form.save_m2m()
         return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm()
