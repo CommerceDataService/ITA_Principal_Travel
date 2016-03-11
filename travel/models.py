@@ -48,7 +48,7 @@ class Trip(models.Model):
     events = models.ManyToManyField('Event')
 
     def __str__(self):
-        return "{}, {}, {}".format(self.start_date, self.end_date)
+        return "{} - {}".format(self.start_date, self.end_date)
 
 
 class Region(models.Model):
