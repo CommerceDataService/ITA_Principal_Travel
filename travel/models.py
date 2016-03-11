@@ -7,7 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 from django.db import models
-from cities_light.models import City,Country
+from cities_light.models import Country
 
 
 class Event(models.Model):
@@ -20,21 +20,23 @@ class Event(models.Model):
     press_note = models.CharField(max_length=255, blank=True, null=True)
     cities_light_city = models.ForeignKey('cities_light.City',null=True)
     cities_light_country = models.ForeignKey('cities_light.Country',null=True)
-    
+
     def __str__(self):
         return "{}".format(self.event_name)
+
 
 class Principal(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
-    agency  = models.ForeignKey('Agency', null=True)
+    office = models.ForeignKey('Office', null=True)
     career = models.BooleanField(default=False)
     region = models.ForeignKey('Region', null=True)
-    
+
     def __str__(self):
         return "{}, {}, {}".format(self.first_name, self.last_name, self.title)
+
 
 class Trip(models.Model):
     id = models.AutoField(primary_key=True)
@@ -48,6 +50,7 @@ class Trip(models.Model):
     def __str__(self):
         return "{}, {}, {}".format(self.start_date, self.end_date)
 
+
 class Region(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
@@ -57,6 +60,7 @@ class Region(models.Model):
     def __str__(self):
         return "{}".format(self.region_name)
 
+
 class EventType(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
@@ -64,12 +68,14 @@ class EventType(models.Model):
     def __str__(self):
         return "{}".format(self.event_type_name)
 
+
 class Agency(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, null=False)
 
     def __str__(self):
         return "{}".format(self.agency_name)
+
 
 class Office(models.Model):
     id = models.AutoField(primary_key=True)
