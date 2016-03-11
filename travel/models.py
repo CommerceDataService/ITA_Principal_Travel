@@ -22,7 +22,7 @@ class Event(models.Model):
     cities_light_country = models.ForeignKey('cities_light.Country',null=True)
 
     def __str__(self):
-        return "{}".format(self.event_name)
+        return "{}".format(self.name)
 
 
 class Principal(models.Model):
@@ -65,7 +65,7 @@ class Region(models.Model):
     countries = models.ManyToManyField(Country, related_name="custom_region")
 
     def __str__(self):
-        return "{}".format(self.region_name)
+        return "{}".format(self.name)
 
 
 class EventType(models.Model):
@@ -73,7 +73,7 @@ class EventType(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
 
     def __str__(self):
-        return "{}".format(self.event_type_name)
+        return "{}".format(self.name)
 
 
 class Agency(models.Model):
@@ -81,7 +81,7 @@ class Agency(models.Model):
     name = models.CharField(max_length=255, null=False)
 
     def __str__(self):
-        return "{}".format(self.agency_name)
+        return "{}".format(self.name)
 
 
 class Office(models.Model):
@@ -91,4 +91,4 @@ class Office(models.Model):
     agency = models.ForeignKey('Agency', null=True)
 
     def __str__(self):
-        return "{}".format(self.office_name)
+        return "{}".format(self.short_name)
