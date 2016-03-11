@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<head>
+   <meta charset="utf-8">
+   <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
+   <link rel="stylesheet" href="/static/css/normalize.min.css">
+   <link rel="stylesheet" href="/static/css/google-fonts.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="static/js/vendor/jquery-1.11.3.min.js"></script>
+    <script src="static/js/components.js"></script>
+    {% block head %}{% endblock %}
+  </head>
+</head>
+<body>
+
+       <div class="logo">
+         <h1>Principal Travel Tracker</h1>
+       </div>
+
+    
+	{% block content%}
+	<table>
+		<thead>
+			<tr>
+				<th scope='col'> Trip Entry Number </th>
+				<th scope='col'> Principal Name </th>
+				<th scope='col'> Trip Start Date </th>
+				<th scope='col'> Trip End Date </th>
+				<th scope='col'> Trip Location </th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for trip in object_list %}
+		  	<tr>
+		  		<th scope='row'><a href='{% url tripDetail trip.bk%}'>{{trip.id }}</a></th>
+		  		<td> {{trip.principal.first_name}} {{trip.principal.last_name}}</td>
+		  		<td>{{trip.start_date}}</td>
+			    <td>{{trip.end_date}}</td>
+			    <td>{{trip.city}}</td>
+			</tr>
+			{% endfor%}
+		</tbody>
+	
+	</table>
+
+	{% endblock%}
+	
+</body>
+</html>
+

@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
 from travel.views import TripViewSet
+from travel.views import TripList
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -27,7 +28,8 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     # url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', 'travel.views.home', name='home')
+    url(r'^$', 'travel.views.home', name='home'),
+    url(r'^itinerary/$', TripList.as_view(), name='tripList') 
 ]
 if settings.DEBUG:
     import debug_toolbar

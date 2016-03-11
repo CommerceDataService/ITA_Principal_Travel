@@ -94,6 +94,13 @@ class Trip(models.Model):
     principal = models.ForeignKey('Principal', null=False)
     events = models.ManyToManyField('Event')
 
+    @property
+    def city(self):
+        city_List = [x.cities_light_country for x in self.events.all()]
+        update_city_List = [str(name) for name in city_List]
+        return ', '.join(update_city_List)
+    
+    
     def __str__(self):
         return "{}, {}, {}".format(self.start_date, self.end_date)
 
