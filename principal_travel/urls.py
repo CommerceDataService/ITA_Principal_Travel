@@ -16,19 +16,24 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
+from travel.views import HomeView, TripDetail
 from rest_framework import routers
+from django.contrib.staticfiles import views
 
 router = routers.DefaultRouter()
 
 urlpatterns = [
+    # url(r'^$', HomeView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     # url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', 'travel.views.home', name='home')
+    url(r'^$', 'travel.views.home', name='home'),
+    url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view(),  name='tripDetail')
 ]
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += patterns('',
         url(r'^__debug__/', include(debug_toolbar.urls)),
+        url(r'^static/(?P<path>.*)$', views.serve),
     )
