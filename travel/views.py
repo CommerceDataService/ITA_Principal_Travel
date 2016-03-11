@@ -1,4 +1,5 @@
 from .models import Trip
+from .forms import TripForm
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
@@ -22,3 +23,13 @@ class HomeView(TemplateView):
 
 def home(request):
     return render(request, 'travel/home.html', {'current_user': request.user})
+
+def TripNew(request):
+    if request.method == "POST"
+        form = PostForm(request.POST)
+        trip = form.save(commit=False)
+        trip.save()
+        return redirect('trip_detail', pk=trip.pk)
+    else:
+        form = TripForm()
+    return render(request, 'travel/trip_form.html', {'form': form})
