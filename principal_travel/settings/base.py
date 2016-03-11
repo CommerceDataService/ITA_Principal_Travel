@@ -51,6 +51,7 @@ PREREQ_APPS = [
 PROJECT_APPS = [
     'travel',
 ]
+
 # Django-Registration-Redux Settings
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
