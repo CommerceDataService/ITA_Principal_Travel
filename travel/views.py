@@ -45,3 +45,14 @@ def EventNew(request):
     else:
         form = EventForm()
     return render(request, 'travel/event_form.html', {'form': form})
+
+def PrincipalNew(request):
+    if request.method == "POST":
+        form = PrincipalForm(request.POST)
+        principal = form.save(commit=False)
+        principal.save()
+        form.save_m2m()
+        return redirect('trip_new')
+    else:
+        form = PrincipalForm()
+    return render(request, 'travel/principal_form.html', {'form': form})

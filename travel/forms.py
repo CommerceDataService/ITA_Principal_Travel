@@ -18,6 +18,7 @@ class EventForm(forms.ModelForm):
         fields = '__all__'
 
 class PrincipalForm(forms.ModelForm):
+    career = forms.CheckboxInput()
     class Meta:
         model = Principal
         fields = '__all__'

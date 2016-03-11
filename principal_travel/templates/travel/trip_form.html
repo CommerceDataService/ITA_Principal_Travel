@@ -3,6 +3,7 @@
 {% block content %}
     <h2>New Itinerary</h2>
     <a class="usa-button" href="{% url 'event_new' %}">Add a New Event</a>
+    <a class="usa-button" href="{% url 'principal_new' %}">Add a New Principal</a>
     <form method="POST">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>

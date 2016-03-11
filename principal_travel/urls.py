@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import HomeView, TripDetail, TripNew, EventNew
+from travel.views import HomeView, TripDetail, TripNew, EventNew, PrincipalNew
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^$', 'travel.views.home', name='home'),
     url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view(),  name='trip_detail'),
     url(r'^trips/new/$', TripNew, name="trip_new"),
-    url(r'^events/new/$', EventNew, name="event_new")
+    url(r'^events/new/$', EventNew, name="event_new"),
+    url(r'^principals/new/$', PrincipalNew, name="principal_new")
 ]
 if settings.DEBUG:
     import debug_toolbar
