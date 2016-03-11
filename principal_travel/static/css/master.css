@@ -49,15 +49,15 @@ footer, .usa-footer-primary-section {
 	float:right;
 }
 
-.not-live {
+#not-live  {
 	background-color: grey;
 }
 
-.not-live:hover{
+#not-live:hover{
 	background-color: grey;
 }
 
-.not-live:active{
+#not-live:active{
 	background-color: grey;
 }
 
