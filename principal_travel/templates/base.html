@@ -16,28 +16,29 @@
 <body>
 <header>
   <section class="usa-grid-full">
-    <div class="usa-width-one-half">
+    <div class="usa-width-one-sixth">
         <img src="{% static "img/doc-logo.png" %}" class="doc-logo">
   </div>
 
-  <nav class="usa-width-one-half">
-      <h1 class="header-text">Principal Travel Tracker</h1>
-        <div class="landing-page-buttons">
+  <nav>
+      <h1 class="header-text">Principal Travel Tracker </h1> 
 
           {% if current_user.id == None %}
       <div class="landing-page-buttons">
-        <a class="usa-button" href="/accounts/login">Login</a>  <a class="usa-button" href="/accounts/register">Register</a>
+        <a class="usa-button" href="/accounts/login">Login</a>  
+        <a class="usa-button" href="/accounts/register">Register</a>
+      </div>
+          {% else%}
+      <div class="usa-width-one-whole">
+          <a class="usa-button not-live" href="#"> Admin Interface </a>
+          <a class="usa-button" href="#"> Create New Trip Record </a>
+          <a class="usa-button" href="#"> View Itineraries </a>
+          <a class="usa-button not-live" href="#"> Update Existing Record </a> 
+          <div><a class="usa-button usa-button-outline logout-button" href="/accounts/logout">Logout</a></div>
       </div>
 
-          {% else%}
-
-          <p>Hello, {{current_user}}</p>
-          <a class="usa-button usa-button-outline" href="/accounts/logout">Logout</a>
-
-
-
           {% endif %}
-        </div>
+
 
 
      </nav>

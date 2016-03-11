@@ -1,7 +1,7 @@
 .doc-logo {
 	width: 150px;
 	float: left;
-	padding-top: 10px;
+	padding-top: 20px;
 }
 
 .container{
@@ -10,19 +10,32 @@
 
 header{
 	background-color: #d6d7d9;
-	height: 175px;
+	height: 190px;
 }
 
 .header-text{
 	margin-top: .5em;
+	margin-bottom: 0em;
+	text-align: right;
 }
+
 nav{
 	float: right;
+}
+
+.usa-width-one-half, .usa-width-one-whole{
+	display: inline;
+	width: 100%;
 }
 
 .landing-page-buttons{
 	float:right;
 }
+
+.logout-button{
+	float:right;
+}
+
 footer, .usa-footer-primary-section {
     position: fixed;
     bottom: 0;
@@ -41,6 +54,10 @@ footer, .usa-footer-primary-section {
 }
 
 .not-live:hover{
+	background-color: grey;
+}
+
+.not-live:active{
 	background-color: grey;
 }
 
