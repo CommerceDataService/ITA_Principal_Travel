@@ -34,3 +34,14 @@ def TripNew(request):
     else:
         form = TripForm()
     return render(request, 'travel/trip_form.html', {'form': form})
+
+def EventNew(request):
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        event = form.save(commit=False)
+        event.save()
+        form.save_m2m()
+        return redirect('trip_new')
+    else:
+        form = EventForm()
+    return render(request, 'travel/event_form.html', {'form': form})

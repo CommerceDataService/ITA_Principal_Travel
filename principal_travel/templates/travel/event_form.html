@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>New Itinerary</h2>
-    <a class="usa-button" href="{% url 'event_new' %}">Add a New Event</a>
-    <form method="POST">{% csrf_token %}
+  <h2>New Event</h2>
+  <form method="POST">
+    {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+  </form>
 {% endblock %}
