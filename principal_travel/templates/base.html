@@ -21,11 +21,11 @@
   </div>
 
   <nav>
-      <h1 class="header-text">Principal Travel Tracker </h1> 
+      <h1 class="header-text">Principal Travel Tracker </h1>
 
           {% if current_user.id == None %}
       <div class="landing-page-buttons">
-        <a class="usa-button" href="/accounts/login">Login</a>  
+        <a class="usa-button" href="/accounts/login">Login</a>
         <a class="usa-button" href="/accounts/register">Register</a>
       </div>
           {% else%}
@@ -33,7 +33,7 @@
           <a class="usa-button" id="not-live" href="#"> Admin Interface </a>
           <a class="usa-button" href="/trips/new"> Create New Trip Record </a>
           <a class="usa-button" href="/trips"> View Itineraries </a>
-          <a class="usa-button" id="not-live" href="#"> Update Existing Record </a> 
+          <a class="usa-button" id="not-live" href="#"> Update Existing Record </a>
           <div><a class="usa-button usa-button-outline logout-button" href="/accounts/logout">Logout</a></div>
       </div>
 
@@ -45,8 +45,10 @@
      </section>
    </header>
    <main class="usa-grid-full">
-   {% block content %}
-   {% endblock %}
+     <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div> 
    </main>
 
 <footer>
@@ -58,7 +60,7 @@
         <div class="usa-footer-nav footer-text">
           <p><a href="www.trade.gov">www.trade.gov</a></p>
         </div>
-        </div>          
+        </div>
       </div>
     </div>
 </footer>

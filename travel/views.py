@@ -25,8 +25,8 @@ def home(request):
     return render(request, 'travel/home.html', {'current_user': request.user})
 
 def TripNew(request):
-    if request.method == "POST"
-        form = PostForm(request.POST)
+    if request.method == "POST":
+        form = TripForm(request.POST)
         trip = form.save(commit=False)
         trip.save()
         return redirect('trip_detail', pk=trip.pk)

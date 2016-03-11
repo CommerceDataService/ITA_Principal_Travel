@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     # url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'travel.views.home', name='home'),
-    url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view(),  name='tripDetail')
+    url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view(),  name='tripDetail'),
     url(r'^trips/new/$', TripNew, name="trip_new")
 ]
 if settings.DEBUG:

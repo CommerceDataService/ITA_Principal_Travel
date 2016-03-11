@@ -1,7 +1,10 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Trip
 
-class TripForm(ModelForm):
+class TripForm(forms.ModelForm):
     class Meta:
         model = Trip
-        fields = ('start_date', 'end_date')
+        fields = '__all__'
+        # widgets = {
+        #     'start_date': forms.DateField(required=True)
+        # }

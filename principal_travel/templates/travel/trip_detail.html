@@ -24,7 +24,7 @@
         <p>Start Date: {{object.start_date}}</p>
         <p>End Date: {{object.end_date}}</p>
         {% for event in object.events.all %}
-          <p>Event {{forloop.counter}}: {{event.event_name}}</p>
+          <p>Event {{forloop.counter}}: {{event.name}}</p>
           <ul>
             <li>Type: {{event.event_type.name}}</li>
             <li>Description: {{event.description}}</li>
