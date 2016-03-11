@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import HomeView, TripList, TripDetail
+from travel.views import HomeView, TripDetail
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
@@ -29,8 +29,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     # url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'travel.views.home', name='home'),
-    url(r'^trips/$', TripList.as_view()),
-    url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view())
+    url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view(),  name='tripDetail')
 ]
 if settings.DEBUG:
     import debug_toolbar

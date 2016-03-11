@@ -6,9 +6,6 @@ from django.template.loader import get_template
 from django.shortcuts import render
 
 # Create your views here.
-class TripList(ListView):
-    model = Trip
-
 class TripDetail(DetailView):
     queryset = Trip.objects.all()
 
