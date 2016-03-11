@@ -23,3 +23,6 @@ class HomeView(TemplateView):
 def home(request):
     print(request.user)
     return render(request, 'travel/home.html', {'current_user': request.user})
+
+class TripList(ListView):
+	model = Trip
