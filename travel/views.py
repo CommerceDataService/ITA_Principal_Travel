@@ -24,7 +24,7 @@ class HomeView(TemplateView):
 def home(request):
     return render(request, 'travel/home.html', {'current_user': request.user})
 
-def TripNew(request):
+def trip_new(request):
     if request.method == "POST":
         form = TripForm(request.POST)
         trip = form.save(commit=False)
@@ -35,7 +35,7 @@ def TripNew(request):
         form = TripForm()
     return render(request, 'travel/trip_form.html', {'form': form})
 
-def EventNew(request):
+def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
         event = form.save(commit=False)
@@ -46,7 +46,7 @@ def EventNew(request):
         form = EventForm()
     return render(request, 'travel/event_form.html', {'form': form})
 
-def PrincipalNew(request):
+def principal_new(request):
     if request.method == "POST":
         form = PrincipalForm(request.POST)
         principal = form.save(commit=False)
