@@ -53,7 +53,9 @@ PROJECT_APPS = [
 ]
 
 # Django-Registration-Redux Settings
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SEND_ACTIVATION_EMAIL = False
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 

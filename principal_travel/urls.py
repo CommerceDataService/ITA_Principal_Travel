@@ -20,14 +20,15 @@ from travel.views import HomeView, TripDetail, trip_new, event_new, principal_ne
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
+
 router = routers.DefaultRouter()
 
 urlpatterns = [
     # url(r'^$', HomeView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
-    # url(r'^accounts/', include('registration.backends.default.urls')),
+    #url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'travel.views.home', name='home'),
     url(r'^trips/(?P<pk>[0-9]+)$', TripDetail.as_view(),  name='trip_detail'),
     url(r'^trips/new/$', trip_new, name="trip_new"),
