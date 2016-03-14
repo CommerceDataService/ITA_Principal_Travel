@@ -1,10 +1,10 @@
 from .models import Trip, Event, Principal
 from .forms import TripForm, EventForm, PrincipalForm
-from django.views.generic import ListView
-from django.views.generic import DetailView
-from django.views.generic import TemplateView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.template.loader import get_template
 from django.shortcuts import render, redirect
+from .serializers import TripSerializer
+from rest_framework import viewsets
 
 # Create your views here.
 class TripDetail(DetailView):
@@ -61,3 +61,10 @@ def principal_new(request):
     else:
         form = PrincipalForm()
     return render(request, 'travel/principal_form.html', {'form': form})
+
+def dashboard_view(request):
+    trips = Trip.object.all()
+
+class TripViewSet(viewsets.ModelViewSet):
+    queryset = Trip.objects.all()
+    serializer_class = TripSerializer
