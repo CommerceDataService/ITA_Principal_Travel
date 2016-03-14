@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'travel.views.home', name='home'),
     url(r'^trips/$', TripList.as_view(), name='trip_list'), 
-    url(r'^trips/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail')
+    url(r'^trips/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail'),
     url(r'^trips/new/$', trip_new, name="trip_new"),
     url(r'^events/new/$', event_new, name="event_new"),
     url(r'^principals/new/$', principal_new, name="principal_new")
