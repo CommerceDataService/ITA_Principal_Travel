@@ -63,7 +63,7 @@ def principal_new(request):
     return render(request, 'travel/principal_form.html', {'form': form})
 
 def dashboard_view(request):
-    trips = Trip.object.all()
+    return render(request, 'travel/dashboard.html')
 
 class TripViewSet(viewsets.ModelViewSet):
     queryset = Trip.objects.all()
