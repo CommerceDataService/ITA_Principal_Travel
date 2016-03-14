@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<head>
+    <head>
    <meta charset="utf-8">
    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
   </head>
@@ -15,36 +15,35 @@
        </div>
 
     
-	{% block content%}
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th scope='col'> Trip Entry Number </th>
-					<th scope='col'> Principal Name </th>
-					<th scope='col'> Event Name </th>
-					<th scope='col'> Trip Start Date </th>
-					<th scope='col'> Trip End Date </th>
-					<th scope='col'> Trip Location(s) </th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for trip in object_list %}
-			  	<tr>
-			  		<th scope='row'><a href='{% url 'trip_detail' pk=trip.pk %}'>{{trip.id }}</a></th>
-			  		<td> {{trip.principal.first_name}} {{trip.principal.last_name}}</td>
-			  		<td> {{trip.event_name}}</td>
-			  		<td>{{trip.start_date}}</td>
-				    <td>{{trip.end_date}}</td>
-				    <td>{{trip.country}}</td>
-				</tr>
-				{% endfor%}
-			</tbody>
-		
-		</table>
-	</div>
-	{% endblock%}
-	
+    {% block content%}
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope='col'> Trip Entry Number </th>
+                    <th scope='col'> Principal Name </th>
+                    <th scope='col'> Event Name </th>
+                    <th scope='col'> Trip Start Date </th>
+                    <th scope='col'> Trip End Date </th>
+                    <th scope='col'> Trip Location(s) </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trip in object_list %}
+                <tr>
+                    <th scope='row'><a href='{% url 'trip_detail' pk=trip.pk %}'>{{trip.id }}</a></th>
+                    <td> {{trip.principal.first_name}} {{trip.principal.last_name}}</td>
+                    <td> {{trip.event_name}}</td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td>{{trip.country}}</td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        
+        </table>
+    </div>
+    {% endblock%}
+    
 </body>
 </html>
-
