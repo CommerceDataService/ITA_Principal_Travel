@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import HomeView, TripDetail, TripList
+from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new
 from rest_framework import routers
 from django.contrib.staticfiles import views
+
 
 router = routers.DefaultRouter()
 
@@ -26,11 +27,14 @@ urlpatterns = [
     # url(r'^$', HomeView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
-    url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
-    # url(r'^accounts/', include('registration.backends.default.urls')),
+    #url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'travel.views.home', name='home'),
     url(r'^trips/$', TripList.as_view(), name='trip_list'), 
     url(r'^trips/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail')
+    url(r'^trips/new/$', trip_new, name="trip_new"),
+    url(r'^events/new/$', event_new, name="event_new"),
+    url(r'^principals/new/$', principal_new, name="principal_new")
 ]
 
 if settings.DEBUG:
