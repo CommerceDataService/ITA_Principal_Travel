@@ -3,7 +3,7 @@ from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.template.loader import get_template
 from django.shortcuts import render, redirect
-from .serializers import TripSerializer
+from .serializers import TripSerializer, EventSerializer
 from rest_framework import viewsets
 
 # Create your views here.
@@ -68,3 +68,7 @@ def dashboard_view(request):
 class TripViewSet(viewsets.ModelViewSet):
     queryset = Trip.objects.all()
     serializer_class = TripSerializer
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all();
+    serializer_class = EventSerializer

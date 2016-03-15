@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import home, HomeView, TripDetail, TripList, trip_new, event_new, principal_new, dashboard_view, TripViewSet
+from travel.views import home, HomeView, TripDetail, TripList, trip_new, event_new, principal_new, dashboard_view, TripViewSet, EventViewSet
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
 
 router = routers.DefaultRouter()
 router.register(r'trips', TripViewSet)
+router.register(r'events', EventViewSet)
 
 urlpatterns = [
     # url(r'^$', HomeView.as_view()),
