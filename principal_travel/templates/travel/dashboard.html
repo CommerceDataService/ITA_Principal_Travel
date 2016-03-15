@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+{% endblock %}
 
-{% content block %}
+{% block content %}
 <div id='dashboard'></div>
 {% endblock %}
