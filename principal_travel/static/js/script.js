@@ -42,7 +42,7 @@ $(document).ready(function(){
     .enter()
     .append('text')
     .text(function(d){
-      return d[0];
+      return d[0]+": "+d[1];
     });
     labels
     .attr('x', 5)
