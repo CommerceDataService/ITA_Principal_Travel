@@ -29,9 +29,9 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     #url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^trips/$', TripList.as_view(), name='trip_list'),
-    url(r'^trips/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail'),
-    url(r'^trips/new/$', trip_new, name="trip_new"),
+    url(r'^itineraries/$', TripList.as_view(), name='trip_list'),
+    url(r'^itineraries/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail'),
+    url(r'^itineraries/new/$', trip_new, name="trip_new"),
     url(r'^events/new/$', event_new, name="event_new"),
     url(r'^principals/new/$', principal_new, name="principal_new")
 ]
