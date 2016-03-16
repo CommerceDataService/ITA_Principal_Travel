@@ -23,12 +23,16 @@
       <div id="collapsible-1" aria-hidden="false" class="usa-accordion-content">
         <p>Start Date: {{object.start_date}}</p>
         <p>End Date: {{object.end_date}}</p>
+        <p>Number of Travelers: {{object.no_of_travelers}}</p>
+        <p>Travelers Note: {{object.no_of_travelers_note}}</p>
         {% for event in object.events.all %}
           <p>Event {{forloop.counter}}: {{event.name}}</p>
           <ul>
             <li>Type: {{event.event_type.name}}</li>
             <li>Description: {{event.description}}</li>
             <li>Location: {{event.cities_light_city}}, {{event.cities_light_country}}</li>
+            <li>Press: {{event.press}}</li>
+            <li>Press Note: {{event.press_note}}</li>
           </ul>
         {% endfor %}
       </div>
