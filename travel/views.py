@@ -7,6 +7,13 @@ from .serializers import TripSerializer, EventSerializer
 from rest_framework import viewsets
 
 # Create your views here.
+class HomeView(TemplateView):
+    template_name = 'travel/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        return context
+
 class TripDetail(DetailView):
     queryset = Trip.objects.all()
 
@@ -14,20 +21,8 @@ class TripDetail(DetailView):
         object = super(TripDetail, self).get_object()
         return object
 
-class HomeView(TemplateView):
-    template_name = 'index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        return context
-
-def home(request):
-    return render(request, 'travel/home.html', {'current_user': request.user})
-
-
 class TripList(ListView):
 	model = Trip
-
 
 def trip_new(request):
     if request.method == "POST":

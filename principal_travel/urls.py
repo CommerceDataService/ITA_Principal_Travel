@@ -26,18 +26,17 @@ router.register(r'trips', TripViewSet)
 router.register(r'events', EventViewSet)
 
 urlpatterns = [
-    # url(r'^$', HomeView.as_view()),
+    url(r'^$', HomeView.as_view(), name='home_view'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     #url(r'^accounts/', include('registration.backends.simple.urls')), #Using simple urls now for one-step registration. Option below to be used for future use of two-step method
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', home , name='home'),
-    url(r'^trips/$', TripList.as_view(), name='trip_list'),
-    url(r'^trips/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail'),
-    url(r'^trips/new/$', trip_new, name="trip_new"),
+    url(r'^itineraries/$', TripList.as_view(), name='trip_list'),
+    url(r'^itineraries/(?P<pk>[0-9]+)/$', TripDetail.as_view(),  name='trip_detail'),
+    url(r'^itineraries/new/$', trip_new, name="trip_new"),
     url(r'^events/new/$', event_new, name="event_new"),
     url(r'^principals/new/$', principal_new, name="principal_new"),
-    url(r'^dashboard$', dashboard_view, name='dashboard')
+    url(r'^dashboard$', dashboard_view, name='dashboard'),
 ]
 
 if settings.DEBUG:
