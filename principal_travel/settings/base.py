@@ -47,6 +47,8 @@ PREREQ_APPS = [
     'designstandards',
     'registration',
     'jquery',
+    'underscore',
+    'd3',
 ]
 
 PROJECT_APPS = [
