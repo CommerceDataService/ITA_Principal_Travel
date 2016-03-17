@@ -46,6 +46,7 @@ PREREQ_APPS = [
     'cities_light',
     'designstandards',
     'registration',
+    'jquery',
 ]
 
 PROJECT_APPS = [
