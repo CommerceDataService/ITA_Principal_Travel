@@ -7,7 +7,7 @@ $(document).ready(function(){
     countryCount = _.pairs(countryCount)
 
     var color = d3.scale.category20b();
-    var svg = d3.select('#dashboard')
+    var svg = d3.select('#country')
     .append('svg')
     .attr('width', '100%')
     .attr('height', '350')
@@ -20,7 +20,6 @@ $(document).ready(function(){
     var max = d3.max(countryCount, function(d){
       return d[1];
     })
-    console.log(max)
 
     var linearScale = d3.scale
     .linear()
@@ -51,6 +50,24 @@ $(document).ready(function(){
     .attr("font-size", "11px")
     .attr("fill", "white");;
 
+  })
+
+  $.getJSON('/api/trips').done(function(data){
+
+    var sortedTrips = _(data).chain().sortBy(function(trip){
+      return start = new Date(trip.start_date)
+    }).value()
+
+    _.each(sortedTrips, function(trip){
+      console.log(trip.principal.first_name)
+      var now = new Date();
+      var start = new Date(trip.start_date)
+      console.log(trip.start_date)
+      if(start>now){
+        $('#time').append('<p>On '+trip.start_date+'</p>')
+
+      }
+    })
   })
 
 })
