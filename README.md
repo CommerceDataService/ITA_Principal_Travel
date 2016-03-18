@@ -25,14 +25,23 @@ _* If the `docker-compose build` command hangs, we may need to investigate how t
 ### Administration
 
 Connect to the DB with psql:
-    docker-compose run db psql -h db -U postgres
+    
+```
+docker-compose run db psql -h db -U postgres
+```
 
 Run management commands:
-   docker-compose run web python manage.py <command>
+
+```   
+docker-compose run web python manage.py <command>
+```
 
 Drop the entire database and start fresh:
-    chmod u+x wipe_db.sh
-    ./wipe_db.sh
+
+```
+chmod u+x wipe_db.sh
+./wipe_db.sh
+```
 
 Wipe all data from database and start with original dataset:
     ./reload_db.sh
