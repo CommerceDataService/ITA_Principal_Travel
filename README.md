@@ -63,6 +63,22 @@ Wipe all data from database and start with original dataset (**note: this will w
 ./reload_db.sh
 ```
 
+## DB Initialization:
+
+### Initial migrations and admin setup
+
+Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the /sql directory
+
+Run:
+    
+    docker-compose run web python manage.py migrate
+    docker-compose run web python manage.py loaddata /travel/fixtures/data_dump.json
+    docker-compose run web python manage.py createsuperuser
+
+```
+./reload_db.sh
+```
+
 ## Troubleshooting
 
 Ongoing development of the app in Docker means you need a few Docker tricks/commands.
