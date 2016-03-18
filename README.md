@@ -58,8 +58,9 @@ chmod u+x wipe_db.sh
 ```
 
 Wipe all data from database and start with original dataset (**note: this will wipe the auth tables so you will need to create a new superuser):
+
 ```
-    ./reload_db.sh
+./reload_db.sh
 ```
 
 ## Troubleshooting
