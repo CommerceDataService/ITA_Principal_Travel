@@ -25,14 +25,29 @@ _* If the `docker-compose build` command hangs, we may need to investigate how t
 ### Administration
 
 Connect to the DB with psql:
-    docker-compose run db psql -h db -U postgres
+    
+```
+docker-compose run db psql -h db -U postgres
+```
 
 Run management commands:
-   docker-compose run web python manage.py <command>
 
-Wipe the database and start fresh:
-    chmod u+x wipe_db.sh
-    ./wipe_db.sh
+```   
+docker-compose run web python manage.py <command>
+```
+
+Drop the entire database and start fresh:
+
+```
+chmod u+x wipe_db.sh
+./wipe_db.sh
+```
+
+Wipe all data from database and start with original dataset:
+
+```
+./reload_db.sh
+```
 
 ## DB Initialization:
 
@@ -43,7 +58,7 @@ Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the 
 Run:
     
     docker-compose run web python manage.py migrate
-    docker-compose run db psql -h db -U postgres -f sql/ita_data.sql
+    docker-compose run web python manage.py loaddata /travel/fixtures/data_dump.json
     docker-compose run web python manage.py createsuperuser
 
 The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
