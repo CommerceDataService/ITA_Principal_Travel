@@ -49,6 +49,7 @@ PREREQ_APPS = [
     'jquery',
     'underscore',
     'd3',
+    'templatetag_handlebars'
 ]
 
 PROJECT_APPS = [

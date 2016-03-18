@@ -8,8 +8,28 @@
     </div>
     <div class="usa-width-one-half">
       <h3>Upcoming Trips</h3>
-      <div id='time'></div>
+      <table>
+        <thead>
+          <tr>
+            <th scope='col'> Trip Entry Number </th>
+            <th scope='col'> Principal Name </th>
+            <th scope='col'> Trip Start Date </th>
+            <th scope='col'> Trip End Date </th>
+          </tr>
+        </thead>
+        <tbody id="time-table"></tbody>
+      </table>
     </div>
 
 </div>
+{% verbatim %}
+<script type="text/x-handlebars-template" id="table">
+  <tr>
+    <th scope='row'><a href='itineraries/{{id}}'>{{id }}</a></th>
+    <td> {{principal.first_name}} {{principal.last_name}}</td>
+    <td>{{start_date}}</td>
+    <td>{{end_date}}</td>
+  </tr>
+</script>
+{% endverbatim %}
 {% endblock %}

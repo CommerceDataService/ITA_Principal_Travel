@@ -59,13 +59,11 @@ $(document).ready(function(){
     }).value()
 
     _.each(sortedTrips, function(trip){
-      console.log(trip.principal.first_name)
       var now = new Date();
       var start = new Date(trip.start_date)
-      console.log(trip.start_date)
       if(start>now){
-        $('#time').append('<p>On '+trip.start_date+'</p>')
-
+        var template = Handlebars.compile($('#table').html())
+        $('#time-table').append(template(trip))
       }
     })
   })
