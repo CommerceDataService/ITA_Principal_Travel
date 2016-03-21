@@ -31,7 +31,7 @@ Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the 
 Run:
     
     docker-compose run web python manage.py migrate
-    docker-compose run web python manage.py loaddata /travel/fixtures/data_dump.json
+    docker-compose run web python manage.py loaddata travel/fixtures/data_dump.json
     docker-compose run web python manage.py createsuperuser
 
 The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
