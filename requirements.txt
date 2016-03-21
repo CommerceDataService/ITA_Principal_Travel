@@ -9,3 +9,4 @@ django-jquery
 django-underscore
 django-d3
 django-templatetag-handlebars
+django-leaflet
