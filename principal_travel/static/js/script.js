@@ -66,6 +66,24 @@ $(document).ready(function(){
         $('#time-table').append(template(trip))
       }
     })
+
+    var map = L.map('map')
+    .setView([33, 50], 2);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18,
+      id: 'noonkay.pfg0o793',
+      accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ'
+    }).addTo(map);
+
+    $.getJSON('/api/events').done(function(data){
+      _.each(data, function(event){
+        L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(map)
+      })
+    })
+
   })
+
 
 })
