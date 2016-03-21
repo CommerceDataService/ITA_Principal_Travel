@@ -10,7 +10,7 @@ class CountrySerializer(serializers.ModelSerializer):
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
-        fields = ('id', 'latitude', 'longitude')
+        fields = ('id', 'name', 'latitude', 'longitude')
 
 class EventSerializer(serializers.ModelSerializer):
     cities_light_country = CountrySerializer(read_only=True)

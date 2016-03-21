@@ -66,6 +66,7 @@ $(document).ready(function(){
         $('#time-table').append(template(trip))
       }
     })
+  })
 
     var map = L.map('map')
     .setView([33, 50], 2);
@@ -79,11 +80,12 @@ $(document).ready(function(){
 
     $.getJSON('/api/events').done(function(data){
       _.each(data, function(event){
-        L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(map)
-      })
+        var template = Handlebars.compile($('#popup').html());
+        var marker = L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(map);
+        marker.bindPopup(template(event));
+        })
     })
 
-  })
 
 
 })
