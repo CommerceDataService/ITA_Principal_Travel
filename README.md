@@ -26,15 +26,13 @@ _* If the `docker-compose build` command hangs, we may need to investigate how t
 
 #### Initial migrations and admin setup
 
-Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the /sql directory
-
 Run:
     
     docker-compose run web python manage.py migrate
     docker-compose run web python manage.py loaddata travel/fixtures/data_dump.json
     docker-compose run web python manage.py createsuperuser
 
-The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
+The above will migrate the models to the database, load the dummy data, and create a super-user in the DB so that you can log into the Django administration console.
 
 ## Administration
 
