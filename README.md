@@ -22,7 +22,19 @@ docker-machine ip
 
 _* If the `docker-compose build` command hangs, we may need to investigate how to set up and use HTTP_PROXY._
 
-### Administration
+### DB Initialization:
+
+#### Initial migrations and admin setup
+
+Run:
+    
+    docker-compose run web python manage.py migrate
+    docker-compose run web python manage.py loaddata travel/fixtures/data_dump.json
+    docker-compose run web python manage.py createsuperuser
+
+The above will migrate the models to the database, load the dummy data, and create a super-user in the DB so that you can log into the Django administration console.
+
+## Administration
 
 Connect to the DB with psql:
     
@@ -43,33 +55,11 @@ chmod u+x wipe_db.sh
 ./wipe_db.sh
 ```
 
-Wipe all data from database and start with original dataset:
+Wipe all data from database and start with original dataset (**note: this will wipe the auth tables so you will need to create a new superuser):
 
 ```
 ./reload_db.sh
 ```
-
-## DB Initialization:
-
-### Initial migrations and admin setup
-
-Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the /sql directory
-
-Run:
-    
-    docker-compose run web python manage.py migrate
-    docker-compose run web python manage.py loaddata /travel/fixtures/data_dump.json
-    docker-compose run web python manage.py createsuperuser
-
-The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
-
-### Destination Pre-Loading
-
-Run:
-
-    docker-compose run web python manage.py cities_light
-    
-The above will load the cities and countries from the cities_light module (from geonames.org) into the database tables.
 
 ## Troubleshooting
 
