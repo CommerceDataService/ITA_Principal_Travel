@@ -3,8 +3,9 @@ from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView
 from django.template.loader import get_template
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -24,6 +25,10 @@ class TripDetail(DetailView):
 class TripList(ListView):
 	model = Trip
 
+class TripUpdate(UpdateView):
+    model = Trip
+    fields = '__all__'
+
 def trip_new(request):
     if request.method == "POST":
         form = TripForm(request.POST)
@@ -33,6 +38,18 @@ def trip_new(request):
         return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm()
+    return render(request, 'travel/trip_form.html', {'form': form})
+
+def trip_edit(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if request.method == "POST":
+        form = TripForm(request.POST, instance=trip)
+        trip = form.save(commit=False)
+        trip.save()
+        form.save_m2m()
+        return redirect('trip_detail', pk=trip.pk)
+    else:
+        form = TripForm(instance=trip)
     return render(request, 'travel/trip_form.html', {'form': form})
 
 def event_new(request):
