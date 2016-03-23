@@ -52,6 +52,13 @@ def trip_edit(request, pk):
         form = TripForm(instance=trip)
     return render(request, 'travel/trip_form.html', {'form': form})
 
+def trip_delete(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if request.method == "POST":
+        trip.delete()
+        return redirect('trip_list')
+    return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
+
 def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
