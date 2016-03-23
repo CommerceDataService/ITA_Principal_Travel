@@ -69,19 +69,22 @@ $(document).ready(function(){
   })
 
     var map = L.map('map')
-    .setView([33, 50], 2);
+    .setView([33, -8], 2);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 3,
       id: 'noonkay.pfg0o793',
-      accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ'
+      accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
+      noWrap: true,
+      minZoom: 2,
+      maxZoom: 4
     }).addTo(map);
 
     futureMarkers = L.layerGroup([]).addTo(map);
     monthMarkers = L.layerGroup([]).addTo(map);
     yearMarkers = L.layerGroup([]).addTo(map);
-    oldMarkers = L.layerGroup([]).addTo(map);
+    allPastMarkers = L.layerGroup([]).addTo(map);
 
     $.getJSON('/api/trips').done(function(data){
       var today = new Date();
@@ -94,12 +97,14 @@ $(document).ready(function(){
           var marker = L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).bindPopup(template(event));
           if(start >= today){
             futureMarkers.addLayer(marker);
-          } else if (start<today && start>= monthAgo) {
-            monthMarkers.addLayer(marker);
-          } else if (start<monthAgo && start >= yearAgo) {
-            yearMarkers.addLayer(marker);
-          } else{
-            oldMarkers.addLayer(marker);
+          }else {
+            if (start<today && start>= monthAgo) {
+              monthMarkers.addLayer(marker);
+            }
+            if (start<today && start >= yearAgo) {
+              yearMarkers.addLayer(marker);
+            }
+            allPastMarkers.addLayer(marker);
           }
         })
       })
