@@ -73,37 +73,47 @@ $(document).ready(function(){
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 8,
+      maxZoom: 3,
       id: 'noonkay.pfg0o793',
       accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ'
     }).addTo(map);
 
+    futureMarkers = L.layerGroup([]).addTo(map);
+    monthMarkers = L.layerGroup([]).addTo(map);
+    yearMarkers = L.layerGroup([]).addTo(map);
+    oldMarkers = L.layerGroup([]).addTo(map);
+
     $.getJSON('/api/trips').done(function(data){
-      var futureMarkers = new L.LayerGroup();
-      var monthMarkers = new L.LayerGroup();
-      var yearMarkers = new L.LayerGroup();
-      var oldMarkers = new L.LayerGroup();
       var today = new Date();
       var monthAgo = new Date().setDate(today.getDate()-30)
       var yearAgo = new Date().setDate(today.getDate()-365)
+      var template = Handlebars.compile($('#popup').html());
       _.each(data, function(trip){
         var start = new Date(trip.start_date)
         _.each(trip.events, function(event){
-          var template = Handlebars.compile($('#popup').html());
+          var marker = L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).bindPopup(template(event));
           if(start >= today){
-            L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(futureMarkers).bindPopup(template(event));
+            futureMarkers.addLayer(marker);
           } else if (start<today && start>= monthAgo) {
-            L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(monthMarkers).bindPopup(template(event));
+            monthMarkers.addLayer(marker);
           } else if (start<monthAgo && start >= yearAgo) {
-            L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(yearMarkers).bindPopup(template(event));
+            yearMarkers.addLayer(marker);
           } else{
-            L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).addTo(oldMarkers).bindPopup(template(event));
+            oldMarkers.addLayer(marker);
           }
         })
       })
-      var layers = [futureMarkers, monthMarkers, yearMarkers, oldMarkers]
-      _.each(layers, function(layer){
-        map.addLayer(layer);
-      })
+
+      $( "input" ).click(function( event ) {
+          var layerClicked = window[event.target.value];
+              console.log(window)
+              console.log(layerClicked)
+              if (map.hasLayer(layerClicked)) {
+                  map.removeLayer(layerClicked);
+              }
+              else{
+                  map.addLayer(layerClicked);
+              } ;
+      });
     })
 })
