@@ -25,6 +25,7 @@ class Event(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
+        
 @with_author
 class Principal(models.Model):
     id = models.AutoField(primary_key=True)
