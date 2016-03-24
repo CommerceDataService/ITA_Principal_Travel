@@ -11,8 +11,14 @@ from cities_light.models import Country
 from django.contrib.auth.models import User
 from author.decorators import with_author
 
-@with_author #automatically adds 'author' and 'updated_by' fields
-class Event(models.Model):
+class TimeStampedModel(models.Model):
+    created_on = models.DateTimeField(auto_now_add = True)
+    edited_on = models.DateTimeField(auto_now = True)
+    class Meta:
+        abstract = True
+
+@with_author #adds and maintains 'author' and 'updated_by' fields
+class Event(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     host = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255,blank=True, null=True)
@@ -25,9 +31,9 @@ class Event(models.Model):
 
     def __str__(self):
         return "{}".format(self.name)
-        
+
 @with_author
-class Principal(models.Model):
+class Principal(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
@@ -40,7 +46,7 @@ class Principal(models.Model):
         return "{}, {}, {}".format(self.first_name, self.last_name, self.title)
 
 @with_author
-class Trip(models.Model):
+class Trip(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)

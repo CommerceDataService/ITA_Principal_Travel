@@ -23,7 +23,6 @@
       <div id="collapsible-1" aria-hidden="false" class="usa-accordion-content">
         <p>Start Date: {{object.start_date}}</p>
         <p>End Date: {{object.end_date}}</p>
-        <p>Author: {{object.author}}</p>
         <p>Number of Travelers: {{object.no_of_travelers}}</p>
         <p>Travelers Note: {{object.no_of_travelers_note}}</p>
         {% for event in object.events.all %}
@@ -38,6 +37,9 @@
         {% endfor %}
       </div>
     </li>
+    <p>Author: {{object.author}} on {{object.created_on}}</p>
+    <p>Edited by: {{object.edited_by}} on {{object.edited_on}}</p>
+
 
   </ul>
 </div>
