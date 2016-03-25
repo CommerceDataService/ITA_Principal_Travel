@@ -8,9 +8,17 @@
 from __future__ import unicode_literals
 from django.db import models
 from cities_light.models import Country
+from django.contrib.auth.models import User
+from author.decorators import with_author
 
+class TimeStampedModel(models.Model):
+    created_on = models.DateTimeField(auto_now_add = True)
+    edited_on = models.DateTimeField(auto_now = True)
+    class Meta:
+        abstract = True
 
-class Event(models.Model):
+@with_author #adds and maintains 'author' and 'updated_by' fields
+class Event(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     host = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255,blank=True, null=True)
@@ -24,8 +32,8 @@ class Event(models.Model):
     def __str__(self):
         return "{}".format(self.name)
 
-
-class Principal(models.Model):
+@with_author
+class Principal(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
@@ -37,8 +45,8 @@ class Principal(models.Model):
     def __str__(self):
         return "{}, {}, {}".format(self.first_name, self.last_name, self.title)
 
-
-class Trip(models.Model):
+@with_author
+class Trip(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
@@ -52,14 +60,14 @@ class Trip(models.Model):
         city_List = [x.cities_light_country for x in self.events.all()]
         update_city_List = [str(name) for name in city_List]
         return ', '.join(update_city_List)
-    
+
     @property
     def event_name(self):
         event_List = [x.name for x in self.events.all()]
         update_event_List = [str(name) for name in event_List]
         return ', '.join(update_event_List)
-    
-    
+
+
     def __str__(self):
         return "{} - {}".format(self.start_date, self.end_date)
 
