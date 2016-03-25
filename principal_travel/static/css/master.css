@@ -73,3 +73,7 @@ fieldset {
   border: none;
   margin: 0 2px;
   padding: 0; }
+
+td > a{
+	display: block;
+}

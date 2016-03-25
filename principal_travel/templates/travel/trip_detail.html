@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a class='usa-button' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
+<a class='usa-button' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
 <div class="usa-accordion-bordered">
   <ul class="usa-unstyled-list">
     <li>
