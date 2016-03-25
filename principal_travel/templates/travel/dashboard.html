@@ -1,64 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="usa-section">
   <div class ="usa-grid">
-    <div class="usa-width-one-half">
-      <h3>Top Destinations</h3>
-      <div id='country'></div>
+    <div class="usa-width-two-thirds">
+      <p></p>
     </div>
-    <div class="usa-width-one-half">
-      <h3>Upcoming Trips</h3>
-      <table>
-        <thead>
-          <tr>
-            <th scope='col'> Trip Entry Number </th>
-            <th scope='col'> Principal Name </th>
-            <th scope='col'> Trip Start Date </th>
-            <th scope='col'> Trip End Date </th>
-          </tr>
-        </thead>
-        <tbody id="time-table"></tbody>
-      </table>
-    </div>
-  </div>
-  <div class ="usa-grid">
-    <div class="usa-width-one-whole">
-      <fieldset class="usa-fieldset-inputs usa-sans">
-
-    <ul class="usa-unstyled-list" id="timefilter">
-      <li>
-        <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
-        <label for="futureMarkers">Upcoming Events</label>
-      </li>
-      <li>
-        <input id="monthMarkers" type="checkbox" value="monthMarkers" checked>
-        <label for="monthMarkers">Past Month Events</label>
-      </li>
-      <li>
-        <input id="yearMarkers" type="checkbox" value="yearMarkers" checked>
-        <label for="yearMarkers">Past Year Events</label>
-      </li>
-      <li>
-        <input id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
-        <label for="allPastMarkers">All Past Events</label>
-      </li>
-    </ul>
-
-  </fieldset>
-
-      <div id="map">
+    <div class="usa-width-one-third">
+      <div class="usa-accordion-bordered">
+        <ul class="usa-unstyled-list">
+          <li>
+            <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
+            Upcoming Trips
+            </button>
+            <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
+              <div id="time-table"></div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-
+  <div class ="usa-grid">
+    <div class="usa-width-one-whole card">
+      <div id="map"></div>
+      <fieldset class="usa-fieldset-inputs usa-sans">
+        <ul class="usa-unstyled-list" id="timefilter">
+          <li>
+            <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
+            <label for="futureMarkers">Upcoming Events</label>
+          </li>
+          <li>
+            <input id="monthMarkers" type="checkbox" value="monthMarkers" checked>
+            <label for="monthMarkers">Past Month Events</label>
+          </li>
+          <li>
+            <input id="yearMarkers" type="checkbox" value="yearMarkers" checked>
+            <label for="yearMarkers">Past Year Events</label>
+          </li>
+          <li>
+            <input id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
+            <label for="allPastMarkers">All Past Events</label>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+  </div>
+  <div class="usa-grid">
+    <div class="usa-width-one-whole card">
+      <form class="dropdown">
+        <select name="options" id="options">
+          <option value="value1">Option A</option>
+          <option value="value2">Option B</option>
+          <option value="value3">Option C</option>
+        </select>
+      </form>
+    <h3>Top 10 Destinations</h3>
+    <div id='chart'></div>
+    </div>
+  </div>
+</section>
 {% verbatim %}
 <script type="text/x-handlebars-template" id="table">
-  <tr>
-    <th scope='row'><a href='itineraries/{{id}}'>{{id }}</a></th>
-    <td> {{principal.first_name}} {{principal.last_name}}</td>
-    <td>{{start_date}}</td>
-    <td>{{end_date}}</td>
-  </tr>
+  <p><a href='itineraries/{{id}}'>{{start_date}}:  {{principal.first_name}} {{principal.last_name}}, {{principal.title}}</a></p>
 </script>
 
 <script type="text/x-handlebars-template" id="popup">

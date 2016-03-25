@@ -6,7 +6,6 @@
 
 .container{
 	width: 100%;
-	margin-bottom: 75px;
 }
 
 header{
@@ -38,10 +37,6 @@ nav{
 }
 
 footer, .usa-footer-primary-section {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
     height: 50px;
     background-color: #d6d7d9;
 }
@@ -77,4 +72,24 @@ fieldset {
 #map {
 	width:100%;
 	height: 500px;
+}
+
+#timefilter > li{
+	display: inline-block;
+	margin-right: 10px;
+}
+.usa-section{
+	background-color: #f1f1f1;
+}
+.card{
+	background-color: white;
+	box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
+	padding: 1.5em;
+	margin: 1em 0 1em 0;
+	position: relative;
+}
+.dropdown{
+	position: absolute;
+	right: 0;
+	top: 0;
 }
