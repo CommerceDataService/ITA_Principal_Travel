@@ -93,3 +93,7 @@ fieldset {
 	right: 2em;
 	top: 1em;
 }
+
+td > a{
+	display: block;
+}

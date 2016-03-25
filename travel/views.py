@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from django.shortcuts import render, redirect
 from .serializers import TripSerializer, EventSerializer
 from rest_framework import viewsets
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -34,6 +35,25 @@ def trip_new(request):
     else:
         form = TripForm()
     return render(request, 'travel/trip_form.html', {'form': form})
+
+def trip_edit(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if request.method == "POST":
+        form = TripForm(request.POST, instance=trip)
+        trip = form.save(commit=False)
+        trip.save()
+        form.save_m2m()
+        return redirect('trip_detail', pk=trip.pk)
+    else:
+        form = TripForm(instance=trip)
+    return render(request, 'travel/trip_form.html', {'form': form})
+
+def trip_delete(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if request.method == "POST":
+        trip.delete()
+        return redirect('trip_list')
+    return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
 
 def event_new(request):
     if request.method == "POST":

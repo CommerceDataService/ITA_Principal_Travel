@@ -51,6 +51,7 @@ PREREQ_APPS = [
     'd3',
     'templatetag_handlebars',
     'leaflet',
+    'author',
 ]
 
 PROJECT_APPS = [
@@ -77,6 +78,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'author.middlewares.AuthorDefaultBackendMiddleware',
 ]
 
 ROOT_URLCONF = 'principal_travel.urls'
