@@ -38,7 +38,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     import debug_toolbar
-    urlpatterns += patterns('',
+    urlpatterns += [
         url(r'^__debug__/', include(debug_toolbar.urls)),
         url(r'^static/(?P<path>.*)$', views.serve),
-    )
+    ]
