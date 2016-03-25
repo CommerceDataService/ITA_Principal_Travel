@@ -1,9 +1,6 @@
 from .models import Trip, Event, Principal
 from .forms import TripForm, EventForm, PrincipalForm
-from django.views.generic import ListView
-from django.views.generic import DetailView
-from django.views.generic import TemplateView
-from django.views.generic.edit import UpdateView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.template.loader import get_template
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -24,10 +21,6 @@ class TripDetail(DetailView):
 
 class TripList(ListView):
 	model = Trip
-
-class TripUpdate(UpdateView):
-    model = Trip
-    fields = '__all__'
 
 def trip_new(request):
     if request.method == "POST":
