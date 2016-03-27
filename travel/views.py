@@ -52,6 +52,16 @@ def trip_delete(request, pk):
         return redirect('trip_list')
     return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
 
+class EventList(ListView):
+    model = Event
+
+class EventDetail(DetailView):
+    queryset = Event.objects.all()
+    
+    def get_object(self):
+        object = super(EventDetail, self).get_object()
+        return object
+
 def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
