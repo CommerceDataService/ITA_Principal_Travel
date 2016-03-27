@@ -57,10 +57,11 @@ class EventList(ListView):
 
 class EventDetail(DetailView):
     queryset = Event.objects.all()
-    
-    def get_object(self):
-        object = super(EventDetail, self).get_object()
-        return object
+
+    def get_context_data(self, **kwargs):
+        context = super(EventDetail, self).get_context_data(**kwargs)
+        context['trips'] = Trip.objects.filter(events__id = self.object.id)
+        return context
 
 def event_new(request):
     if request.method == "POST":
