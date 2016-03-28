@@ -136,6 +136,10 @@ var renderChart = function(tripData, eventData){
   var countryCount = _.countBy(eventData, function(event){
     return event.cities_light_country.name;
   })
+  var eventTypeCount = _.countBy(eventData, function(event){
+    return event.event_type.name;
+  })
+
   drawBarGraph(pairSortSlice(countryCount));
   $("#options").on('change', function(event){
     if (this.value == "country"){
@@ -144,6 +148,9 @@ var renderChart = function(tripData, eventData){
     } else if (this.value == "principal"){
       $('#chart').empty().append('<h3>Top Travelers</h3>')
       drawBarGraph(pairSortSlice(principalCount));
+    } else if (this.value == "eventType"){
+      $('#chart').empty().append('<h3>Top Event Types</h3>')
+      drawBarGraph(pairSortSlice(eventTypeCount));
     }
   })
 }

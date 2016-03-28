@@ -1,6 +1,11 @@
-from .models import Trip, Event, Principal
+from .models import Trip, Event, Principal, EventType
 from cities_light.models import Country, City
 from rest_framework import serializers
+
+class EventTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventType
+        fields = ('id', 'name')
 
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,6 +20,7 @@ class CitySerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     cities_light_country = CountrySerializer(read_only=True)
     cities_light_city = CitySerializer(read_only=True)
+    event_type = EventTypeSerializer(read_only=True)
     class Meta:
         model = Event
         fields = '__all__'
