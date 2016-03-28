@@ -79,10 +79,10 @@ footer, .usa-footer-primary-section {
 }
 
 #bg {
-	position: fixed; 
-	top: 0; 
-	left: 0; 
-	
+	position: fixed;
+	top: 0;
+	left: 0;
+
   /* Preserve aspect ratio */
 	min-width: 100%;
 	min-height: 100%;
@@ -107,6 +107,10 @@ footer, .usa-footer-primary-section {
     margin-bottom: 15em;
     margin-top: 2em;
     position: relative;
+}
+
+.container:empty{
+	display: none;
 }
 
 table {
