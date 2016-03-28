@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="usa-accordion-bordered border-box">
+<a href="{% url 'trip_list' %}" class="usa-button back-button">Back to View Itineraries</a>
+<div class="usa-accordion-bordered">
   <ul class="usa-unstyled-list">
     <li>
       <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">

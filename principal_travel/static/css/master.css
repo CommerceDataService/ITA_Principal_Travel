@@ -1,6 +1,7 @@
 .doc-logo {
 	padding-top: 10px;
 	height: 70px;
+	position: absolute;
 }
 
 header{
@@ -15,10 +16,16 @@ header{
 	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
 	font-weight: 300;
 	font-size: 30px;
-	line-height: 1.3em/57px;
-	margin-top: auto;
-	margin-bottom: 20px;
 	display: inline-block;
+	color: white;
+}
+
+.header-text {
+	color: white;
+	margin: .05em 0 0;
+	display: inline-block;
+	padding-left: 70px;
+	padding-top: 20px;
 }
 
 nav{
@@ -49,13 +56,6 @@ h1, h2, h3, h4 {
 	width: 100%;
 	margin-bottom: 75px;
 }
-
-
-/*.header-text{
-	margin-top: .5em;
-	margin-bottom: 0em;
-	text-align: right;
-}*/
 
 footer, .usa-footer-primary-section {
     height: 70px;
@@ -94,19 +94,23 @@ footer, .usa-footer-primary-section {
 }
 
 /* For trip_detail.html */
-.usa-button-unstyled{
-	border-color: black;
+.back-button{
+	float: right;
 }
 
-/* For trip_list.html, white border box */
+/* white border box */
 .border-box{
     box-sizing: border-box;
     background-color: #fff;
     box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
     padding: 1em;
-    margin-bottom: 10em;
+    margin-bottom: 15em;
     margin-top: 2em;
-    position: fixed;
+    position: relative;
+}
+
+table {
+	margin: 0em;
 }
 
 @media(max-width: 768px) {
