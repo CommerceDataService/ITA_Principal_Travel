@@ -109,6 +109,10 @@ footer, .usa-footer-primary-section {
     position: fixed;
 }
 
+div.mobile_button {
+	display: none;
+}
+
 @media(max-width: 768px) {
 	header {
 		background-color: #323a45;
