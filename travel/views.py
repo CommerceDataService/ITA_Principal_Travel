@@ -63,6 +63,18 @@ def event_new(request):
         form = EventForm()
     return render(request, 'travel/event_form.html', {'form': form})
 
+def event_edit(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == "POST":
+        form = EventForm(request.POST, instance=event)
+        event = form.save(commit=False)
+        event.save()
+        form.save_m2m()
+        return redirect('event_detail', pk=event.pk)
+    else:
+        form = EventForm(instance=event)
+    return render(request, 'travel/event_form.html', {'form': form})
+
 def principal_new(request):
     if request.method == "POST":
         form = PrincipalForm(request.POST)
