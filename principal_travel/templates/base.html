@@ -4,46 +4,52 @@
   <head>
    <meta charset="utf-8">
    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
-   <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
+    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
    <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
     <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static "css/master.css" %}">
-    <script src="{% static "js/vendor/jquery-1.11.3.min.js" %}"></script>
+    <script src="{% static "js/vendor/jquery-1.11.3.min.js" %}">
+    </script>
     <script src="{% static "js/components.js" %}"></script>
     {% block head %}{% endblock %}
   </head>
 
 <body>
 <header>
-  <section class="usa-grid-full">
-    <div class="usa-width-one-sixth">
-        <img src="{% static "img/doc-logo.png" %}" class="doc-logo">
-  </div>
+  <section>
+    <div class="header-left"> 
+    <!--usa-width-one-third-->
+        <img src="{% static "img/doc-logo-small.png" %}" class="doc-logo" alt="Department of Commerce logo">
+        <h3 class="header-left">Principal Travel Tracker </h3>
+    </div>
+
+
 
   <nav>
-      <h1 class="header-text">Principal Travel Tracker </h1>
+
 
           {% if user.id == None %}
-      <div class="landing-page-buttons">
-        <a class="usa-button" href="/accounts/login">Login</a>
-        <a class="usa-button" href="/accounts/register">Register</a>
+      <div class="nav-buttons button-wrapper">
+        <a class="usa-button usa-button-outline-inverse" href="/accounts/login">Login</a>
+        <a class="usa-button usa-button-outline-inverse" href="/accounts/register">Register</a>
       </div>
           {% else%}
-      <div class="usa-width-one-whole">
-          <a class="usa-button" href="/admin"> Admin Interface </a>
-          <a class="usa-button" href="{% url 'trip_new' %}"> Create New Itinerary </a>
-          <a class="usa-button" href="{% url 'trip_list' %}"> View Itineraries </a>
-          <div><a class="usa-button usa-button-outline logout-button" href="/accounts/logout">Logout</a></div>
+      <div class="nav-buttons usa-width-one-whole">
+          <a class="usa-button usa-button-outline-inverse" href="/admin"> Dashboard </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_new' %}"> Create New Itinerary </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_list' %}"> View Itineraries </a>
+          <a class="usa-button uusa-button-outline-inverse" href="/accounts/logout">Logout</a>
       </div>
 
           {% endif %}
 
-
-
-     </nav>
+</nav>
      </section>
    </header>
-   <main class="usa-grid-full">
+
+   <main class="usa-grid">
      <div class="container">
       {% block content %}
       {% endblock %}
@@ -51,17 +57,10 @@
    </main>
 
 <footer>
-<div class="usa-footer-primary-section">
-      <div class="usa-grid-full">
-        <div class="usa-footer-nav usa-width-one-half">
-          <p>International Trade Administration</p>
-        </div>
-        <div class="usa-footer-nav footer-text">
-          <p><a href="www.trade.gov">www.trade.gov</a></p>
-        </div>
-        </div>
+<div class="usa-footer-primary-section footer-text">
+          <p class="usa-background-dark">Site created by the Commerce Data Service |
+          <a href="https://github.com/CommerceDataService/ITA_Principal_Travel" >View on GitHub  </a><i class="fa fa-github"></i></p>
       </div>
-    </div>
 </footer>
 
  </body>

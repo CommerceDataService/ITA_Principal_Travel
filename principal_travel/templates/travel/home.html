@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
-<h2> Welcome to the Principal Travel Home Page</h2>
+
+<!--<h2> Welcome to the Principal Travel Home Page</h2>-->
+<div class="home-image">
+	<span class="home-image-text"><h2>Welcome to the Principal Travel home page!</h2> <p>This tool has been built by the Commerce Data Service to assist with the recording and reporting process of tracking principals travels around the world. </p></span>
+
+
+	<img src="{% static "img/night-lights.png" id="bg" %}">
+
+</div>
+
 {% endblock %}
