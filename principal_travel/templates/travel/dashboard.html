@@ -61,13 +61,15 @@
     </div>
   </div>
 </section>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
 {% verbatim %}
 <script type="text/x-handlebars-template" id="table">
   <p><a href='itineraries/{{id}}'>{{start_date}}:  {{principal.first_name}} {{principal.last_name}}, {{principal.title}}</a></p>
 </script>
 
 <script type="text/x-handlebars-template" id="popup">
-  <h6>{{name}}</h6>
+  <h6><a href="/events/{{id}}">{{name}}</a></h6>
   <p>{{description}}</p>
   <p>{{cities_light_city.name}}, {{cities_light_country.name}}</p>
 </script>

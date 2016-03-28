@@ -8,16 +8,19 @@ var compare = function(a, b) {
 }
 
 var drawBarGraph = function(data){
-  var color = d3.scale.category20b();
+  var color = d3.scale.category10();
   var svg = d3.select('#chart')
   .append('svg')
   .attr('width', '100%')
   .attr('height', '350')
 
-  var rects = svg.selectAll('rect')
-  .data(data)
-  .enter()
-  .append('rect')
+
+  var tip = d3.tip()
+    .attr("class", "d3-tip")
+    .offset([-10, 0])
+    .html(function(d) {
+    return "<strong>"+d[0]+"</strong> <span style='color:red'>" + d[1] + "</span>";
+  })
 
   var max = d3.max(data, function(d){
     return d[1];
@@ -27,6 +30,13 @@ var drawBarGraph = function(data){
   .linear()
   .range([0, 100])
   .domain([0,max])
+
+  svg.call(tip);
+
+  var rects = svg.selectAll('rect')
+  .data(data)
+  .enter()
+  .append('rect')
 
   rects.attr('x', 0)
   .attr('fill', function(d, i){
@@ -41,6 +51,11 @@ var drawBarGraph = function(data){
   .attr('width', function(d){
     return linearScale(d[1]) + "%"
   })
+
+  rects.on('mouseover', tip.show)
+  .on('mouseout', tip.hide)
+
+
 
   var labels = svg.selectAll('text')
   .data(data)
@@ -85,7 +100,8 @@ var renderMap = function(tripData){
 
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     maxZoom: 3,
-    id: 'noonkay.pfg0o793',
+    id: 'noonkay.f59d9773',
+    // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
     noWrap: true,
     minZoom: 2,
