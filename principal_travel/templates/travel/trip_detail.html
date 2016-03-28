@@ -28,7 +28,7 @@
         <p>Number of Travelers: {{object.no_of_travelers}}</p>
         <p>Travelers Note: {{object.no_of_travelers_note}}</p>
         {% for event in object.events.all %}
-          <p>Event {{forloop.counter}}: {{event.name}}</p>
+          <p> Event {{forloop.counter}}: <a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
           <ul>
             <li>Type: {{event.event_type.name}}</li>
             <li>Description: {{event.description}}</li>
