@@ -6,3 +6,4 @@ django-cities-light
 django-registration-redux
 django-debug-toolbar
 django-author
+django-autocomplete-light
