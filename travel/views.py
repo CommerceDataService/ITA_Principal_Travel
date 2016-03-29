@@ -3,6 +3,8 @@ from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.template.loader import get_template
 from django.shortcuts import render, redirect, get_object_or_404
+from dal import autocomplete
+from cities_light.models import Country, City
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -67,6 +69,7 @@ def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
         event = form.save(commit=False)
+        event.cities_light_country = event.cities_light_city.country
         event.save()
         form.save_m2m()
         return redirect('trip_new')
@@ -96,3 +99,16 @@ def principal_new(request):
     else:
         form = PrincipalForm()
     return render(request, 'travel/principal_form.html', {'form': form})
+
+
+class CityAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        # if not self.request.user.is_authenticated():
+        #     return City.objects.none()
+
+        qs = City.objects.all()
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs

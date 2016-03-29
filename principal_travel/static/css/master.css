@@ -135,3 +135,24 @@ fieldset {
 td > a{
 	display: block;
 }
+
+ul li:before {
+    content: " ";
+    display: table-cell;
+    padding-right: 0.4em;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #5B616B;
+    border-radius: 0px;
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 45px;
+    user-select: none;
+    -webkit-user-select: none;
+}
