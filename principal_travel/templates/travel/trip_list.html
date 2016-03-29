@@ -5,7 +5,7 @@
   <table>
     <thead>
       <tr>
-        <th scope='col'> Trip Entry Number </th>
+        <th scope='col'> </th>
         <th scope='col'> Principal Name </th>
         <th scope='col'> Event Name </th>
         <th scope='col'> Trip Start Date </th>
@@ -16,8 +16,12 @@
     <tbody>
       {% for trip in object_list %}
       <tr>
-        <th scope='row'><a href='{% url 'trip_detail' pk=trip.pk %}'>{{trip.id }}</a></th>
-        <td> {{trip.principal.first_name}} {{trip.principal.last_name}}</td>
+        <td>
+          <a href="{% url 'trip_detail' pk=trip.pk %}">View</a>
+          <a href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
+          <a href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
+        </td>
+        <td>{{trip.principal.first_name}} {{trip.principal.last_name}}</td>
         <td> {{trip.event_name}}</td>
         <td>{{trip.start_date}}</td>
         <td>{{trip.end_date}}</td>

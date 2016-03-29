@@ -1,10 +1,8 @@
 from .models import Trip, Event, Principal
 from .forms import TripForm, EventForm, PrincipalForm
-from django.views.generic import ListView
-from django.views.generic import DetailView
-from django.views.generic import TemplateView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.template.loader import get_template
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -35,6 +33,36 @@ def trip_new(request):
         form = TripForm()
     return render(request, 'travel/trip_form.html', {'form': form})
 
+def trip_edit(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if request.method == "POST":
+        form = TripForm(request.POST, instance=trip)
+        trip = form.save(commit=False)
+        trip.save()
+        form.save_m2m()
+        return redirect('trip_detail', pk=trip.pk)
+    else:
+        form = TripForm(instance=trip)
+    return render(request, 'travel/trip_form.html', {'form': form})
+
+def trip_delete(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if request.method == "POST":
+        trip.delete()
+        return redirect('trip_list')
+    return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
+
+class EventList(ListView):
+    model = Event
+
+class EventDetail(DetailView):
+    queryset = Event.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(EventDetail, self).get_context_data(**kwargs)
+        context['trips'] = Trip.objects.filter(events__id = self.object.id)
+        return context
+
 def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
@@ -44,6 +72,18 @@ def event_new(request):
         return redirect('trip_new')
     else:
         form = EventForm()
+    return render(request, 'travel/event_form.html', {'form': form})
+
+def event_edit(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == "POST":
+        form = EventForm(request.POST, instance=event)
+        event = form.save(commit=False)
+        event.save()
+        form.save_m2m()
+        return redirect('event_detail', pk=event.pk)
+    else:
+        form = EventForm(instance=event)
     return render(request, 'travel/event_form.html', {'form': form})
 
 def principal_new(request):

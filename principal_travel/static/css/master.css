@@ -126,4 +126,12 @@ table {
 	    padding-left: 20px;
 	    padding-right: 20px;
 }
+
+fieldset {
+  border: none;
+  margin: 0 2px;
+  padding: 0; }
+
+td > a{
+	display: block;
 }
