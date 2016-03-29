@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="{% url 'trip_list' %}" class="usa-button back-button">Back to View Itineraries</a>
 <a class='usa-button' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
 <a class='usa-button' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
 <div class="usa-accordion-bordered">
