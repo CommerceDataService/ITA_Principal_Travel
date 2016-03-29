@@ -1,26 +1,41 @@
 .doc-logo {
-	width: 150px;
-	float: left;
-	padding-top: 20px;
+	padding-top: 10px;
+	height: 70px;
+	position: absolute;
 }
 
-.container{
-	width: 100%;
-}
 
 header{
-	background-color: #d6d7d9;
-	height: 190px;
+	background-color: #323a45;
+	height: 80px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.header-text{
-	margin-top: .5em;
-	margin-bottom: 0em;
-	text-align: right;
+.header-left{
+	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+	font-weight: 300;
+	font-size: 30px;
+	display: inline-block;
+	color: white;
+}
+
+.header-text {
+	color: white;
+	margin: .05em 0 0;
+	display: inline-block;
+	padding-left: 70px;
+	padding-top: 20px;
 }
 
 nav{
 	float: right;
+}
+
+.nav-buttons{
+	float:right;
+	padding-top: 20px;
 }
 
 .usa-width-one-half, .usa-width-one-whole{
@@ -28,40 +43,89 @@ nav{
 	width: 100%;
 }
 
-.landing-page-buttons{
-	float:right;
+body {
+	background-color: #f1f1f1;
 }
 
-.logout-button{
-	float:right;
+h1, h2, h3, h4 {
+	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+	font-weight: 500;
+	font-size: 30px;
+}
+
+.container{
+	width: 100%;
+	margin-bottom: 75px;
 }
 
 footer, .usa-footer-primary-section {
-    height: 50px;
-    background-color: #d6d7d9;
+    height: 70px;
+    background-color: #323a45;
+    color: white;
 }
 
 .footer-text{
-	float:right;
+	padding: 15px;
 }
 
-#not-live  {
-	background-color: grey;
+.usa-background-dark{
+	line-height: 1em;
+	float: right;
 }
 
-#not-live:hover{
-	background-color: grey;
+/* For home.html */
+.home-image{
+	position: relative;
+	width: 100;
+	margin-bottom: 5em;
 }
 
-#not-live:active{
-	background-color: grey;
+#bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+  /* Preserve aspect ratio */
+	min-width: 100%;
+	min-height: 100%;
 }
 
-.usa-drop_text {
-  margin-bottom: 10; }
+.home-image-text{
+	width: 100%;
+	text-align: center;
+}
 
-form{
-	float: inherit;
+/* For trip_detail.html */
+.back-button{
+	float: right;
+}
+
+/* white border box */
+.border-box{
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
+    padding: 1em;
+    margin-bottom: 15em;
+    margin-top: 2em;
+    position: relative;
+}
+
+.container:empty{
+	display: none;
+}
+
+table {
+	margin: 0em;
+}
+
+@media(max-width: 768px) {
+	header {
+		background-color: #323a45;
+		height: 100px;
+	    color: white;
+	    padding-left: 20px;
+	    padding-right: 20px;
 }
 
 fieldset {
