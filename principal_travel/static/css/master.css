@@ -132,6 +132,7 @@ fieldset {
   border: none;
   margin: 0 2px;
   padding: 0; }
+}
 
 #map {
 	width:100%;
@@ -142,16 +143,7 @@ fieldset {
 	display: inline-block;
 	margin-right: 10px;
 }
-.usa-section{
-	background-color: #f1f1f1;
-}
-.card{
-	background-color: white;
-	box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
-	padding: 1.5em;
-	margin: 1em 0 1em 0;
-	position: relative;
-}
+
 .dropdown{
 	position: absolute;
 	right: 2em;
@@ -170,6 +162,28 @@ td > a{
   color: #fff;
   border-radius: 2px;
 }
+
 text{
 	text-shadow: 0px 0px 4px #000000;
+}
+
+ul li:before {
+  content: " ";
+  display: table-cell;
+  padding-right: 0.4em;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: #fff;
+  border: 1px solid #5B616B;
+  border-radius: 0px;
+}
+
+.select2-container .select2-selection--single {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: 45px;
+  user-select: none;
+  -webkit-user-select: none;
 }

@@ -11,3 +11,4 @@ django-d3
 django-templatetag-handlebars
 django-leaflet
 django-author
+django-autocomplete-light

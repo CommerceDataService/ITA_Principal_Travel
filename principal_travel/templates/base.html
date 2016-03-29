@@ -2,34 +2,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-<<<<<<< HEAD
-    <meta charset="utf-8">
-    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
+   <meta charset="utf-8">
+   <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
     <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
     <link rel="stylesheet" href="{% static "leaflet/leaflet.css" %}">
-=======
-   <meta charset="utf-8">
-   <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
-    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
-   <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
->>>>>>> develop
     <link rel="stylesheet" href="{% static "css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static "css/master.css" %}">
-<<<<<<< HEAD
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "lib/underscore/underscore.js" %}"></script>
     <script src="{% static "js/d3.js" %}"></script>
     <script src="{% static "handlebars.js" %}"></script>
     <script src="{% static "leaflet/leaflet.js" %}"></script>
-=======
-    <script src="{% static "js/vendor/jquery-1.11.3.min.js" %}">
-    </script>
->>>>>>> develop
     <script src="{% static "js/components.js" %}"></script>
-    <script src="{% static "js/script.js" %}"></script>
 
     {% block head %}{% endblock %}
   </head>
@@ -65,20 +50,12 @@
 </nav>
      </section>
    </header>
-<<<<<<< HEAD
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-=======
-
    <main class="usa-grid">
      <div class="container border-box">{% block content %}{% endblock %}</div>
 
     <div>{% block home %}{% endblock %}</div>
 
    </main>
->>>>>>> develop
 
 
 
@@ -88,6 +65,7 @@
           <a href="https://github.com/CommerceDataService/ITA_Principal_Travel" >View on GitHub  </a><i class="fa fa-github"></i></p>
       </div>
 </footer>
-
+{% block footer %}{% endblock %}
+<link rel="stylesheet" href="{% static "css/master.css" %}">
  </body>
 </html>
