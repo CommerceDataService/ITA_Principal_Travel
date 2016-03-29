@@ -75,7 +75,8 @@ footer, .usa-footer-primary-section {
 /* For home.html */
 .home-image{
 	position: relative;
-	width: 100$;
+	width: 100;
+	margin-bottom: 5em;
 }
 
 #bg {
