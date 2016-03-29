@@ -69,6 +69,7 @@ def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
         event = form.save(commit=False)
+        event.cities_light_country = event.cities_light_city.country
         event.save()
         form.save_m2m()
         return redirect('trip_new')
