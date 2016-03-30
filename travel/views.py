@@ -2,6 +2,9 @@ from .models import Trip, Event, Principal
 from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.template.loader import get_template
+from django.shortcuts import render, redirect
+from .serializers import TripSerializer, EventSerializer
+from rest_framework import viewsets
 from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
 from cities_light.models import Country, City
@@ -111,6 +114,16 @@ def principal_new(request):
         form = PrincipalForm()
     return render(request, 'travel/principal_form.html', {'form': form})
 
+def dashboard_view(request):
+    return render(request, 'travel/dashboard.html')
+
+class TripViewSet(viewsets.ModelViewSet):
+    queryset = Trip.objects.all()
+    serializer_class = TripSerializer
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all();
+    serializer_class = EventSerializer
 
 class CityAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):

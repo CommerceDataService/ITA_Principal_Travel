@@ -48,6 +48,11 @@ PREREQ_APPS = [
     'cities_light',
     'designstandards',
     'registration',
+    'jquery',
+    'underscore',
+    'd3',
+    'templatetag_handlebars',
+    'leaflet',
     'author',
 ]
 
