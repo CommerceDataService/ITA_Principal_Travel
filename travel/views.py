@@ -92,6 +92,17 @@ def event_edit(request, pk):
         form = EventForm(instance=event)
     return render(request, 'travel/event_form.html', {'form': form})
 
+class PrincipalList(ListView):
+    model = Principal
+
+class PrincipalDetail(DetailView):
+    queryset = Principal.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(PrincipalDetail, self).get_context_data(**kwargs)
+        context['trips'] = Trip.objects.filter(principal__id = self.object.id)
+        return context
+
 def principal_new(request):
     if request.method == "POST":
         form = PrincipalForm(request.POST)
