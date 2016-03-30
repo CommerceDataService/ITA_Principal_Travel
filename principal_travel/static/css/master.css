@@ -106,11 +106,9 @@ footer, .usa-footer-primary-section {
     background-color: #fff;
     box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
     padding: 1em;
-    margin-bottom: 15em;
     margin-top: 2em;
     position: relative;
 }
-
 .container:empty{
 	display: none;
 }

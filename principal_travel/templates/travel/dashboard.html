@@ -1,28 +1,9 @@
 {% extends 'base.html' %}
-
-{% block content %}
-<section class="usa-section">
+{% load staticfiles %}
+{% block home %}
+<div class="container border-box">
   <div class ="usa-grid">
-    <div class="usa-width-two-thirds">
-      <p></p>
-    </div>
-    <div class="usa-width-one-third">
-      <div class="usa-accordion-bordered">
-        <ul class="usa-unstyled-list">
-          <li>
-            <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
-            Upcoming Trips
-            </button>
-            <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
-              <div id="time-table"></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class ="usa-grid">
-    <div class="usa-width-one-whole card">
+    <div class="usa-width-one-whole">
       <div id="map"></div>
       <fieldset class="usa-fieldset-inputs usa-sans">
         <ul class="usa-unstyled-list" id="timefilter">
@@ -46,8 +27,10 @@
       </fieldset>
     </div>
   </div>
+</div>
+<div class="container border-box">
   <div class="usa-grid">
-    <div class="usa-width-one-whole card">
+    <div class="usa-width-one-whole">
       <form class="dropdown">
         <select name="options" id="options">
           <option value="country">Top Countries</option>
@@ -60,9 +43,20 @@
     </div>
     </div>
   </div>
-</section>
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+</div>
+<div class="container border-box">
+  <div class ="usa-grid">
+    <div class="usa-width-one-half" id="upcoming">
+      <h3>Upcoming Trips</h3>
+    </div>
+    <div class="usa-width-one-half" id="recent">
+      <h3>Recent Trips</h3>
+    </div>
+  </div>
+</div>
 
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src={% static "js/script.js" %}></script>
 {% verbatim %}
 <script type="text/x-handlebars-template" id="table">
   <p><a href='itineraries/{{id}}'>{{start_date}}:  {{principal.first_name}} {{principal.last_name}}, {{principal.title}}</a></p>

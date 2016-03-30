@@ -80,17 +80,26 @@ var pairSortSlice = function(object){
 }
 
 var renderTable = function(tripData){
+  var template = Handlebars.compile($('#table').html())
   var sortedTrips = _(tripData).chain().sortBy(function(trip){
     return start = new Date(trip.start_date)
   }).value()
 
+  var i = sortedTrips.length
   _.each(sortedTrips, function(trip){
     var now = new Date();
     var start = new Date(trip.start_date)
-    if(start>now){
-      var template = Handlebars.compile($('#table').html())
-      $('#time-table').append(template(trip))
+    if(start>=now){
+      $('#upcoming').append(template(trip))
+      i--;
     }
+  })
+  var j = sortedTrips.length - ((sortedTrips.length - i)*2)
+  var recentTrips = sortedTrips.slice(j, i)
+  recentTrips.reverse();
+  _.each(recentTrips, function(trip){
+
+    $('#recent').append(template(trip))
   })
 }
 
