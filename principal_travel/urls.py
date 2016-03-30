@@ -43,11 +43,8 @@ urlpatterns = [
     url(r'^principals/$', PrincipalList.as_view(), name='principal_list'),
     url(r'^principals/(?P<pk>[0-9]+)/$', PrincipalDetail.as_view(),  name='principal_detail'),
     url(r'^principals/new/$', principal_new, name="principal_new"),
-<<<<<<< HEAD
     url(r'^principals/(?P<pk>[0-9]+)/edit/$', principal_edit, name="principal_edit"),
-=======
     url(r'^dashboard$', dashboard_view, name='dashboard'),
->>>>>>> c1781130a6adf070a98b5c2413feb65db2ebeedb
     url(r'^city-autocomplete/$', CityAutocomplete.as_view(), name='city-autocomplete'),
 ]
 
