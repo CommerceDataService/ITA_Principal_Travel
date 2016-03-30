@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block home %}
+<div class="container border-box">
+  <div class ="usa-grid">
+    <div class="usa-width-one-whole">
+      <div id="map"></div>
+      <fieldset class="usa-fieldset-inputs usa-sans">
+        <ul class="usa-unstyled-list" id="timefilter">
+          <li>
+            <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
+            <label for="futureMarkers">Upcoming Events</label>
+          </li>
+          <li>
+            <input id="monthMarkers" type="checkbox" value="monthMarkers" checked>
+            <label for="monthMarkers">Past Month Events</label>
+          </li>
+          <li>
+            <input id="yearMarkers" type="checkbox" value="yearMarkers" checked>
+            <label for="yearMarkers">Past Year Events</label>
+          </li>
+          <li>
+            <input id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
+            <label for="allPastMarkers">All Past Events</label>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+  </div>
+</div>
+<div class="container border-box">
+  <div class="usa-grid">
+    <div class="usa-width-one-whole">
+      <form class="dropdown">
+        <select name="options" id="options">
+          <option value="country">Top Countries</option>
+          <option value="principal">Top Travelers</option>
+          <option value="eventType">Event Types</option>
+        </select>
+      </form>
+    <div id='chart'>
+      <h3>Top Destinations</h3>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="container border-box">
+  <div class ="usa-grid">
+    <div class="usa-width-one-half" id="upcoming">
+      <h3>Upcoming Trips</h3>
+    </div>
+    <div class="usa-width-one-half" id="recent">
+      <h3>Recent Trips</h3>
+    </div>
+  </div>
+</div>
+
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src={% static "js/script.js" %}></script>
+{% verbatim %}
+<script type="text/x-handlebars-template" id="table">
+  <p><a href='itineraries/{{id}}'>{{start_date}}:  {{principal.first_name}} {{principal.last_name}}, {{principal.title}}</a></p>
+</script>
+
+<script type="text/x-handlebars-template" id="popup">
+  <h6><a href="/events/{{id}}">{{name}}</a></h6>
+  <p>{{description}}</p>
+  <p>{{cities_light_city.name}}, {{cities_light_country.name}}</p>
+</script>
+{% endverbatim %}
+{% endblock %}

@@ -4,14 +4,18 @@
   <head>
    <meta charset="utf-8">
    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
-    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
-   <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
+    <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
+    <link rel="stylesheet" href="{% static "leaflet/leaflet.css" %}">
     <link rel="stylesheet" href="{% static "css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static "css/master.css" %}">
-    <script src="{% static "js/vendor/jquery-1.11.3.min.js" %}"></script>
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "lib/underscore/underscore.js" %}"></script>
+    <script src="{% static "js/d3.js" %}"></script>
+    <script src="{% static "handlebars.js" %}"></script>
+    <script src="{% static "leaflet/leaflet.js" %}"></script>
     <script src="{% static "js/components.js" %}"></script>
+
     {% block head %}{% endblock %}
   </head>
 
@@ -35,9 +39,10 @@
       </div>
           {% else%}
       <div class="nav-buttons usa-width-one-whole">
-          <a class="usa-button usa-button-outline-inverse" href="/admin"> Dashboard </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_new' %}"> Create New Itinerary </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_list' %}"> View Itineraries </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'dashboard' %}"> Dashboard </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_new' %}"> Create Itinerary </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_list' %}"> Itineraries </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'event_list' %}"> Events </a>
           <a class="usa-button" href="/accounts/logout">Logout</a>
       </div>
 
@@ -46,7 +51,6 @@
 </nav>
      </section>
    </header>
-
    <main class="usa-grid">
      <div class="container border-box">{% block content %}{% endblock %}</div>
 

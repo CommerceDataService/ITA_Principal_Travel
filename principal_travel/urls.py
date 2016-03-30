@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new, trip_edit, trip_delete, event_edit, EventList, EventDetail, CityAutocomplete
+from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new, trip_edit, trip_delete, event_edit, EventList, EventDetail, dashboard_view, TripViewSet, EventViewSet, CityAutocomplete
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
 
 router = routers.DefaultRouter()
+router.register(r'trips', TripViewSet)
+router.register(r'events', EventViewSet)
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home_view'),
@@ -39,6 +41,7 @@ urlpatterns = [
     url(r'^events/new/$', event_new, name="event_new"),
     url(r'^events/(?P<pk>[0-9]+)/edit/$', event_edit, name="event_edit"),
     url(r'^principals/new/$', principal_new, name="principal_new"),
+    url(r'^dashboard$', dashboard_view, name='dashboard'),
     url(r'^city-autocomplete/$', CityAutocomplete.as_view(), name='city-autocomplete'),
 ]
 
