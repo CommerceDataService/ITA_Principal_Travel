@@ -100,6 +100,17 @@ def principal_new(request):
         form = PrincipalForm()
     return render(request, 'travel/principal_form.html', {'form': form})
 
+def principal_edit(request, pk):
+    principal = get_object_or_404(Principal, pk=pk)
+    if request.method == "POST":
+        form = PrincipalForm(request.POST, instance=principal)
+        principal = form.save(commit=False)
+        principal.save()
+        form.save_m2m()
+        return redirect('principal_detail', pk=principal.pk)
+    else:
+        form = PrincipalForm(instance=principal)
+    return render(request, 'travel/principal_form.html', {'form': form})
 
 class CityAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
