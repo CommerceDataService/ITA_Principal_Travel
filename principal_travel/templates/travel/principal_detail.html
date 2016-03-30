@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>{{principal.first_name}} {{principal.last_name}}</h3>
+  <p>Title: {{principal.title}}</p>
+  <p>Office: {{principal.office.short_name}} ({{principal.office.long_name}})</p>
+  <p>Career: {{principal.career}}</p>
+  <h4>Trips:</h4>
+  {% for trip in trips %}
+      <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.end_date}} : {{trip.country}}</a></p>
+  {% endfor %}
+{% endblock %}

@@ -16,8 +16,9 @@
       <tr>
         <td>
           <a href="{% url 'event_detail' pk=event.pk %}">View</a>
+          <a href="{% url 'event_edit' pk=event.pk %}">Edit</a>
         </td>
-        <td>{{event.name}} {{trip.principal.last_name}}</td>
+        <td>{{event.name}}</td>
         <td> {{event.event_type}}</td>
         <td>{{event.cities_light_city.name}}</td>
         <td>{{event.cities_light_country.name}}</td>
