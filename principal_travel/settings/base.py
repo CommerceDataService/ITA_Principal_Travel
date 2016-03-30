@@ -54,6 +54,7 @@ PREREQ_APPS = [
     'templatetag_handlebars',
     'leaflet',
     'author',
+    'bootstrap3',
 ]
 
 PROJECT_APPS = [
