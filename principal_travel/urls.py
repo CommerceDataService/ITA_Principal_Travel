@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new, trip_edit, trip_delete, event_edit, EventList, EventDetail, CityAutocomplete
+from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new, trip_edit, trip_delete, event_edit, EventList, EventDetail, CityAutocomplete, PrincipalList, PrincipalDetail
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
@@ -38,6 +38,8 @@ urlpatterns = [
     url(r'^events/(?P<pk>[0-9]+)/$', EventDetail.as_view(),  name='event_detail'),
     url(r'^events/new/$', event_new, name="event_new"),
     url(r'^events/(?P<pk>[0-9]+)/edit/$', event_edit, name="event_edit"),
+    url(r'^principals/$', PrincipalList.as_view(), name='principal_list'),
+    url(r'^principals/(?P<pk>[0-9]+)/$', PrincipalDetail.as_view(),  name='principal_detail'),
     url(r'^principals/new/$', principal_new, name="principal_new"),
     url(r'^city-autocomplete/$', CityAutocomplete.as_view(), name='city-autocomplete'),
 ]
