@@ -11,6 +11,9 @@ class TripForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = ('principal', 'start_date', 'end_date', 'events', 'no_of_travelers', 'no_of_travelers_note')
+        help_texts = {
+            'events': 'CTRL + click to select multiple events for this trip. (&#8984; + Click if using Mac OS)',
+        }
 
 class EventForm(forms.ModelForm):
     cities_light_city = forms.ModelChoiceField(
