@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="{% url 'trip_list' %}" class="usa-button back-button">Back to View Itineraries</a>
-<a class='usa-button' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
-<a class='usa-button' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
-<div class="usa-accordion-bordered">
-  <ul class="usa-unstyled-list">
+<a href="{% url 'trip_list' %}" class="btn btn-default back-button">Back to View Itineraries</a>
+<a class='btn btn-default' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
+<a class='btn btn-default' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <ul class="accordion">
     <li>
-      <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
+      <button class="btn btn-default" aria-expanded="false" aria-controls="collapsible-0">
       {{object.principal.first_name}} {{object.principal.last_name}}
       </button>
-      <div id="collapsible-0" aria-hidden="true" class="usa-accordion-content">
+      <div id="collapsible-0" aria-hidden="true" class="accordion">
         <p>Title: {{object.principal.title}}</p>
         <p>Office: {{object.principal.office.long_name}} ({{object.principal.office.short_name}})</p>
         <p>Agency: {{object.principal.office.agency.name}}</p>
@@ -20,10 +20,10 @@
     </li>
 
     <li>
-      <button class="usa-button-unstyled" aria-expanded="true" aria-controls="collapsible-1">
+      <button class="btn btn-default" aria-expanded="true" aria-controls="collapsible-1">
       Itinerary
       </button>
-      <div id="collapsible-1" aria-hidden="false" class="usa-accordion-content">
+      <div id="collapsible-1" aria-hidden="false" class="accordion">
         <p>Start Date: {{object.start_date}}</p>
         <p>End Date: {{object.end_date}}</p>
         <p>Number of Travelers: {{object.no_of_travelers}}</p>
