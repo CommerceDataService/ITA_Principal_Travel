@@ -42,10 +42,19 @@ PREREQ_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dal',
+    'dal_select2',
     'rest_framework',
     'cities_light',
     'designstandards',
     'registration',
+    'jquery',
+    'underscore',
+    'd3',
+    'templatetag_handlebars',
+    'leaflet',
+    'author',
+    'bootstrap3',
 ]
 
 PROJECT_APPS = [
@@ -72,6 +81,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'author.middlewares.AuthorDefaultBackendMiddleware',
 ]
 
 ROOT_URLCONF = 'principal_travel.urls'
@@ -133,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 

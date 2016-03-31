@@ -1,32 +1,34 @@
 {% load staticfiles %}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
   <head>
    <meta charset="utf-8">
    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
-    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
-   <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
+    <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
+    <link rel="stylesheet" href="{% static "leaflet/leaflet.css" %}">
     <link rel="stylesheet" href="{% static "css/main.css" %}">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.7/slicknav.min.css">
     <link rel="stylesheet" href="{% static "css/master.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/mobile.css" %}">
-    <script src="{% static "js/vendor/jquery-1.11.3.min.js" %}">
-    </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.7/jquery.slicknav.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "lib/underscore/underscore.js" %}"></script>
+    <script src="{% static "js/d3.js" %}"></script>
+    <script src="{% static "handlebars.js" %}"></script>
+    <script src="{% static "leaflet/leaflet.js" %}"></script>
     <script src="{% static "js/components.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/CDSjs.js"%}"></script>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
     {% block head %}{% endblock %}
   </head>
 
 <body>
 <header>
   <section>
-    <div class="header-left"> 
-    <!--usa-width-one-third-->
-        <img src="{% static "img/doc-logo-small.png" %}" class="doc-logo" alt="Department of Commerce logo">
-        <h3 class="header-left tracker-headline">Principal Travel Tracker </h3>
+    <div class="header-left">
+        <a href="{% url 'home_view' %}"><img src="{% static "img/doc-logo-small.png" %}" class="doc-logo" alt="Department of Commerce logo">
+        <h3 class="header-text"> Principal Travel Tracker </h3></a>
     </div>
 
 
@@ -48,10 +50,12 @@
       </div>
           {% else%}
       <div class="nav-buttons usa-width-one-whole">
-          <a class="usa-button usa-button-outline-inverse" href="/admin"> Dashboard </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_new' %}"> Create New Itinerary </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_list' %}"> View Itineraries </a>
-          <a class="usa-button uusa-button-outline-inverse" href="/accounts/logout">Logout</a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'dashboard' %}"> Dashboard </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_new' %}"> Create Itinerary </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_list' %}"> Itineraries </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'event_list' %}"> Events </a>
+          <a class="usa-button usa-button-outline-inverse" href="{% url 'principal_list' %}"> Principals </a>
+          <a class="usa-button" href="/accounts/logout">Logout</a>
       </div>
 
       <div class="mobile_button">&#9776; Menu </div>
@@ -61,13 +65,14 @@
 </nav>
      </section>
    </header>
+   <main>
+     <div class="container">{% block content %}{% endblock %}</div>
 
-   <main class="usa-grid">
-     <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
+    <div>{% block home %}{% endblock %}</div>
+
    </main>
+
+
 
 <footer>
 <div class="usa-footer-primary-section footer-text">
@@ -75,6 +80,6 @@
           <a href="https://github.com/CommerceDataService/ITA_Principal_Travel" >View on GitHub  </a><i class="fa fa-github"></i></p>
       </div>
 </footer>
-
+{% block footer %}{% endblock %}
  </body>
 </html>

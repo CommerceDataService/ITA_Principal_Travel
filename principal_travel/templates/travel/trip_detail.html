@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="usa-accordion-bordered border-box">
+<a href="{% url 'trip_list' %}" class="usa-button back-button">Back to View Itineraries</a>
+<a class='usa-button' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
+<a class='usa-button' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
+<div class="usa-accordion-bordered">
   <ul class="usa-unstyled-list">
     <li>
       <button class="usa-button-unstyled" aria-expanded="false" aria-controls="collapsible-0">
@@ -26,17 +29,20 @@
         <p>Number of Travelers: {{object.no_of_travelers}}</p>
         <p>Travelers Note: {{object.no_of_travelers_note}}</p>
         {% for event in object.events.all %}
-          <p>Event {{forloop.counter}}: {{event.name}}</p>
+          <p> Event {{forloop.counter}}: <a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
           <ul>
             <li>Type: {{event.event_type.name}}</li>
             <li>Description: {{event.description}}</li>
-            <li>Location: {{event.cities_light_city}}, {{event.cities_light_country}}</li>
+            <li>Location: {{event.cities_light_city.name}}, {{event.cities_light_country.name}}</li>
             <li>Press: {{event.press}}</li>
             <li>Press Note: {{event.press_note}}</li>
           </ul>
         {% endfor %}
       </div>
     </li>
+    <p>Author: {{object.author}} on {{object.created_on}}</p>
+    <p>Edited by: {{object.updated_by}} on {{object.edited_on}}</p>
+
 
   </ul>
 </div>

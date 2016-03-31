@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th scope='col'> </th>
+        <th scope='col'> Name </th>
+        <th scope='col'> Title </th>
+        <th scope='col'> Office </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for principal in object_list %}
+      <tr>
+        <td>
+          <a href="{% url 'principal_detail' pk=principal.pk %}">View</a>
+        </td>
+        <td>{{principal.first_name}} {{principal.last_name}}</td>
+        <td>{{principal.title}}</td>
+        <td>{{principal.office.short_name}}</td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

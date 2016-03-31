@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block content %}
+{% block home %}
 
-<!--<h2> Welcome to the Principal Travel Home Page</h2>-->
-<div class="home-image">
-	<span class="home-image-text"><h2>Welcome to the Principal Travel home page!</h2> <p>This tool has been built by the Commerce Data Service to assist with the recording and reporting process of tracking principals travels around the world. </p></span>
+<section class="background-image home-image darken">
+	<div class="home-image-text">
+		<h2>Welcome to the Principal Travel Tracker</h2> 
+		<p>This tool has been built by the Commerce Data Service to assist with the recording and reporting process of tracking principals travels around the world. </p>
+	</div>
 
+	<!--<img src="{% static "img/night-lights.png" id="bg" %}">-->
 
-	<img src="{% static "img/night-lights.png" id="bg" %}">
-
-</div>
+</section>
 
 {% endblock %}
