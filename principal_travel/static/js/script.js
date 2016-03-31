@@ -12,7 +12,7 @@ var drawBarGraph = function(data){
   var svg = d3.select('#chart')
   .append('svg')
   .attr('width', '100%')
-  .attr('height', '350')
+  .attr('height', '300')
 
 
   var tip = d3.tip()
@@ -43,7 +43,7 @@ var drawBarGraph = function(data){
     return color(i)
   })
   .attr('y', function(d, i){return i*32})
-  .attr('height', 30)
+  .attr('height', 20)
   .attr('width', 0)
   .transition()
   .duration(1000)
@@ -76,7 +76,7 @@ var drawBarGraph = function(data){
 var pairSortSlice = function(object){
   var array = _.pairs(object);
   array.sort(compare);
-  return array.slice(0,10)
+  return array.slice(0,9)
 }
 
 var renderTable = function(tripData){

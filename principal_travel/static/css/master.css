@@ -54,7 +54,7 @@ h1, h2, h3, h4 {
 }
 
 .container{
-	width: 100%;
+	padding: 40px;
 }
 
 footer, .usa-footer-primary-section {
@@ -164,7 +164,7 @@ fieldset {
 
 #map {
 	width:100%;
-	height: 500px;
+	height: 300px;
 }
 
 #timefilter > li{
@@ -214,4 +214,25 @@ ul li:before {
   height: 45px;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.container.dashboardViewBuffer {
+	margin-top: -93px;
+	padding-bottom: 0px;
+}
+
+.destinationTitle {
+	display: inline-block; 
+	margin-top: 0px;
+}
+
+.dropdown.dashboardDropdownStyle {
+	position: initial; 
+	display: inline-block; 
+	padding-left: 30px;
+}
+
+.container.dashboardBottomContainer {
+	padding-bottom: 50px;
+	padding-top: 30px;
 }
