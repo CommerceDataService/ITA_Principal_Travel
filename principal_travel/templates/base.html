@@ -5,10 +5,8 @@
   <head>
    <meta charset="utf-8">
    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
-    <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
+
     <link rel="stylesheet" href="{% static "leaflet/leaflet.css" %}">
-    <link rel="stylesheet" href="{% static "css/main.css" %}">
     <link rel="stylesheet" href="{% static "css/master.css" %}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="{% static "js/jquery.js" %}"></script>
@@ -16,7 +14,6 @@
     <script src="{% static "js/d3.js" %}"></script>
     <script src="{% static "handlebars.js" %}"></script>
     <script src="{% static "leaflet/leaflet.js" %}"></script>
-    <script src="{% static "js/components.js" %}"></script>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
@@ -37,18 +34,18 @@
 
 
           {% if user.id == None %}
-      <div class="nav-buttons button-wrapper">
-        <a class="usa-button usa-button-outline-inverse" href="/accounts/login">Login</a>
-        <a class="usa-button usa-button-outline-inverse" href="/accounts/register">Register</a>
+      <div class="nav-buttons">
+        <a class="btn btn-default" href="/accounts/login">Login</a>
+        <a class="btn btn-default" href="/accounts/register">Register</a>
       </div>
           {% else%}
-      <div class="nav-buttons usa-width-one-whole">
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'dashboard' %}"> Dashboard </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_new' %}"> Create Itinerary </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'trip_list' %}"> Itineraries </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'event_list' %}"> Events </a>
-          <a class="usa-button usa-button-outline-inverse" href="{% url 'principal_list' %}"> Principals </a>
-          <a class="usa-button" href="/accounts/logout">Logout</a>
+      <div class="nav-buttons">
+          <a class="btn btn-default" href="{% url 'dashboard' %}"> Dashboard </a>
+          <a class="btn btn-default" href="{% url 'trip_new' %}"> Create Itinerary </a>
+          <a class="btn btn-default" href="{% url 'trip_list' %}"> Itineraries </a>
+          <a class="btn btn-default" href="{% url 'event_list' %}"> Events </a>
+          <a class="btn btn-default" href="{% url 'principal_list' %}"> Principals </a>
+          <a class="btn btn-default" href="/accounts/logout">Logout</a>
       </div>
 
           {% endif %}
@@ -66,8 +63,8 @@
 
 
 <footer>
-<div class="usa-footer-primary-section footer-text">
-          <p class="usa-background-dark">Site created by the Commerce Data Service |
+<div class="footer-text">
+          <p>Site created by the Commerce Data Service |
           <a href="https://github.com/CommerceDataService/ITA_Principal_Travel" >View on GitHub  </a><i class="fa fa-github"></i></p>
       </div>
 </footer>
