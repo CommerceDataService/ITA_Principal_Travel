@@ -156,6 +156,10 @@ table {
 	margin: 0em;
 }
 
+div.mobile_button {
+	display: none;
+}
+
 @media(max-width: 768px) {
 	header {
 		background-color: #112e51;
@@ -173,7 +177,7 @@ fieldset {
 
 #map {
 	width:100%;
-	height: 500px;
+	height: 300px;
 }
 
 #timefilter > li{
@@ -223,4 +227,25 @@ ul li:before {
   height: 45px;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.container.dashboardViewBuffer {
+	margin-top: -93px;
+	padding-bottom: 0px;
+}
+
+.destinationTitle {
+	display: inline-block; 
+	margin-top: 0px;
+}
+
+.dropdown.dashboardDropdownStyle {
+	position: initial; 
+	display: inline-block; 
+	padding-left: 30px;
+}
+
+.container.dashboardBottomContainer {
+	padding-bottom: 50px;
+	padding-top: 30px;
 }
