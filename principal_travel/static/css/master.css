@@ -1,22 +1,19 @@
 .doc-logo {
 	padding-top: 10px;
-	height: 70px;
+	height: 65px;
 	position: absolute;
 }
 
 
 header{
 	background-color: #112e51;
-	height: 80px;
+	height: 70px;
 	color: white;
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
 .header-left{
-	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
-	font-weight: 300;
-	font-size: 30px;
 	display: inline-block;
 	color: white;
 }
@@ -27,6 +24,9 @@ header{
 	display: inline-block;
 	padding-left: 70px;
 	padding-top: 20px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	font-size: 25px;
 }
 
 nav{
@@ -38,13 +38,51 @@ nav{
 	padding-top: 20px;
 }
 
-.usa-width-one-half, .usa-width-one-whole{
-	display: inline;
-	width: 100%;
+.btn{
+	border-radius: 0;
+	border-color: transparent;
+}
+.my-button{
+	color: white;
+    background-color: transparent;
+    border-radius: 0;
+    border-color: transparent;
+    font-weight: bold;
+    font-size: 15px;
 }
 
+.btn-default:focus,
+.btn-default.focus {
+  background-color: #205493;
+}
+.my-button:hover, 
+.my-button:active,
+.my-button:focus {
+  background-color: #205493;
+  border-color: transparent;
+  color:white;
+}
+
+
+.btn-primary{
+	background-color: #205493;
+}
+
+.btn-success{
+	background-color: #2e8540;
+}
 body {
-	background-color: white;
+	background-color: white;	
+	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+}
+
+.container{
+	padding: 40px;
+}
+
+ul, li{
+	list-style: none;
+	list-style-type: none;
 }
 
 h1, h2, h3, h4 {
@@ -53,53 +91,26 @@ h1, h2, h3, h4 {
 	font-size: 30px;
 }
 
-.container{
-	padding: 40px;
+.accordion-padding {
+	padding: 20px;
 }
 
-footer, .usa-footer-primary-section {
-    height: 70px;
+footer {
+    height: 40px;
     background-color: #112e51;
     color: white;
 }
 
 .footer-text{
-	padding: 15px;
+	padding-top: 10px;
+	padding-right: 20px;
 	float: right;
 }
-
-.usa-background-dark{
-	line-height: 1em;
-	float: right;
-}
-
-/* For home.html 
-.home-image{
-	position: relative;
-	width: 100;
-	margin-bottom: 5em;
-}
-
-#bg {
-	position: fixed;
-	top: 0;
-	left: 0;
-
-  /* Preserve aspect ratio 
-	min-width: 100%;
-	min-height: 100%;
-}
-
-.home-image-text{
-	width: 100%;
-	text-align: center;
-}*/
 
 .background-image {
     position: relative;
     width: 100%;
-    height:100%;
-    min-height: auto;
+    height: 100%;
     text-align: center;
     color: #fff;
     background-image: url(../img/night-lights.png);
@@ -107,18 +118,20 @@ footer, .usa-footer-primary-section {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    -o-background-size: cover;
-    padding: 50px 0;
+    -o-background-size: cover;   
+    padding: 275px;
 }
 
-.darken {
-  background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0)
-    ),
-    url(../img/night-lights.png);
-    padding: 300px;
+.home-heading{
+	font-family: 'Raleway', sans-serif;
+	padding-bottom: 10px;
+	font-size: 50px;
+	text-shadow: 2px 2px 8px black;
+}
+
+.home-heading-text{
+	font-size: 18px;
+	text-shadow: 2px 2px 8px black;
 }
 
 /* For trip_detail.html */
@@ -126,10 +139,9 @@ footer, .usa-footer-primary-section {
 	float: right;
 }
 
-/* white border box
-.border-box{
+/* white border box .border-box{
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: #grey;
     box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
     padding: 1em;
     margin-top: 2em;
@@ -138,6 +150,7 @@ footer, .usa-footer-primary-section {
 .container:empty{
 	display: none;
 } */
+
 
 table {
 	margin: 0em;
@@ -149,7 +162,7 @@ div.mobile_button {
 
 @media(max-width: 768px) {
 	header {
-		background-color: #323a45;
+		background-color: #112e51;
 		height: 100px;
 	    color: white;
 	    padding-left: 20px;

@@ -7,7 +7,7 @@
    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static "leaflet/leaflet.css" %}">
-    <link rel="stylesheet" href="{% static "css/master.css" %}">
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "lib/underscore/underscore.js" %}"></script>
@@ -16,7 +16,9 @@
     <script src="{% static "leaflet/leaflet.js" %}"></script>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-
+    <link rel="stylesheet" href="{% static "css/master.css" %}">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     {% block head %}{% endblock %}
   </head>
 
@@ -35,17 +37,17 @@
 
           {% if user.id == None %}
       <div class="nav-buttons">
-        <a class="btn btn-default" href="/accounts/login">Login</a>
-        <a class="btn btn-default" href="/accounts/register">Register</a>
+        <a class="btn btn-default my-button" href="/accounts/login">Login</a>
+        <a class="btn btn-default my-button" href="/accounts/register">Register</a>
       </div>
           {% else%}
       <div class="nav-buttons">
-          <a class="btn btn-default" href="{% url 'dashboard' %}"> Dashboard </a>
-          <a class="btn btn-default" href="{% url 'trip_new' %}"> Create Itinerary </a>
-          <a class="btn btn-default" href="{% url 'trip_list' %}"> Itineraries </a>
-          <a class="btn btn-default" href="{% url 'event_list' %}"> Events </a>
-          <a class="btn btn-default" href="{% url 'principal_list' %}"> Principals </a>
-          <a class="btn btn-default" href="/accounts/logout">Logout</a>
+          <a class="btn btn-default my-button" href="{% url 'dashboard' %}"> Dashboard </a>
+          <a class="btn btn-default my-button" href="{% url 'trip_new' %}"> Create Itinerary </a>
+          <a class="btn btn-default my-button" href="{% url 'trip_list' %}"> Itineraries </a>
+          <a class="btn btn-default my-button" href="{% url 'event_list' %}"> Events </a>
+          <a class="btn btn-default my-button" href="{% url 'principal_list' %}"> Principals </a>
+          <a class="btn btn-default my-button" href="/accounts/logout">Logout</a>
       </div>
 
       <div class="mobile_button">&#9776; Menu </div>

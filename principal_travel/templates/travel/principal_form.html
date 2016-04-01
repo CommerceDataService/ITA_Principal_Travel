@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-  <h2>New Principal</h2>
+ <a href="{% url 'trip_list' %}" class="btn btn-primary">Back to Add/Edit Itineraries</a>
+  <h2>Add New Principal</h2>
   <form method="POST">
     {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        {% crispy form %}
+        <button type="submit" class="save btn btn-success">Save</button>
   </form>
 {% endblock %}

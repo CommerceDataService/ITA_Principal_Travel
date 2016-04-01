@@ -55,6 +55,7 @@ PREREQ_APPS = [
     'leaflet',
     'author',
     'bootstrap3',
+    'crispy_forms'
 ]
 
 PROJECT_APPS = [
@@ -101,6 +102,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WSGI_APPLICATION = 'principal_travel.wsgi.application'
 

@@ -13,3 +13,4 @@ django-leaflet
 django-author
 django-autocomplete-light
 django-bootstrap3
+django-crispy-forms
