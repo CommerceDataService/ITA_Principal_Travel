@@ -12,8 +12,8 @@ from django.contrib.auth.models import User
 from author.decorators import with_author
 
 class TimeStampedModel(models.Model):
-    created_on = models.DateTimeField(auto_now_add = True)
-    edited_on = models.DateTimeField(auto_now = True)
+    created_on = models.DateTimeField(auto_now_add = True, null=True)
+    edited_on = models.DateTimeField(auto_now = True, null=True)
     class Meta:
         abstract = True
 
