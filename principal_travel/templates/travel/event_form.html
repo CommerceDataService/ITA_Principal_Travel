@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
  <a href="{% url 'trip_list' %}" class="btn btn-primary">Back to Add/Edit Itineraries</a>
   <h2>Add a New Event</h2>
   
   <form method="POST">
-  <fieldset class="form-group">
     {% csrf_token %}
-        {{ form.as_p }}
+        {% crispy form %}
         <button type="submit" class="save btn btn-success">Save</button>
-   </fieldset>
   </form>
 
 {% endblock %}

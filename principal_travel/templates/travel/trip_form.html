@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-{% block content %}
-    <h4>Add/Edit Itinerary</h4>
+{% block content %}   
+<h4>Add/Edit Itinerary</h4>
     <a class="btn btn-primary" href="{% url 'event_new' %}">Add a New Event</a>
     <a class="btn btn-primary" href="{% url 'principal_new' %}">Add a New Principal</a>
     <br> 
     <br>
     <form method="POST">
- 	<fieldset class="form-group">
     {% csrf_token %}
-        {{ form.as_p }}
+        {% crispy form %}
         <button type="submit" class="save btn btn-success">Save</button>
-    </fieldset>
     </form>
 {% endblock %}
