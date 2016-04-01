@@ -51,14 +51,23 @@ nav{
     font-size: 15px;
 }
 
-.my-button:hover,
-.my-button:focus,
-.my-button:active {
+.my-button:hover {
   background-color: #205493;
-  text-decoration: none;
   border-color: transparent;
   color:white;
 }
+.my-button:active {
+  background-color: #205493;
+  border-color: transparent;
+  color:white;
+}
+.my-button:focus {
+  background-color: #205493;
+  border-color: transparent;
+  color:white;
+}
+
+
 
 .btn-primary{
 	background-color: #205493;
