@@ -247,7 +247,7 @@ ul li:before {
 .dropdown.dashboardDropdownStyle {
 	position: initial; 
 	display: inline-block; 
-	padding-left: 30px;
+	padding-left: 0px;
 }
 
 .container.dashboardBottomContainer {
