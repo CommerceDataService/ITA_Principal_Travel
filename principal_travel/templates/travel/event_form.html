@@ -2,12 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <h2>New Event</h2>
+  <h2>Add/Edit Event</h2>
+  
   <form method="POST">
     {% csrf_token %}
         {% crispy form %}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="save btn btn-success">Save</button>
   </form>
+
 {% endblock %}
 
 {% block footer %}

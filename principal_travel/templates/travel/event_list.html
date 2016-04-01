@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<h4>Events</h4>
 <div>
-  <table>
-    <thead>
+  <table class="table table-striped">
+    <thead class="thead-default">
       <tr>
         <th scope='col'> </th>
         <th scope='col'> Name </th>
@@ -15,8 +16,8 @@
       {% for event in object_list %}
       <tr>
         <td>
-          <a href="{% url 'event_detail' pk=event.pk %}">View</a>
-          <a href="{% url 'event_edit' pk=event.pk %}">Edit</a>
+          <a href="{% url 'event_detail' pk=event.pk %}" class="btn btn-primary btn-sm">View</a>
+          <a href="{% url 'event_edit' pk=event.pk %}" class="btn btn-primary btn-sm">Edit</a>
         </td>
         <td>{{event.name}}</td>
         <td> {{event.event_type}}</td>
