@@ -5,7 +5,7 @@
   <h2>New Principal</h2>
   <form method="POST">
     {% csrf_token %}
-        {% crispy form %}
+        {{ form|crispy }}
         <button type="submit" class="save btn btn-default">Save</button>
   </form>
 {% endblock %}
