@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <a href="{% url 'trip_list' %}" class="btn btn-primary back-button">Back to View Itineraries</a>
+
   <h3>{{event.name}}</h3>
   <p>Description: {{event.description}}</p>
   <p>Type: {{event.event_type}}</p>
@@ -13,4 +13,5 @@
   {% for trip in trips %}
       <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.principal.title}} {{trip.principal.last_name}}</a></p>
   {% endfor %}
+<a href="{% url 'trip_list' %}" class="btn btn-primary">Back to Events</a>
 {% endblock %}
