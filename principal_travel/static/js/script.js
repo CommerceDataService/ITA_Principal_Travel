@@ -42,8 +42,8 @@ var drawBarGraph = function(data){
   .attr('fill', function(d, i){
     return color(i)
   })
-  .attr('y', function(d, i){return i*32})
-  .attr('height', 20)
+  .attr('y', function(d, i){return i*30})
+  .attr('height', 24)
   .attr('width', 0)
   .transition()
   .duration(1000)
@@ -67,7 +67,7 @@ var drawBarGraph = function(data){
 
   labels
   .attr('x', 10)
-  .attr('y', function(d, i){return (i*32)+17})
+  .attr('y', function(d, i){return (i*30)+17})
   .attr("font-family", "sans-serif")
   .attr("font-size", "11px")
   .attr("fill", "white");
@@ -193,4 +193,5 @@ $(document).ready(function(){
       renderMap(tripData);
     })
   })
+
 })

@@ -51,17 +51,21 @@ nav{
     font-size: 15px;
 }
 
+.my-button:hover,
 .btn-default:focus,
-.btn-default.focus {
+.btn-default.my-button:focus
+ {
   background-color: #205493;
+   border-color: transparent;
+  color:white;
 }
-.my-button:hover, 
-.my-button:active,
+
+/*.my-button:active,
 .my-button:focus {
   background-color: #205493;
   border-color: transparent;
   color:white;
-}
+}*/
 
 
 .btn-primary{
@@ -79,6 +83,10 @@ body {
 .container{
 	padding: 40px;
 }
+
+.container:empty{
+	display: none;
+} 
 
 ul, li{
 	list-style: none;
@@ -146,10 +154,8 @@ footer {
     padding: 1em;
     margin-top: 2em;
     position: relative;
-}
-.container:empty{
-	display: none;
-} */
+}*/
+
 
 
 table {
@@ -230,7 +236,6 @@ ul li:before {
 }
 
 .container.dashboardViewBuffer {
-	margin-top: -93px;
 	padding-bottom: 0px;
 }
 

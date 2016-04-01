@@ -16,6 +16,7 @@
       <tr>
         <td>
           <a href="{% url 'principal_detail' pk=principal.pk %}" class="btn btn-primary btn-sm">View</a>
+          <a href="{% url 'principal_edit' pk=principal.pk %}" class="btn btn-primary btn-sm">Edit</a>
         </td>
         <td>{{principal.first_name}} {{principal.last_name}}</td>
         <td>{{principal.title}}</td>
