@@ -1,5 +1,6 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 
@@ -7,7 +8,7 @@
 <h2>User Login</h2>
 <form method="post" action="">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <input type="submit" value="{% trans 'Log in' %}" class="btn btn-primary" />
     <input type="hidden" name="next" value="{% url 'dashboard' %}" />
 </form>
