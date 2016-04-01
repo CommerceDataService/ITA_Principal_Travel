@@ -5,6 +5,7 @@
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
+<div class="col-md-4">
 <h2>User Registration</h2>
 <form method="post" action="">
     {% csrf_token %}
@@ -13,7 +14,7 @@
 </form>
 <br>
 <br>
-<br>
+<br></div>
 {% endblock %}
 
 

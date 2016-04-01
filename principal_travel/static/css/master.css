@@ -96,6 +96,7 @@ ul, li{
 h1, h2, h3, h4 {
 	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
 	font-weight: 500;
+	font-size: 30px;
 }
 
 .accordion-padding {

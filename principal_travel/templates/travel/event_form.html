@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="col-md-6">
   <h2>Add/Edit Event</h2>
 
   <form method="POST">
@@ -9,6 +10,7 @@
       {{ form|crispy }}
       <button type="submit" class="save btn btn-success">Save</button>
   </form>
+ </div>
 
 {% endblock %}
 
