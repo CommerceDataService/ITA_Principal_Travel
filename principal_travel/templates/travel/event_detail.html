@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+  <a href="{% url 'trip_list' %}" class="btn btn-primary back-button">Back to View Itineraries</a>
   <h3>{{event.name}}</h3>
   <p>Description: {{event.description}}</p>
   <p>Type: {{event.event_type}}</p>

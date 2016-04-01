@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a class="btn btn-default" href="{% url 'event_new' %}">Add a New Event</a>
-    <a class="btn btn-default" href="{% url 'principal_new' %}">Add a New Principal</a>
-    <form method="POST">{% csrf_token %}
+    <h4>Add/Edit Itinerary</h4>
+    <a class="btn btn-primary" href="{% url 'event_new' %}">Add a New Event</a>
+    <a class="btn btn-primary" href="{% url 'principal_new' %}">Add a New Principal</a>
+    <br> 
+    <br>
+    <form method="POST">
+ 	<fieldset class="form-group">
+    {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="save btn btn-success">Save</button>
+    </fieldset>
     </form>
 {% endblock %}
