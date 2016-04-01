@@ -8,8 +8,8 @@
 <h2>User Registration</h2>
 <form method="post" action="">
     {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="{% trans 'Submit' %}" />
+        {{ form|crispy }}
+    <input type="submit" value="{% trans 'Register' %}" class="btn btn-primary"/>
 </form>
 <br>
 <br>

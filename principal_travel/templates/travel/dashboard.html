@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block home %}
-<div class="container border-box">
-  <div class ="usa-grid">
-    <div class="usa-width-one-whole">
+<div class="container border-box dashboardViewBuffer">
+    <div class="col-lg-6">
       <div id="map"></div>
-      <fieldset class="usa-fieldset-inputs usa-sans">
-        <ul class="usa-unstyled-list" id="timefilter">
+      <fieldset class="">
+        <ul class="" id="timefilter">
           <li>
             <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
             <label for="futureMarkers">Upcoming Events</label>
@@ -26,30 +25,30 @@
         </ul>
       </fieldset>
     </div>
-  </div>
-</div>
-<div class="container border-box">
-  <div class="usa-grid">
-    <div class="usa-width-one-whole">
-      <form class="dropdown">
+
+    <div class="col-lg-6">
+    <form class="dropdown dashboardDropdownStyle" style="">
         <select name="options" id="options">
           <option value="country">Top Countries</option>
           <option value="principal">Top Travelers</option>
           <option value="eventType">Event Types</option>
         </select>
-      </form>
+      </form>  
     <div id='chart'>
-      <h3>Top Destinations</h3>
+      <h3 class="destinationTitle">Top Destinations</h3>
+      
     </div>
-    </div>
-  </div>
+  </div>    
 </div>
-<div class="container border-box">
-  <div class ="usa-grid">
-    <div class="usa-width-one-half" id="upcoming">
+
+
+
+<div class="container border-box dashboardBottomContainer">
+  <div class ="">
+    <div class="col-lg-6" id="upcoming">
       <h3>Upcoming Trips</h3>
     </div>
-    <div class="usa-width-one-half" id="recent">
+    <div class="col-lg-6" id="recent">
       <h3>Recent Trips</h3>
     </div>
   </div>

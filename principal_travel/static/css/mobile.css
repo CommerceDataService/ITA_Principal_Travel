@@ -1,0 +1,20 @@
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { 
+	h3.tracker-headline {
+		display: none;
+	}
+
+	div.mobile_button {
+		display: inline-block;
+		font-size: 30px;
+	}
+
+	a.login_button {
+		display: none;
+	}
+
+	a.register_button {
+		display: none;
+	}
+}

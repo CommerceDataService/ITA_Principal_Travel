@@ -2,10 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <a class="usa-button" href="{% url 'event_new' %}">Add a New Event</a>
-    <a class="usa-button" href="{% url 'principal_new' %}">Add a New Principal</a>
-    <form method="POST">{% csrf_token %}
+<h4>Add/Edit Itinerary</h4>
+    <a class="btn btn-primary" href="{% url 'event_new' %}">Add a New Event</a>
+    <a class="btn btn-primary" href="{% url 'principal_new' %}">Add a New Principal</a>
+    <br>
+    <br>
+    <form method="POST">
+      <form method="POST">{% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="save btn btn-default">Save</button>
+        <button type="submit" class="save btn btn-success">Save</button>
     </form>
 {% endblock %}

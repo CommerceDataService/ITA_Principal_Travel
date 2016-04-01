@@ -8,4 +8,5 @@
   {% for trip in trips %}
       <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.end_date}} : {{trip.country}}</a></p>
   {% endfor %}
+  <a href="{% url 'principal_list' %}" class="btn btn-primary">Back to Principals</a>
 {% endblock %}
