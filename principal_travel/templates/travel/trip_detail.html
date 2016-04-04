@@ -4,53 +4,35 @@
 <a href="{% url 'trip_list' %}" class="btn btn-primary back-button">Back to Itineraries</a>
 <a class='btn btn-primary' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
 <a class='btn btn-primary' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
-<br>
-<br>
 
-<div id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          {{object.principal.first_name}} {{object.principal.last_name}}
-        </a>
-      </h4>
-    </div>
-      <div id="collapseOne" class="panel-collapse collapse in accordion-padding" role="tabpanel" aria-labelledby="headingOne">
-        <p>Title: {{object.principal.title}}</p>
-        <p>Office: {{object.principal.office.long_name}} ({{object.principal.office.short_name}})</p>
-        <p>Agency: {{object.principal.office.agency.name}}</p>
+<div>
+      <h3><strong><a href="{% url 'trip_list' %}">{{object.principal.first_name}} {{object.principal.last_name}}</a></strong></h3>
+        <h4>{{object.principal.title}}, {{object.principal.office.agency.name}}</h4>
+       <!--<p>Office: {{object.principal.office.long_name}} ({{object.principal.office.short_name}})</p>
+        <p>Agency: </p>
         <p>Region: {{object.principal.region}}</p>
-        <p>Career: {{object.principal.career}}</p>
-    </div>
-    </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Itinerary
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse accordion-padding" role="tabpanel" aria-labelledby="headingTwo">
-        <p>Start Date: {{object.start_date}}</p>
-        <p>End Date: {{object.end_date}}</p>
-        <p>Number of Travelers: {{object.no_of_travelers}}</p>
-        <p>Travelers Note: {{object.no_of_travelers_note}}</p>
+        <p>Career: {{object.principal.career}}</p>-->
+
+      <h3>Itinerary</h3>
+        <h4>{{object.start_date}} - {{object.end_date}}</h4>
+        <p><strong>Number of Travelers:</strong> {{object.no_of_travelers}}</p>
+        <p><strong>Travelers Note:</strong> {{object.no_of_travelers_note}}</p>
         {% for event in object.events.all %}
-          <p> Event {{forloop.counter}}: <a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
+        <p><strong> Event {{forloop.counter}}: </strong><a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
           <ul>
-            <li>Type: {{event.event_type.name}}</li>
-            <li>Description: {{event.description}}</li>
-            <li>Location: {{event.cities_light_city.name}}, {{event.cities_light_country.name}}</li>
-            <li>Press: {{event.press}}</li>
-            <li>Press Note: {{event.press_note}}</li>
+            <li><strong>Location: </strong>{{event.cities_light_city.name}}, {{event.cities_light_country.name}}</li>
+            <li><strong>Type: </strong>{{event.event_type.name}}</li>
+            <li><strong>Description: </strong>{{event.description}}</li>
+
+            <!--<li>Press: {{event.press}}</li>
+            <li>Press Note: {{event.press_note}}</li>-->
         </ul>
          {% endfor %}
-      </div>
-    </div>    
-    <p>Author: {{object.author}} on {{object.created_on}}</p>
-    <p>Edited by: {{object.updated_by}} on {{object.edited_on}}</p>
-  </div>
+</div>
+<hr>
+<div>    
+    <p><em>Author: {{object.author}} on {{object.created_on}}</em></p>
+    <p><em>Edited by: {{object.updated_by}} on {{object.edited_on}}</em></p>
+</div>
 
 {% endblock %}
