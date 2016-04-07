@@ -6,6 +6,9 @@ env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
 language: python
+cache: pip
+python:
+  - "3.5"
 
 before_install:
   - sudo apt-get update
@@ -15,5 +18,8 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
+after_success:
+  - coveralls
+
 script:
-  - docker-compose run web python manage.py test
+  - docker-compose run web py.test --cov=.
