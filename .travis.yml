@@ -5,6 +5,7 @@ services:
 env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
+# this isn't necessary, but otherwise Travis loads Ruby to start with, which is confusing
 language: python
 
 before_install:
@@ -15,5 +16,8 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
+after_success:
+  - docker-compose run web coveralls
+
 script:
-  - docker-compose run web python manage.py test
+  - docker-compose run web py.test --cov=.
