@@ -1,10 +1,10 @@
 sudo: required
-
 services:
   - docker
 env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
+# this isn't necessary, but otherwise Travis loads Ruby to start with, which is confusing
 language: generic
 
 before_install:
@@ -15,8 +15,8 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-script:
-  - docker-compose run web py.test --cov=travel
-
 after_success:
   - docker-compose run web codecov
+
+script:
+  - docker-compose run web py.test --cov=travel --ds=principal_travel.settings.test
