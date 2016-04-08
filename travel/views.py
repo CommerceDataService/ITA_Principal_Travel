@@ -10,8 +10,13 @@ from dal import autocomplete
 from cities_light.models import Country, City
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+class LoginRequiredView(LoginRequiredMixin):
+    login_url = '/accounts/login/'
+
 class HomeView(TemplateView):
     template_name = 'travel/home.html'
 
@@ -19,16 +24,17 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         return context
 
-class TripDetail(DetailView):
+class TripDetail(LoginRequiredView, DetailView):
     queryset = Trip.objects.all()
 
     def get_object(self):
         object = super(TripDetail, self).get_object()
         return object
 
-class TripList(ListView):
+class TripList(LoginRequiredView, ListView):
 	model = Trip
 
+@login_required(login_url='/accounts/login/')
 def trip_new(request):
     if request.method == "POST":
         form = TripForm(request.POST)
@@ -41,6 +47,7 @@ def trip_new(request):
         form = TripForm()
     return render(request, 'travel/trip_form.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def trip_edit(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
     if request.method == "POST":
@@ -53,6 +60,7 @@ def trip_edit(request, pk):
         form = TripForm(instance=trip)
     return render(request, 'travel/trip_form.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def trip_delete(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
     if request.method == "POST":
@@ -60,10 +68,10 @@ def trip_delete(request, pk):
         return redirect('trip_list')
     return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
 
-class EventList(ListView):
+class EventList(LoginRequiredView, ListView):
     model = Event
 
-class EventDetail(DetailView):
+class EventDetail(LoginRequiredView, DetailView):
     queryset = Event.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -71,6 +79,7 @@ class EventDetail(DetailView):
         context['trips'] = Trip.objects.filter(events__id = self.object.id)
         return context
 
+@login_required(login_url='/accounts/login/')
 def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
@@ -83,6 +92,7 @@ def event_new(request):
         form = EventForm()
     return render(request, 'travel/event_form.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def event_edit(request, pk):
     event = get_object_or_404(Event, pk=pk)
     if request.method == "POST":
@@ -95,10 +105,10 @@ def event_edit(request, pk):
         form = EventForm(instance=event)
     return render(request, 'travel/event_form.html', {'form': form})
 
-class PrincipalList(ListView):
+class PrincipalList(LoginRequiredView, ListView):
     model = Principal
 
-class PrincipalDetail(DetailView):
+class PrincipalDetail(LoginRequiredView, DetailView):
     queryset = Principal.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -106,6 +116,7 @@ class PrincipalDetail(DetailView):
         context['trips'] = Trip.objects.filter(principal__id = self.object.id)
         return context
 
+@login_required(login_url='/accounts/login/')
 def principal_new(request):
     if request.method == "POST":
         form = PrincipalForm(request.POST)
@@ -117,6 +128,7 @@ def principal_new(request):
         form = PrincipalForm()
     return render(request, 'travel/principal_form.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def principal_edit(request, pk):
     principal = get_object_or_404(Principal, pk=pk)
     if request.method == "POST":
@@ -129,18 +141,19 @@ def principal_edit(request, pk):
         form = PrincipalForm(instance=principal)
     return render(request, 'travel/principal_form.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def dashboard_view(request):
     return render(request, 'travel/dashboard.html')
 
-class TripViewSet(viewsets.ModelViewSet):
+class TripViewSet(LoginRequiredView, viewsets.ModelViewSet):
     queryset = Trip.objects.all()
     serializer_class = TripSerializer
 
-class EventViewSet(viewsets.ModelViewSet):
+class EventViewSet(LoginRequiredView, viewsets.ModelViewSet):
     queryset = Event.objects.all();
     serializer_class = EventSerializer
 
-class CityAutocomplete(autocomplete.Select2QuerySetView):
+class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         # if not self.request.user.is_authenticated():
