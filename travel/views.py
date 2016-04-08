@@ -1,4 +1,3 @@
-import django_filters
 from .models import Trip, Event, Principal
 from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
@@ -10,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
 from cities_light.models import Country, City
 from .mixins import FilterMixin
+from .filters import TripFilter
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -25,13 +25,6 @@ class TripDetail(DetailView):
     def get_object(self):
         object = super(TripDetail, self).get_object()
         return object
-
-class TripFilter(django_filters.FilterSet):
-    principal__title = django_filters.CharFilter(lookup_expr='icontains')
-
-    class Meta:
-        model = Trip
-
 
 class TripList(FilterMixin, ListView):
     model = Trip
