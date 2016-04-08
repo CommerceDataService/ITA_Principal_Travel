@@ -1,6 +1,12 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 {% block content%}
 <h4>Itineraries</h4>
+<form action="" method="get">
+        {{ filter.form|crispy }}
+        <input type="submit" />
+    </form>
 <div>
   <table class="table table-striped">
     <thead class="thead-default">
