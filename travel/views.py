@@ -8,6 +8,8 @@ from rest_framework import viewsets
 from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
 from cities_light.models import Country, City
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -33,6 +35,7 @@ def trip_new(request):
         trip = form.save(commit=False)
         trip.save()
         form.save_m2m()
+        messages.success(request, 'Your new itinerary created successfull.')
         return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm()
