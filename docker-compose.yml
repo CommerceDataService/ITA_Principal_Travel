@@ -14,6 +14,7 @@ web:
     - db
   environment:
     DJANGO_SETTINGS_MODULE: principal_travel.settings.dev
+    CI:
     TRAVIS:
     TRAVIS_BRANCH:
     TRAVIS_COMMIT:
