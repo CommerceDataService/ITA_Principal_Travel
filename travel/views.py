@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
 from cities_light.models import Country, City
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -36,10 +37,12 @@ class TripList(LoginRequiredView, ListView):
 def trip_new(request):
     if request.method == "POST":
         form = TripForm(request.POST)
-        trip = form.save(commit=False)
-        trip.save()
-        form.save_m2m()
-        return redirect('trip_detail', pk=trip.pk)
+        if form.is_valid():
+            trip = form.save(commit=False)
+            trip.save()
+            form.save_m2m()
+            messages.success(request, 'A new itinerary was successfully created.')
+            return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm()
     return render(request, 'travel/trip_form.html', {'form': form})
@@ -49,10 +52,12 @@ def trip_edit(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
     if request.method == "POST":
         form = TripForm(request.POST, instance=trip)
-        trip = form.save(commit=False)
-        trip.save()
-        form.save_m2m()
-        return redirect('trip_detail', pk=trip.pk)
+        if form.is_valid():
+            trip = form.save(commit=False)
+            trip.save()
+            form.save_m2m()
+            messages.success(request, 'The itinerary was successfully updated.')
+            return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm(instance=trip)
     return render(request, 'travel/trip_form.html', {'form': form})
@@ -62,6 +67,7 @@ def trip_delete(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
     if request.method == "POST":
         trip.delete()
+        messages.success(request, 'The itinerary was successfully deleted.')
         return redirect('trip_list')
     return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
 
@@ -80,11 +86,13 @@ class EventDetail(LoginRequiredView, DetailView):
 def event_new(request):
     if request.method == "POST":
         form = EventForm(request.POST)
-        event = form.save(commit=False)
-        event.cities_light_country = event.cities_light_city.country
-        event.save()
-        form.save_m2m()
-        return redirect('trip_new')
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.cities_light_country = event.cities_light_city.country
+            event.save()
+            form.save_m2m()
+            messages.success(request, 'A new event was successfully created.')
+            return redirect('trip_new')
     else:
         form = EventForm()
     return render(request, 'travel/event_form.html', {'form': form})
@@ -94,10 +102,12 @@ def event_edit(request, pk):
     event = get_object_or_404(Event, pk=pk)
     if request.method == "POST":
         form = EventForm(request.POST, instance=event)
-        event = form.save(commit=False)
-        event.save()
-        form.save_m2m()
-        return redirect('event_detail', pk=event.pk)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.save()
+            form.save_m2m()
+            messages.success(request, 'The event was successfully updated.')
+            return redirect('event_detail', pk=event.pk)
     else:
         form = EventForm(instance=event)
     return render(request, 'travel/event_form.html', {'form': form})
@@ -117,10 +127,12 @@ class PrincipalDetail(LoginRequiredView, DetailView):
 def principal_new(request):
     if request.method == "POST":
         form = PrincipalForm(request.POST)
-        principal = form.save(commit=False)
-        principal.save()
-        form.save_m2m()
-        return redirect('trip_new')
+        if form.is_valid():
+            principal = form.save(commit=False)
+            principal.save()
+            form.save_m2m()
+            messages.success(request, 'A new principal record was successfully created.')
+            return redirect('trip_new')
     else:
         form = PrincipalForm()
     return render(request, 'travel/principal_form.html', {'form': form})
@@ -130,10 +142,12 @@ def principal_edit(request, pk):
     principal = get_object_or_404(Principal, pk=pk)
     if request.method == "POST":
         form = PrincipalForm(request.POST, instance=principal)
-        principal = form.save(commit=False)
-        principal.save()
-        form.save_m2m()
-        return redirect('principal_detail', pk=principal.pk)
+        if form.is_valid():
+            principal = form.save(commit=False)
+            principal.save()
+            form.save_m2m()
+            messages.success(request, 'The principal record was successfully updated.')
+            return redirect('principal_detail', pk=principal.pk)
     else:
         form = PrincipalForm(instance=principal)
     return render(request, 'travel/principal_form.html', {'form': form})
