@@ -5,7 +5,7 @@ services:
 env:
   DOCKER_COMPOSE_VERSION: 1.6.0
 
-language: python
+language: generic
 
 before_install:
   - sudo apt-get update
@@ -16,4 +16,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker-compose run web python manage.py test
+  - docker-compose run web py.test --cov=travel
+
+after_success:
+  - docker-compose run web codecov
