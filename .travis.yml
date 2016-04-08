@@ -19,4 +19,4 @@ after_success:
   - docker-compose run web codecov
 
 script:
-  - docker-compose run web py.test --cov=travel --ds=principal_travel.settings.test
+  - docker-compose run web py.test --cov=. --ds=principal_travel.settings.test
