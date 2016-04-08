@@ -9,7 +9,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
 from cities_light.models import Country, City
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -41,7 +40,7 @@ def trip_new(request):
         trip = form.save(commit=False)
         trip.save()
         form.save_m2m()
-        messages.success(request, 'Your new itinerary created successfull.')
+        messages.success(request, 'A new itinerary was successfully created.')
         return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm()
@@ -55,6 +54,7 @@ def trip_edit(request, pk):
         trip = form.save(commit=False)
         trip.save()
         form.save_m2m()
+        messages.success(request, 'The itinerary was successfully updated.')
         return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm(instance=trip)
@@ -65,6 +65,7 @@ def trip_delete(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
     if request.method == "POST":
         trip.delete()
+        messages.success(request, 'The itinerary was successfully deleted.')
         return redirect('trip_list')
     return render(request, 'travel/trip_confirm_delete.html', {'trip': trip})
 
@@ -87,6 +88,7 @@ def event_new(request):
         event.cities_light_country = event.cities_light_city.country
         event.save()
         form.save_m2m()
+        messages.success(request, 'A new event was successfully created.')
         return redirect('trip_new')
     else:
         form = EventForm()
@@ -100,6 +102,7 @@ def event_edit(request, pk):
         event = form.save(commit=False)
         event.save()
         form.save_m2m()
+        messages.success(request, 'The event was successfully updated.')
         return redirect('event_detail', pk=event.pk)
     else:
         form = EventForm(instance=event)
@@ -123,6 +126,7 @@ def principal_new(request):
         principal = form.save(commit=False)
         principal.save()
         form.save_m2m()
+        messages.success(request, 'A new principal record was successfully created.')
         return redirect('trip_new')
     else:
         form = PrincipalForm()
@@ -136,6 +140,7 @@ def principal_edit(request, pk):
         principal = form.save(commit=False)
         principal.save()
         form.save_m2m()
+        messages.success(request, 'The principal record was successfully updated.')
         return redirect('principal_detail', pk=principal.pk)
     else:
         form = PrincipalForm(instance=principal)
