@@ -15,8 +15,10 @@
 
       <h3>Itinerary</h3>
         <h4>{{object.start_date}} - {{object.end_date}}</h4>
-        <p><strong>Number of Travelers:</strong> {{object.no_of_travelers}}</p>
-        <p><strong>Travelers Note:</strong> {{object.no_of_travelers_note}}</p>
+        {% if object.no_of_travelers %}
+          <p><strong>Number of Travelers:</strong> {{object.no_of_travelers}}</p>
+          <p><strong>Travelers Note:</strong> {{object.no_of_travelers_note}}</p>
+        {% endif %}
         {% for event in object.events.all %}
         <p><strong> Event {{forloop.counter}}: </strong><a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
           <ul>
