@@ -14,3 +14,11 @@ web:
     - db
   environment:
     DJANGO_SETTINGS_MODULE: principal_travel.settings.dev
+    CI:
+    TRAVIS:
+    TRAVIS_BRANCH:
+    TRAVIS_COMMIT:
+    TRAVIS_JOB_NUMBER:
+    TRAVIS_PULL_REQUEST:
+    TRAVIS_JOB_ID:
+    TRAVIS_REPO_SLUG:
