@@ -4,7 +4,7 @@
   <p>Title: {{principal.title}}</p>
   <p>Office: {{principal.office.short_name}} ({{principal.office.long_name}})</p>
   <p>Career: {{principal.career}}</p>
-  <h4>Trips:</h4>
+  <h4>Itineraries:</h4>
   {% for trip in trips %}
       <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.end_date}} : {{trip.country}}</a></p>
   {% endfor %}
