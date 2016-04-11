@@ -3,11 +3,11 @@ from dal import autocomplete
 from django import forms
 from .models import Trip, Event, Principal
 from cities_light.models import City
-
+from datetimewidget.widgets import DateWidget
 
 class TripForm(forms.ModelForm):
-    start_date = forms.DateField(initial=date.today)
-    end_date = forms.DateField(initial=date.today() + timedelta(days=5))
+    start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+    end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     class Meta:
         model = Trip
         fields = ('principal', 'start_date', 'end_date', 'events', 'no_of_travelers', 'no_of_travelers_note')
