@@ -3,10 +3,26 @@
 
 {% block content%}
 <h4>Itineraries</h4>
-<form action="" method="get">
-        {{ filter.form|crispy }}
-        <input type="submit" />
-    </form>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Search &amp; Filter
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <form action="" method="get">
+            {{ filter.form|crispy }}
+            <input type="submit" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div>
   <table class="table table-striped">
     <thead class="thead-default">
