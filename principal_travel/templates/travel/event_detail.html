@@ -9,7 +9,7 @@
   {% endif %}
   <p>Location: {{event.cities_light_city.name}}, {{event.cities_light_country.name}}</p>
   <p>Press: {{event.press}} <span>{{event.press_note}}</span></p>
-  <h4>Trips to this event</h4>
+  <h4>Itineraries to this event</h4>
   {% for trip in trips %}
       <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.principal.title}} {{trip.principal.last_name}}</a></p>
   {% endfor %}
