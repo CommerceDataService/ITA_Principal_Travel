@@ -1,14 +1,17 @@
 import django_filters
-from .models import Trip, Event
+from .models import Trip, Event, Region, EventType
+from cities_light.models import Country
 
 class TripFilter(django_filters.FilterSet):
-    start_date = django_filters.DateFromToRangeFilter()
-    events = django_filters.ModelMultipleChoiceFilter(name ='events__name', to_field_name='name', lookup_type='in', queryset = Event.objects.all())
-
-    # event_type = django_filters.ModelMultipleChoiceFilter(name ='events__event_type__name', to_field_name='event_type__name', lookup_type='in', queryset = Event.objects.all())
+    Principal_title = django_filters.CharFilter(lookup_expr='icontains', name='principal__title')
+    Quick_Dates = django_filters.DateRangeFilter()
+    Custom_Date_Range = django_filters.DateFromToRangeFilter()
+    Month = django_filters.NumberFilter(name='start_date__month')
+    Year = django_filters.NumberFilter(name='start_date__year')
+    Region = django_filters.ModelChoiceFilter(queryset = Region.objects.all(), name='events__cities_light_country__custom_region')
+    Country = django_filters.ModelChoiceFilter(queryset = Country.objects.all(), name='events__cities_light_country__name')
+    Event_Type = django_filters.ModelChoiceFilter(queryset = EventType.objects.all(), name='events__event_type')
 
     class Meta:
         model = Trip
-        fields = {
-        'principal__title': ['icontains'],
-        }
+        fields = []
