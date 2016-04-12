@@ -55,7 +55,7 @@ PREREQ_APPS = [
     'leaflet',
     'author',
     'bootstrap3',
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 PROJECT_APPS = [

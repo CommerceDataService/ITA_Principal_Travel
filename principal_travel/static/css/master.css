@@ -107,6 +107,9 @@ footer {
     height: 40px;
     background-color: #112e51;
     color: white;
+    position: static;
+    width: 100%
+    bottom: 0;
 }
 
 .footer-text{
