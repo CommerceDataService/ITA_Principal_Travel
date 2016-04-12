@@ -11,6 +11,7 @@ from cities_light.models import Country, City
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 # Create your views here.
 class LoginRequiredView(LoginRequiredMixin):
@@ -175,3 +176,21 @@ class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
             qs = qs.filter(name__istartswith=self.q)
 
         return qs
+
+class ReportView(LoginRequiredView, TemplateView):
+    template_name = 'travel/report.html'
+
+    def get_context_data(self, **kwargs):
+        trips = {}
+        today = date.today()
+        years = Trip.objects.dates('start_date', 'year')
+        for year in years:
+            year = year.strftime('%Y')
+            trips[year] = {}
+            months = Trip.objects.filter(start_date__year = year).dates('start_date', 'month')
+            for month in months:
+                month = month.strftime('%m')
+                trips[year][month] = Trip.objects.filter(start_date__year = year).filter(start_date__month = month)
+        context = super(ReportView, self).get_context_data(**kwargs)
+        context['trips'] = trips
+        return context
