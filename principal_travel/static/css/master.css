@@ -1,3 +1,8 @@
+html{
+	position: relative;
+	min-height: 100%;
+}
+
 .doc-logo {
 	padding-top: 10px;
 	height: 65px;
@@ -75,14 +80,21 @@ nav{
 .btn-success{
 	background-color: #2e8540;
 }
+
 body {
 	background-color: white;
 	font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+	margin-bottom: 50px;
 }
 
-.container{
-	padding: 40px;
-}
+/*body > .container {
+  padding: 60px 15px 0;
+}*/
+
+/*.container{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}*/
 
 .container:empty{
 	display: none;
@@ -103,19 +115,19 @@ h1, h2, h3 {
 	padding: 20px;
 }
 
-footer {
+.footer {
     height: 40px;
     background-color: #112e51;
     color: white;
-    position: static;
-    width: 100%
+    position: absolute;
+    width: 100%;
     bottom: 0;
 }
 
 .footer-text{
 	padding-top: 10px;
 	padding-right: 20px;
-	float: right;
+	padding-left: 30px;
 }
 
 .background-image {
@@ -164,6 +176,11 @@ table {
 	margin: 0em;
 }
 
+.table-links,
+.table-links:hover{
+	color: #333333;
+	text-decoration: none;
+}
 div.mobile_button {
 	display: none;
 }

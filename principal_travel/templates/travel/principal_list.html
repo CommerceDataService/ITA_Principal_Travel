@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
+{% block breadcrumbs %}
+    {{ block.super }} » <a href="{% url 'principal_list' pk=principal.pk %}">Principal List</a>
+{% endblock %}
 {% block content %}
-<h3>Principals</h3>
+<h3>Principals   <a href="{% url 'principal_new' %}" class="btn btn-success">Add</a></h3>
 <div>
-  <table class="table table-striped">
+  <table class="table table-hover">
     <thead class="thead-default">
       <tr>
-        <th scope='col'> </th>
         <th scope='col'> Name </th>
         <th scope='col'> Title </th>
         <th scope='col'> Office </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody onclick="getElementById('edit-1').click()" style="cursor: pointer">
       {% for principal in object_list %}
       <tr>
-        <td>
-          <a href="{% url 'principal_detail' pk=principal.pk %}" class="btn btn-primary btn-sm">View</a>
-          <a href="{% url 'principal_edit' pk=principal.pk %}" class="btn btn-primary btn-sm">Edit</a>
-        </td>
-        <td>{{principal.first_name}} {{principal.last_name}}</td>
-        <td>{{principal.title}}</td>
-        <td>{{principal.office.short_name}}</td>
+        <!--<td>
+<a href="{% url 'principal_detail' pk=principal.pk %}" class="btn btn-primary btn-sm">View</a>
+      <a href="{% url 'principal_edit' pk=principal.pk %}" class="btn btn-primary btn-sm">Edit</a> 
+        </td>-->
+        <td><a class="table-links" href="{% url 'principal_detail' pk=principal.pk %}" id="edit-1">{{principal.first_name}} {{principal.last_name}}</a></td>
+        <td><a class="table-links" href="{% url 'principal_detail' pk=principal.pk %}" id="edit-1">{{principal.title}}</a></td>
+        <td><a class="table-links" href="{% url 'principal_detail' pk=principal.pk %}" id="edit-1">{{principal.office.short_name}}</a></td>
       </tr>
       {% endfor%}
     </tbody>

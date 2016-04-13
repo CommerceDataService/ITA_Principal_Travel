@@ -56,6 +56,7 @@ PREREQ_APPS = [
     'author',
     'bootstrap3',
     'crispy_forms',
+    'django_bootstrap_breadcrumbs',
 ]
 
 PROJECT_APPS = [
@@ -164,3 +165,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
 #CITIES_LIGHT_INCLUDE_COUNTRIES = ['US']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL']
+
+LOGIN_REDIRECT_URL = '/acounts/logout'
+LOGIN_URL = '/accounts/login'
