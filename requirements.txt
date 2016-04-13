@@ -18,3 +18,5 @@ django-autocomplete-light
 django-bootstrap3
 django-crispy-forms
 django-bootstrap-breadcrumbs
+django-filter
+django-datetime-widget
