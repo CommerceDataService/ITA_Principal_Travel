@@ -69,12 +69,16 @@
     {% endif %}
      
      <div class="container">
-     {% block content %}{% block breadcrumbs %} Home {% endblock%}
+     {% block content %}
+        {% block breadcrumbs %}
+          {% clear_breadcrumbs %} 
+          {% breadcrumb "Home" "/"%}
+          {% breadcrumb "Itinerary" "Itinerary List" %} 
+        {% endblock%}
+        {% render_breadcrumbs %}
       {% endblock %}</div>
 
-    <div>{% block home %}
-
-    {% endblock %}</div>
+    <div>{% block home %} {% endblock %}</div>
 
    </main>
 

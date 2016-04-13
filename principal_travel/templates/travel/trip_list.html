@@ -2,11 +2,8 @@
 {% load crispy_forms_tags %}
 
 {% block content%}
+<h3>Itineraries<a href="{% url 'trip_new' %}" class="btn btn-success add-button">Add</a></h3>
 
-{% block breadcrumb %} {% endblock %}
-<h3>Itineraries   <a href="{% url 'trip_new' %}" class="btn btn-success">Add</a></h3>
-
-<h4>Itineraries</h4>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
@@ -31,7 +28,6 @@
   <table class="table table-hover">
     <thead class="thead-default">
       <tr>
-        <th scope='col'> </th>
         <th scope='col'> Principal Name </th>
         <th scope='col'> Event Name </th>
         <th scope='col'> Trip Start Date </th>
@@ -42,11 +38,6 @@
     <tbody onclick="getElementById('edit-1').click()" style="cursor: pointer">
       {% for trip in object_list %}
       <tr><a href="{% url 'trip_detail' pk=trip.pk %}">
-        <td>
-        
-         <!--  <a href="{% url 'trip_edit' pk=trip.pk %}" class="btn btn-primary btn-sm">Edit</a> -->
-<br>
-        </td>
         <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.principal.first_name}} {{trip.principal.last_name}}</a></td>
         <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.event_name}}</a></td>
         <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.start_date}}</a></td>

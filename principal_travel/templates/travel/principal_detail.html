@@ -1,6 +1,10 @@
 {% extends 'travel/principal_list.html' %}
+{% load django_bootstrap_breadcrumbs %}
 {% block breadcrumbs %}
     {{ block.super }} » <a href="{% url 'principal_detail' pk=principal.pk %}">{{principal.first_name}} {{principal.last_name}}</a>
+
+<!--  following the instructions from http://django-bootstrap-breadcrumbs.readthedocs.org/en/latest/
+   {% breadcrumb principal "principal.list.detail" principal.first_name %} -->
 {% endblock %}
 
 {% block content %}
