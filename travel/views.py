@@ -8,6 +8,8 @@ from rest_framework import viewsets
 from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
 from cities_light.models import Country, City
+from .mixins import FilterMixin
+from .filters import TripFilter
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -32,8 +34,13 @@ class TripDetail(LoginRequiredView, DetailView):
         object = super(TripDetail, self).get_object()
         return object
 
-class TripList(LoginRequiredView, ListView):
-	model = Trip
+class TripList(LoginRequiredView, FilterMixin, ListView):
+    model = Trip
+    filter_class = TripFilter
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(TripList, self).get_queryset(*args, **kwargs)
+        return qs
 
 @login_required(login_url='/accounts/login/')
 def trip_new(request):
