@@ -191,19 +191,20 @@ class ReportView(LoginRequiredView, TemplateView):
     def get_context_data(self, **kwargs):
         data = []
         today = date.today()
-        countries = Event.objects.values_list('cities_light_country__name', flat=True).distinct()
+        countries = Event.objects.values_list('cities_light_country__name', 'cities_light_country__id').distinct()
         years = Trip.objects.dates('start_date', 'year')
         month_names = []
         for i in range(1,13):
-            month_names.append([str(i),calendar.month_name[i]])
+            month_names.append([i,calendar.month_name[i]])
         for year in years:
             year = year.strftime('%Y')
             months = Trip.objects.filter(start_date__year = year).dates('start_date', 'month')
             for month in months:
                 month = month.strftime('%m')
                 for country in countries:
-                    trip_count = Trip.objects.filter(start_date__year = year).filter(start_date__month = month).filter(events__cities_light_country__name = country).count()
-                    data.append({'year': year, 'month': month[1], 'country': country, 'count': trip_count})
+                    print(country)
+                    trip_count = Trip.objects.filter(start_date__year = year).filter(start_date__month = month).filter(events__cities_light_country__name = country[0]).count()
+                    data.append({'year': year, 'month': month[1], 'country': country[0], 'country_id': country[1], 'count': trip_count})
         context = super(ReportView, self).get_context_data(**kwargs)
         context['current_year'] = str(today.year)
         context['data_list'] = data

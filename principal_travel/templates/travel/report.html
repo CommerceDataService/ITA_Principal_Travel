@@ -14,9 +14,9 @@
     {% for country in countries %}
     <tr>
       <td>
-        {{country}}
+        {{country.0}}
       </td>
-      {% for month in months %}<td>{% for data in data_list %}{% if data.year == current_year and data.month == month.0 and data.country == country %}{{data.count}}{% endif %}{% endfor %}</td>{% endfor %}
+      {% for month in months %}<td>{% for data in data_list %}{% if data.year == current_year|slugify and data.month == month.0|slugify and data.country == country.0 %}<a href="{% url 'trip_list' %}?month={{month.0}}&amp;year={{current_year}}&amp;country={{country.1}}">{{data.count}}</a>{% endif %}{% endfor %}</td>{% endfor %}
     {% endfor %}
     </tr>
 </tbody>
