@@ -183,7 +183,7 @@ var renderChart = function(tripData, eventData){
 $(document).ready(function(){
   var tripData, eventData;
   $.getJSON('/api/events')
-  .done(function(data){
+    .done(function(data){
     eventData = data;
     $.getJSON('/api/trips')
     .done(function(data){

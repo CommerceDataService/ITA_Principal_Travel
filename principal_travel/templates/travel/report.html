@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-report {{year}}
+<table class="table table-bordered">
+  <thead class="thead-default">
+    <tr>
+      <th scope='col'>{{current_year}}</th>
+      {% for month in months %}
+      <th scope='col' >{{month.1}}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for country in countries %}
+    <tr>
+      <td>
+        {{country}}
+      </td>
+      {% for month in months %}<td>{% for data in data_list %}{% if data.year == current_year and data.month == month.0 and data.country == country %}{{data.count}}{% endif %}{% endfor %}</td>{% endfor %}
+    {% endfor %}
+    </tr>
+</tbody>
+</table>
+
 {% endblock %}

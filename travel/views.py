@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from datetime import date
+import calendar
 
 # Create your views here.
 class LoginRequiredView(LoginRequiredMixin):
@@ -181,16 +182,24 @@ class ReportView(LoginRequiredView, TemplateView):
     template_name = 'travel/report.html'
 
     def get_context_data(self, **kwargs):
-        trips = {}
+        data = []
         today = date.today()
+        countries = Event.objects.values_list('cities_light_country__name', flat=True).distinct()
         years = Trip.objects.dates('start_date', 'year')
+        month_names = []
+        for i in range(1,13):
+            month_names.append([str(i),calendar.month_name[i]])
         for year in years:
             year = year.strftime('%Y')
-            trips[year] = {}
             months = Trip.objects.filter(start_date__year = year).dates('start_date', 'month')
             for month in months:
                 month = month.strftime('%m')
-                trips[year][month] = Trip.objects.filter(start_date__year = year).filter(start_date__month = month)
+                for country in countries:
+                    trip_count = Trip.objects.filter(start_date__year = year).filter(start_date__month = month).filter(events__cities_light_country__name = country).count()
+                    data.append({'year': year, 'month': month[1], 'country': country, 'count': trip_count})
         context = super(ReportView, self).get_context_data(**kwargs)
-        context['trips'] = trips
+        context['current_year'] = str(today.year)
+        context['data_list'] = data
+        context['months'] = month_names
+        context['countries'] = countries
         return context
