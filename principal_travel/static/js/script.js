@@ -5,14 +5,14 @@ var compare = function(a, b) {
     else {
         return (a[1] > b[1]) ? -1 : 1;
     }
-}
+};
 
 var drawBarGraph = function(data){
   var color = d3.scale.category10();
   var svg = d3.select('#chart')
   .append('svg')
   .attr('width', '100%')
-  .attr('height', '300')
+  .attr('height', '300');
 
 
   var tip = d3.tip()
@@ -20,42 +20,40 @@ var drawBarGraph = function(data){
     .offset([-10, 0])
     .html(function(d) {
     return "<strong>"+d[0]+"</strong> <span style='color:red'>" + d[1] + "</span>";
-  })
+  });
 
   var max = d3.max(data, function(d){
     return d[1];
-  })
+  });
 
   var linearScale = d3.scale
   .linear()
   .range([0, 100])
-  .domain([0,max])
+  .domain([0,max]);
 
   svg.call(tip);
 
   var rects = svg.selectAll('rect')
   .data(data)
   .enter()
-  .append('rect')
+  .append('rect');
 
   rects.attr('x', 0)
   .attr('fill', function(d, i){
-    return color(i)
+    return color(i);
   })
-  .attr('y', function(d, i){return i*30})
+  .attr('y', function(d, i){return i*30;})
   .attr('height', 24)
   .attr('width', 0)
   .transition()
   .duration(1000)
   .ease('linear')
   .attr('width', function(d){
-    return linearScale(d[1]) + "%"
-  })
+    return linearScale(d[1]) + "%";
+  });
 
   rects.on('mouseover', tip.show)
-  .on('mouseout', tip.hide)
-
-
+  .on('mouseout', tip.hide);
 
   var labels = svg.selectAll('text')
   .data(data)
@@ -67,54 +65,54 @@ var drawBarGraph = function(data){
 
   labels
   .attr('x', 10)
-  .attr('y', function(d, i){return (i*30)+17})
+  .attr('y', function(d, i){return (i*30)+17;})
   .attr("font-family", "sans-serif")
   .attr("font-size", "11px")
   .attr("fill", "white");
-}
+};
 
 var pairSortSlice = function(object){
   var array = _.pairs(object);
   array.sort(compare);
-  return array.slice(0,9)
-}
+  return array.slice(0,9);
+};
 
 var renderTable = function(tripData){
-  var template = Handlebars.compile($('#table').html())
+  var template = Handlebars.compile($('#table').html());
   var sortedTrips = _(tripData).chain().sortBy(function(trip){
-    return start = new Date(trip.start_date)
-  }).value()
+    start = new Date(trip.start_date);
+    return start;
+  }).value();
 
-  var i = sortedTrips.length
+  var i = sortedTrips.length;
   _.each(sortedTrips, function(trip){
     var now = new Date();
-    var start = new Date(trip.start_date)
+    var start = new Date(trip.start_date);
     if(start>=now){
-      $('#upcoming').append(template(trip))
+      $('#upcoming').append(template(trip));
       i--;
     }
-  })
-  var j = sortedTrips.length - ((sortedTrips.length - i)*2)
-  var recentTrips = sortedTrips.slice(j, i)
+  });
+  var j = sortedTrips.length - ((sortedTrips.length - i)*2);
+  var recentTrips = sortedTrips.slice(j, i);
   recentTrips.reverse();
   _.each(recentTrips, function(trip){
 
-    $('#recent').append(template(trip))
-  })
-}
+    $('#recent').append(template(trip));
+  });
+};
 
 var renderMap = function(tripData){
   var map = L.map('map')
   .setView([33, -8], 2);
 
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    maxZoom: 3,
     id: 'noonkay.f59d9773',
     // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
     noWrap: true,
     minZoom: 2,
-    maxZoom: 4
+    maxZoom: 3
   }).addTo(map);
 
   futureMarkers = L.layerGroup([]).addTo(map);
@@ -123,11 +121,11 @@ var renderMap = function(tripData){
   allPastMarkers = L.layerGroup([]).addTo(map);
 
   var today = new Date();
-  var monthAgo = new Date().setDate(today.getDate()-30)
-  var yearAgo = new Date().setDate(today.getDate()-365)
+  var monthAgo = new Date().setDate(today.getDate()-30);
+  var yearAgo = new Date().setDate(today.getDate()-365);
   var template = Handlebars.compile($('#popup').html());
   _.each(tripData, function(trip){
-    var start = new Date(trip.start_date)
+    var start = new Date(trip.start_date);
     _.each(trip.events, function(event){
       var marker = L.marker([event.cities_light_city.latitude, event.cities_light_city.longitude]).bindPopup(template(event));
       if(start >= today){
@@ -141,8 +139,8 @@ var renderMap = function(tripData){
         }
         allPastMarkers.addLayer(marker);
       }
-    })
-  })
+    });
+  });
 
   $( "input" ).on('click', function( event ) {
     var layerClicked = window[event.target.value];
@@ -151,34 +149,34 @@ var renderMap = function(tripData){
     } else {
       map.addLayer(layerClicked);
     }
-  })
-}
+  });
+};
 
 var renderChart = function(tripData, eventData){
   var principalCount = _.countBy(tripData, function(trip){
     return trip.principal.title;
-  })
+  });
   var countryCount = _.countBy(eventData, function(event){
     return event.cities_light_country.name;
-  })
+  });
   var eventTypeCount = _.countBy(eventData, function(event){
     return event.event_type.name;
-  })
+  });
 
   drawBarGraph(pairSortSlice(countryCount));
   $("#options").on('change', function(event){
     if (this.value == "country"){
-      $('#chart').empty().append('<h3>Top Destinations</h3>')
+      $('#chart').empty().append('<h3>Top Countries</h3>');
       drawBarGraph(pairSortSlice(countryCount));
     } else if (this.value == "principal"){
-      $('#chart').empty().append('<h3>Top Travelers</h3>')
+      $('#chart').empty().append('<h3>Top Travelers</h3>');
       drawBarGraph(pairSortSlice(principalCount));
     } else if (this.value == "eventType"){
-      $('#chart').empty().append('<h3>Top Event Types</h3>')
+      $('#chart').empty().append('<h3>Top Event Types</h3>');
       drawBarGraph(pairSortSlice(eventTypeCount));
     }
-  })
-}
+  });
+};
 
 $(document).ready(function(){
   var tripData, eventData;
@@ -191,7 +189,6 @@ $(document).ready(function(){
       renderTable(tripData);
       renderChart(tripData, eventData);
       renderMap(tripData);
-    })
-  })
-
-})
+    });
+  });
+});

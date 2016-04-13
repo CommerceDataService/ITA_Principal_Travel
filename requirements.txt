@@ -17,3 +17,5 @@ django-author
 django-autocomplete-light
 django-bootstrap3
 django-crispy-forms
+django-filter
+django-datetime-widget
