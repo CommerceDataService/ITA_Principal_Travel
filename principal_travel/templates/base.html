@@ -44,12 +44,11 @@
           {% else%}
       <div class="nav-buttons">
           <a class="btn btn-default my-button" href="{% url 'dashboard' %}"> Dashboard </a>
-          <a class="btn btn-default my-button" href="{% url 'trip_new' %}"> Create Itinerary </a>
           <a class="btn btn-default my-button" href="{% url 'trip_list' %}"> Itineraries </a>
           <a class="btn btn-default my-button" href="{% url 'event_list' %}"> Events </a>
           <a class="btn btn-default my-button" href="{% url 'principal_list' %}"> Principals </a>
           <a class="btn btn-default my-button" href="{% url 'report' %}"> Reports </a>
-          <a class="btn btn-default my-button" href="/accounts/logout">Logout</a>
+          <a class="btn btn-default my-button" href="{% url 'auth_logout' %}?next={% url 'home_view' %}">Logout</a>
       </div>
 
       <div class="mobile_button">&#9776; Menu </div>
@@ -67,15 +66,18 @@
       {% endfor %}
     </ul>
     {% endif %}
-     <div class="container">{% block content %}{% endblock %}</div>
+     
+     <div class="container">
+     {% block content %}
+      {% endblock %}</div>
 
-    <div>{% block home %}{% endblock %}</div>
+    <div>{% block home %} {% endblock %}</div>
 
    </main>
 
 
 
-<footer>
+<footer class="footer">
 <div class="footer-text">
           <p>Site created by the Commerce Data Service |
           <a href="https://github.com/CommerceDataService/ITA_Principal_Travel" >View on GitHub  </a><i class="fa fa-github"></i></p>
