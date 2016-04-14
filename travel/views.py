@@ -13,6 +13,8 @@ from .filters import TripFilter
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from datetime import date
+import calendar
 
 # Create your views here.
 class LoginRequiredView(LoginRequiredMixin):
@@ -182,3 +184,62 @@ class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
             qs = qs.filter(name__istartswith=self.q)
 
         return qs
+
+class ReportView(LoginRequiredView, TemplateView):
+    template_name = 'travel/report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ReportView, self).get_context_data(**kwargs)
+        current_year = self.request.GET.get('year')
+        report_type = self.request.GET.get('by')
+        if current_year is None:
+            current_year = (date.today()).year
+        if report_type is None:
+            report_type = 'country'
+        # Generating lists for template use
+        unique_reporting_years = []
+        years = Trip.objects.dates('start_date', 'year')
+        for year in years:
+            unique_reporting_years.append(year.strftime('%Y'))
+        month_names = []
+        for i in range(1,13):
+            month_names.append([i,calendar.month_name[i]])
+        # Generating reports
+        data = []
+        countries = None
+        eventtypes = None
+        regions = None
+        if report_type == 'country':
+            countries = Trip.objects.filter(start_date__year = current_year). values_list('events__cities_light_country__name', 'events__cities_light_country__id').distinct()
+        elif report_type == 'event':
+            eventtypes = Trip.objects.filter(start_date__year = current_year).values_list('events__event_type__name', 'events__event_type__id').distinct()
+        elif report_type == 'region':
+            regions = Trip.objects.filter(start_date__year = current_year).values_list('events__cities_light_country__custom_region__name', 'events__cities_light_country__custom_region__id').distinct()
+            print(regions)
+        months = Trip.objects.filter(start_date__year = current_year).dates('start_date', 'month')
+        for month in months:
+            month = month.strftime('%m')
+            if countries:
+                context['attributes'] = countries
+                context['query_string'] = 'country'
+                for country in countries:
+                    trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__cities_light_country__name = country[0]).count()
+                    data.append({'month': month[1], 'attribute_name': country[0], 'attribute_id': country[1], 'count': trip_count})
+            elif eventtypes:
+                context['attributes'] = eventtypes
+                context['query_string'] = 'event_type'
+                for eventtype in eventtypes:
+                    trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__event_type__name = eventtype[0]).count()
+                    data.append({'month': month[1], 'attribute_name': eventtype[0], 'attribute_id': eventtype[1], 'count': trip_count})
+            elif regions:
+                context['attributes'] = regions
+                context['query_string'] = 'region'
+                for region in regions:
+                    trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__cities_light_country__custom_region__name = region[0]).count()
+                    data.append({'month': month[1], 'attribute_name': region[0], 'attribute_id': region[1], 'count': trip_count})
+        context['year'] = current_year
+        context['data_list'] = data
+        context['months'] = month_names
+        context['annual_report_list'] = unique_reporting_years
+        context['report_type_list'] = ['country', 'region', 'event']
+        return context
