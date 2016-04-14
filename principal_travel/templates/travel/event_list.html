@@ -11,13 +11,13 @@
         <th scope='col'> Country </th>
       </tr>
     </thead>
-    <tbody onclick="getElementById('edit-1').click()" style="cursor: pointer">
+    <tbody onclick="getElementById('row-info').click()" style="cursor: pointer">
       {% for event in object_list %}
       <tr>
-        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="edit-1">{{event.name}}</a></td>
-        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="edit-1">{{event.event_type}}</a></td>
-        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="edit-1">{{event.cities_light_city.name}}</a></td>
-        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="edit-1">{{event.cities_light_country.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.event_type}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.cities_light_city.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.cities_light_country.name}}</a></td>
       </tr>
       {% endfor%}
     </tbody>

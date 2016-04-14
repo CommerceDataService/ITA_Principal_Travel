@@ -35,14 +35,14 @@
         <th scope='col'> Trip Location(s) </th>
       </tr>
     </thead>
-    <tbody onclick="getElementById('edit-1').click()" style="cursor: pointer">
+    <tbody onclick="getElementById('row-info').click()" style="cursor: pointer">
       {% for trip in object_list %}
       <tr><a href="{% url 'trip_detail' pk=trip.pk %}">
-        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.principal.first_name}} {{trip.principal.last_name}}</a></td>
-        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.event_name}}</a></td>
-        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.start_date}}</a></td>
-        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.end_date}}</a></td>
-        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="edit-1">{{trip.country}}</a></td>
+        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="row-info">{{trip.principal.first_name}} {{trip.principal.last_name}}</a></td>
+        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="row-info">{{trip.event_name}}</a></td>
+        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="row-info">{{trip.start_date}}</a></td>
+        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="row-info">{{trip.end_date}}</a></td>
+        <td><a class="table-links" href="{% url 'trip_detail' pk=trip.pk %}" id="row-info">{{trip.country}}</a></td>
       </a></tr>
       {% endfor%}
     </tbody>
