@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'event_list' %}">Principals</a>
+{% endblock %}
 {% block content %}
 <h4>Principals</h4>
 <div>

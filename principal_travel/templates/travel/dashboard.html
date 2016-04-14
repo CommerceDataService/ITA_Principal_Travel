@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
+{% endblock %}
 {% block home %}
 <div class="container border-box dashboardViewBuffer">
     <div class="col-lg-6">
@@ -33,12 +36,12 @@
           <option value="principal">Top Travelers</option>
           <option value="eventType">Event Types</option>
         </select>
-      </form>  
+      </form>
     <div id='chart'>
       <h3 class="destinationTitle">Top Destinations</h3>
-      
+
     </div>
-  </div>    
+  </div>
 </div>
 
 

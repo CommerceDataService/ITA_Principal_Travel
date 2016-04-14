@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'trip_list' %}">Itineraries</a>
+{% endblock %}
 {% block content%}
 <h4>Itineraries</h4>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

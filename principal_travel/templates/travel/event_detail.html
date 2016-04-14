@@ -1,4 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'travel/event_list.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'event_detail' pk=event.pk %}">{{event.name}}</a>
+{% endblock %}
 {% block content %}
 
   <h3>{{event.name}}</h3>

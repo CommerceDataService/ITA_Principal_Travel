@@ -1,5 +1,7 @@
-{% extends 'base.html' %}
-
+{% extends 'travel/trip_list.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'trip_detail' pk=trip.pk %}">Itinerary {{trip.pk}}</a>
+{% endblock %}
 {% block content %}
 <a href="{% url 'trip_list' %}" class="btn btn-primary back-button">Back to Itineraries</a>
 <a class='btn btn-primary' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
@@ -48,7 +50,7 @@
         </ul>
          {% endfor %}
       </div>
-    </div>    
+    </div>
     <p>Author: {{object.author}} on {{object.created_on}}</p>
     <p>Edited by: {{object.updated_by}} on {{object.edited_on}}</p>
   </div>

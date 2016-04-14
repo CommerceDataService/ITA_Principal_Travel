@@ -1,5 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'travel/trip_list.html' %}
 {% load crispy_forms_tags %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'trip_new' %}">New Itinerary</a>
+{% endblock %}
 
 {% block content %}
 <div class="col-md-6">
