@@ -253,3 +253,7 @@ ul li:before {
 	padding-bottom: 50px;
 	padding-top: 30px;
 }
+
+.table td {
+   text-align: center;
+}

@@ -214,7 +214,7 @@ class ReportView(LoginRequiredView, TemplateView):
         elif report_type == 'event':
             eventtypes = Trip.objects.filter(start_date__year = current_year).values_list('events__event_type__name', 'events__event_type__id').distinct()
         elif report_type == 'region':
-            regions = Event.objects.filter(start_date__year = current_year).values_list('events__cities_light_country__custom_region__name', 'events__cities_light_country__custom_region__id').distinct()
+            regions = Trip.objects.filter(start_date__year = current_year).values_list('events__cities_light_country__custom_region__name', 'events__cities_light_country__custom_region__id').distinct()
             print(regions)
         months = Trip.objects.filter(start_date__year = current_year).dates('start_date', 'month')
         for month in months:
