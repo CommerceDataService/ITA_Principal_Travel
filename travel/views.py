@@ -190,24 +190,27 @@ class ReportView(LoginRequiredView, TemplateView):
 
     def get_context_data(self, **kwargs):
         data = []
-        today = date.today()
+        unique_reporting_years = []
+        current_year = self.request.GET.get('year')
+        if current_year is None:
+            current_year = (date.today()).year
         countries = Event.objects.values_list('cities_light_country__name', 'cities_light_country__id').distinct()
         years = Trip.objects.dates('start_date', 'year')
+        for year in years:
+            unique_reporting_years.append(year.strftime('%Y'))
         month_names = []
         for i in range(1,13):
             month_names.append([i,calendar.month_name[i]])
-        for year in years:
-            year = year.strftime('%Y')
-            months = Trip.objects.filter(start_date__year = year).dates('start_date', 'month')
-            for month in months:
-                month = month.strftime('%m')
-                for country in countries:
-                    print(country)
-                    trip_count = Trip.objects.filter(start_date__year = year).filter(start_date__month = month).filter(events__cities_light_country__name = country[0]).count()
-                    data.append({'year': year, 'month': month[1], 'country': country[0], 'country_id': country[1], 'count': trip_count})
+        months = Trip.objects.filter(start_date__year = current_year).dates('start_date', 'month')
+        for month in months:
+            month = month.strftime('%m')
+            for country in countries:
+                trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__cities_light_country__name = country[0]).count()
+                data.append({'month': month[1], 'country': country[0], 'country_id': country[1], 'count': trip_count})
         context = super(ReportView, self).get_context_data(**kwargs)
-        context['current_year'] = str(today.year)
+        context['year'] = current_year
         context['data_list'] = data
         context['months'] = month_names
         context['countries'] = countries
+        context['annual_report_list'] = unique_reporting_years
         return context

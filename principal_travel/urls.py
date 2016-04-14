@@ -46,7 +46,7 @@ urlpatterns = [
     url(r'^principals/(?P<pk>[0-9]+)/edit/$', principal_edit, name="principal_edit"),
     url(r'^dashboard$', dashboard_view, name='dashboard'),
     url(r'^city-autocomplete/$', CityAutocomplete.as_view(), name='city-autocomplete'),
-    url(r'^report$', ReportView.as_view(), name='report')
+    url(r'^report/$', ReportView.as_view(), name='report')
 ]
 
 if settings.DEBUG:
