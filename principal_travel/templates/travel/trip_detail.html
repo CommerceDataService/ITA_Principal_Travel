@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% block breadcrumbs %}
+<!-- {% block breadcrumbs %}
     {{ block.super }} » <a href="{% url 'trip_detail' pk=trip.pk %}">{{principal.first_name}} {{principal.last_name}}</a>
-{% endblock %}
+{% endblock %} -->
 {% block content %}
 <div>
       <h3>Itinerary for: <strong><a href="{% url 'principal_detail' pk=object.principal.pk %}">{{object.principal.first_name}} {{object.principal.last_name}}</a></strong></h3>

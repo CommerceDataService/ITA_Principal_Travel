@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
-{% load django_bootstrap_breadcrumbs %}
+<!-- {% load django_bootstrap_breadcrumbs %}
 {% block breadcrumbs %}
     {{ block.super }} » <a href="{% url 'principal_list' pk=principal.pk %}">Principal List</a>
-<!--  following the instructions from http://django-bootstrap-breadcrumbs.readthedocs.org/en/latest/   
-% breadcrumb "list"  "principal.list" %} -->
- 
-{% endblock %}
+ following the instructions from http://django-bootstrap-breadcrumbs.readthedocs.org/en/latest/   
+% breadcrumb "list"  "principal.list" %} 
+{% endblock %}-->
 {% block content %}
 <h3>Principals   <a href="{% url 'principal_new' %}" class="btn btn-success add-button">Add</a></h3>
 <div>

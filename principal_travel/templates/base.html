@@ -1,6 +1,6 @@
 {% load staticfiles %}
-{% load bootstrap3 %}
-{% load django_bootstrap_breadcrumbs %}
+<!-- {% load bootstrap3 %}
+{% load django_bootstrap_breadcrumbs %} -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,12 +70,12 @@
      
      <div class="container">
      {% block content %}
-        {% block breadcrumbs %}
+<!--         {% block breadcrumbs %}
           {% clear_breadcrumbs %} 
           {% breadcrumb "Home" "/"%}
           {% breadcrumb "Itinerary" "Itinerary List" %} 
         {% endblock%}
-        {% render_breadcrumbs %}
+        {% render_breadcrumbs %} -->
       {% endblock %}</div>
 
     <div>{% block home %} {% endblock %}</div>
