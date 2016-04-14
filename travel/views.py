@@ -189,28 +189,56 @@ class ReportView(LoginRequiredView, TemplateView):
     template_name = 'travel/report.html'
 
     def get_context_data(self, **kwargs):
-        data = []
-        unique_reporting_years = []
+        context = super(ReportView, self).get_context_data(**kwargs)
         current_year = self.request.GET.get('year')
+        report_type = self.request.GET.get('by')
         if current_year is None:
             current_year = (date.today()).year
-        countries = Event.objects.values_list('cities_light_country__name', 'cities_light_country__id').distinct()
+        if report_type is None:
+            report_type = 'country'
+        # Generating lists for template use
+        unique_reporting_years = []
         years = Trip.objects.dates('start_date', 'year')
         for year in years:
             unique_reporting_years.append(year.strftime('%Y'))
         month_names = []
         for i in range(1,13):
             month_names.append([i,calendar.month_name[i]])
+        # Generating reports
+        data = []
+        countries = None
+        eventtypes = None
+        regions = None
+        if report_type == 'country':
+            countries = Event.objects.values_list('cities_light_country__name', 'cities_light_country__id').distinct()
+        elif report_type == 'event':
+            eventtypes = Event.objects.values_list('event_type__name', 'event_type__id').distinct()
+        elif report_type == 'region':
+            regions = Event.objects.values_list('cities_light_country__custom_region__name', 'cities_light_country__custom_region__id').distinct()
+            print(regions)
         months = Trip.objects.filter(start_date__year = current_year).dates('start_date', 'month')
         for month in months:
             month = month.strftime('%m')
-            for country in countries:
-                trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__cities_light_country__name = country[0]).count()
-                data.append({'month': month[1], 'country': country[0], 'country_id': country[1], 'count': trip_count})
-        context = super(ReportView, self).get_context_data(**kwargs)
+            if countries:
+                context['attributes'] = countries
+                context['query_string'] = 'country'
+                for country in countries:
+                    trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__cities_light_country__name = country[0]).count()
+                    data.append({'month': month[1], 'attribute_name': country[0], 'attribute_id': country[1], 'count': trip_count})
+            elif eventtypes:
+                context['attributes'] = eventtypes
+                context['query_string'] = 'event_type'
+                for eventtype in eventtypes:
+                    trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__event_type__name = eventtype[0]).count()
+                    data.append({'month': month[1], 'attribute_name': eventtype[0], 'attribute_id': eventtype[1], 'count': trip_count})
+            elif regions:
+                context['attributes'] = regions
+                context['query_string'] = 'region'
+                for region in regions:
+                    trip_count = Trip.objects.filter(start_date__year = current_year).filter(start_date__month = month).filter(events__cities_light_country__custom_region__name = region[0]).count()
+                    data.append({'month': month[1], 'attribute_name': region[0], 'attribute_id': region[1], 'count': trip_count})
         context['year'] = current_year
         context['data_list'] = data
         context['months'] = month_names
-        context['countries'] = countries
         context['annual_report_list'] = unique_reporting_years
         return context

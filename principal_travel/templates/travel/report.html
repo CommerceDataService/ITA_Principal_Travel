@@ -14,12 +14,12 @@
     </tr>
   </thead>
   <tbody>
-    {% for country in countries %}
+    {% for attribute in attributes %}
     <tr>
       <td>
-        {{country.0}}
+        {{attribute.0}}
       </td>
-      {% for month in months %}<td>{% for data in data_list %}{% if data.country == country.0 %}{% if data.month == month.0|slugify and data.count != 0 %}<a href="{% url 'trip_list' %}?month={{month.0}}&amp;year={{year}}&amp;country={{country.1}}">{{data.count}}</a>{% endif %}{% endif %}{% endfor %}</td>{% endfor %}
+      {% for month in months %}<td>{% for data in data_list %}{% if data.attribute_id == attribute.1 %}{% if data.month == month.0|slugify and data.count != 0 %}<a href="{% url 'trip_list' %}?month={{month.0}}&amp;year={{year}}&amp;{{query_string}}={{data.attribute_id}}">{{data.count}}</a>{% endif %}{% endif %}{% endfor %}</td>{% endfor %}
     {% endfor %}
     </tr>
 </tbody>
