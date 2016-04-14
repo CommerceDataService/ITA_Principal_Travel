@@ -1,6 +1,4 @@
 {% load staticfiles %}
-<!-- {% load bootstrap3 %}
-{% load django_bootstrap_breadcrumbs %} -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -45,7 +43,6 @@
           {% else%}
       <div class="nav-buttons">
           <a class="btn btn-default my-button" href="{% url 'dashboard' %}"> Dashboard </a>
-<!--           <a class="btn btn-default my-button" href="{% url 'trip_new' %}"> Create Itinerary </a> -->
           <a class="btn btn-default my-button" href="{% url 'trip_list' %}"> Itineraries </a>
           <a class="btn btn-default my-button" href="{% url 'event_list' %}"> Events </a>
           <a class="btn btn-default my-button" href="{% url 'principal_list' %}"> Principals </a>
@@ -70,12 +67,6 @@
      
      <div class="container">
      {% block content %}
-<!--         {% block breadcrumbs %}
-          {% clear_breadcrumbs %} 
-          {% breadcrumb "Home" "/"%}
-          {% breadcrumb "Itinerary" "Itinerary List" %} 
-        {% endblock%}
-        {% render_breadcrumbs %} -->
       {% endblock %}</div>
 
     <div>{% block home %} {% endblock %}</div>

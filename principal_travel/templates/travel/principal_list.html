@@ -1,10 +1,4 @@
 {% extends 'base.html' %}
-<!-- {% load django_bootstrap_breadcrumbs %}
-{% block breadcrumbs %}
-    {{ block.super }} » <a href="{% url 'principal_list' pk=principal.pk %}">Principal List</a>
- following the instructions from http://django-bootstrap-breadcrumbs.readthedocs.org/en/latest/   
-% breadcrumb "list"  "principal.list" %} 
-{% endblock %}-->
 {% block content %}
 <h3>Principals   <a href="{% url 'principal_new' %}" class="btn btn-success add-button">Add</a></h3>
 <div>
@@ -19,10 +13,6 @@
     <tbody onclick="getElementById('edit-1').click()" style="cursor: pointer">
       {% for principal in object_list %}
       <tr>
-        <!--<td>
-<a href="{% url 'principal_detail' pk=principal.pk %}" class="btn btn-primary btn-sm">View</a>
-      <a href="{% url 'principal_edit' pk=principal.pk %}" class="btn btn-primary btn-sm">Edit</a> 
-        </td>-->
         <td><a class="table-links" href="{% url 'principal_detail' pk=principal.pk %}" id="edit-1">{{principal.first_name}} {{principal.last_name}}</a></td>
         <td><a class="table-links" href="{% url 'principal_detail' pk=principal.pk %}" id="edit-1">{{principal.title}}</a></td>
         <td><a class="table-links" href="{% url 'principal_detail' pk=principal.pk %}" id="edit-1">{{principal.office.short_name}}</a></td>

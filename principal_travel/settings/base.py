@@ -56,7 +56,6 @@ PREREQ_APPS = [
     'author',
     'bootstrap3',
     'crispy_forms',
-    'django_bootstrap_breadcrumbs',
     'django_filters',
     'datetimewidget',
 ]
