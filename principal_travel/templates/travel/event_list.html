@@ -3,29 +3,24 @@
   {{block.super}} » <a href="{% url 'event_list' %}">Events</a>
 {% endblock %}
 {% block content %}
-<h4>Events</h4>
+<h3>Events   <a href="{% url 'event_new' %}" class="btn btn-success add-button">Add</a></h3>
 <div>
-  <table class="table table-striped">
+  <table class="table table-hover">
     <thead class="thead-default">
       <tr>
-        <th scope='col'> </th>
         <th scope='col'> Name </th>
         <th scope='col'> Type </th>
         <th scope='col'> City </th>
         <th scope='col'> Country </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody onclick="getElementById('row-info').click()" style="cursor: pointer">
       {% for event in object_list %}
       <tr>
-        <td>
-          <a href="{% url 'event_detail' pk=event.pk %}" class="btn btn-primary btn-sm">View</a>
-          <a href="{% url 'event_edit' pk=event.pk %}" class="btn btn-primary btn-sm">Edit</a>
-        </td>
-        <td>{{event.name}}</td>
-        <td> {{event.event_type}}</td>
-        <td>{{event.cities_light_city.name}}</td>
-        <td>{{event.cities_light_country.name}}</td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.event_type}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.cities_light_city.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.cities_light_country.name}}</a></td>
       </tr>
       {% endfor%}
     </tbody>

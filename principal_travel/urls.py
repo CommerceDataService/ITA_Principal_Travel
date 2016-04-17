@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new, trip_edit, trip_delete, event_edit, EventList, EventDetail, dashboard_view, TripViewSet, EventViewSet, CityAutocomplete, PrincipalList, PrincipalDetail, principal_edit
+from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, principal_new, trip_edit, trip_delete, event_edit, EventList, EventDetail, dashboard_view, TripViewSet, EventViewSet, CityAutocomplete, PrincipalList, PrincipalDetail, principal_edit, ReportView
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^principals/(?P<pk>[0-9]+)/edit/$', principal_edit, name="principal_edit"),
     url(r'^dashboard$', dashboard_view, name='dashboard'),
     url(r'^city-autocomplete/$', CityAutocomplete.as_view(), name='city-autocomplete'),
+    url(r'^report/$', ReportView.as_view(), name='report')
 ]
 
 if settings.DEBUG:
