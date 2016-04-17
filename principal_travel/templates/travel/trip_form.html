@@ -1,7 +1,11 @@
 {% extends 'travel/trip_list.html' %}
 {% load crispy_forms_tags %}
 {% block breadcrumbs %}
-  {{block.super}} » <a href="{% url 'trip_new' %}">New Itinerary</a>
+  {% if form.instance.id %}
+    {{block.super}} » <a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.id}}</a> » <a href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
+  {% else %}
+    {{block.super}} » <a href="{% url 'trip_new' %}">New Itinerary</a>
+  {% endif %}
 {% endblock %}
 {% block content %}
 
