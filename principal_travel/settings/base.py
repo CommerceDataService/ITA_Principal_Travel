@@ -46,7 +46,6 @@ PREREQ_APPS = [
     'dal_select2',
     'rest_framework',
     'cities_light',
-    'designstandards',
     'registration',
     'jquery',
     'underscore',
