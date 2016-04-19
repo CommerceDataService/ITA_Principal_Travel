@@ -8,6 +8,7 @@ djangorestframework
 django-cities-light
 django-registration-redux
 django-debug-toolbar
+django-dotenv
 django-jquery
 django-underscore
 django-d3
