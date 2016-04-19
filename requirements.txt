@@ -3,6 +3,7 @@ psycopg2
 pytest-django
 pytest-cov
 codecov
+gunicorn
 djangorestframework
 -e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
 django-cities-light
