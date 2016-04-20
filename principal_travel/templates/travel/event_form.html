@@ -1,6 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'travel/event_list.html' %}
 {% load crispy_forms_tags %}
-
+{% block breadcrumbs %}
+  {% if form.instance.id %}
+    {{block.super}} » <a href="{% url 'event_detail' pk=event.pk %}">{{event.name}}</a> » <a href="{% url 'event_edit' pk=event.pk %}">Edit</a>
+  {% else %}
+    {{block.super}} » <a href="{% url 'event_new' %}">New Event</a>
+  {% endif %}
+{% endblock %}
 {% block content %}
 <div class="col-md-6">
   <h2>Add/Edit Event</h2>

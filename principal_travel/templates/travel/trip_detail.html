@@ -1,34 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'travel/trip_list.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'trip_detail' pk=trip.pk %}">Itinerary {{trip.pk}}</a>
+{% endblock %}
+
 {% block content %}
 <div>
-      <h3>Itinerary for: <strong><a href="{% url 'principal_detail' pk=object.principal.pk %}">{{object.principal.first_name}} {{object.principal.last_name}}</a></strong></h3>
-        <h4>{{object.principal.title}}</h4>
-       <!--<p>Office: {{object.principal.office.long_name}} ({{object.principal.office.short_name}}), {{object.principal.office.agency.name}}</p>
-        <p>Agency: </p>
-        <p>Region: {{object.principal.region}}</p>
-        <p>Career: {{object.principal.career}}</p>-->
+  <h3>Itinerary for: <strong><a href="{% url 'principal_detail' pk=object.principal.pk %}">{{object.principal.first_name}} {{object.principal.last_name}}</a></strong></h3>
+    <h4>{{object.principal.title}}</h4>
 
-        <h4>{{object.start_date}} - {{object.end_date}}</h4>
-        {% if object.no_of_travelers %}
-          <p><strong>Number of Travelers:</strong> {{object.no_of_travelers}}</p>
-          <p><strong>Travelers Note:</strong> {{object.no_of_travelers_note}}</p>
-        {% endif %}
-        {% for event in object.events.all %}
-        <p><strong> Event {{forloop.counter}}: </strong><a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
-          <ul>
-            <li><strong>Location: </strong>{{event.cities_light_city.name}}, {{event.cities_light_country.name}}</li>
-            <li><strong>Type: </strong>{{event.event_type.name}}</li>
-            <li><strong>Description: </strong>{{event.description}}</li>
-
-            <!--<li>Press: {{event.press}}</li>
-            <li>Press Note: {{event.press_note}}</li>-->
-        </ul>
-         {% endfor %}
+    <h4>{{object.start_date}} - {{object.end_date}}</h4>
+    {% if object.no_of_travelers %}
+      <p><strong>Number of Travelers:</strong> {{object.no_of_travelers}}</p>
+      <p><strong>Travelers Note:</strong> {{object.no_of_travelers_note}}</p>
+    {% endif %}
+    {% for event in object.events.all %}
+    <p><strong> Event {{forloop.counter}}: </strong><a href={% url 'event_detail' pk=event.pk%}>{{event.name}}</a></p>
+      <ul>
+        <li><strong>Location: </strong>{{event.cities_light_city.name}}, {{event.cities_light_country.name}}</li>
+        <li><strong>Type: </strong>{{event.event_type.name}}</li>
+        <li><strong>Description: </strong>{{event.description}}</li>
+    </ul>
+     {% endfor %}
 </div>
 <hr>
-<div>    
-    <p><em>Author: {{object.author}} on {{object.created_on}}</em></p>
-    <p><em>Edited by: {{object.updated_by}} on {{object.edited_on}}</em></p>
+<div>
+  <p><em>Author: {{object.author}} on {{object.created_on}}</em></p>
+  <p><em>Edited by: {{object.updated_by}} on {{object.edited_on}}</em></p>
 </div>
 <br>
 <a class="btn btn-primary back-button" href="{% url 'trip_list' %}" >Back to Itineraries</a>
