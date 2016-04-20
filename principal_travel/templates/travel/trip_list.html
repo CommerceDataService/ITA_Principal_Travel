@@ -47,5 +47,36 @@
       {% endfor%}
     </tbody>
   </table>
+  {% if is_paginated %}
+  <nav>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li>
+      <a href="{% url 'trip_list' %}?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {% endif %}
+    {% for page in page_obj.paginator.page_range %}
+      {% if page_obj.number == forloop.counter %}
+      <li class='active'>
+      {% else %}
+      <li>
+      {% endif %}
+        <a href="{% url 'trip_list' %}?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+      </span>
+
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li>
+      <a href="{% url 'trip_list' %}?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+  </nav>
+  {% endif %}
+
 </div>
 {% endblock%}
