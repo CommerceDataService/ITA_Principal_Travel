@@ -22,11 +22,7 @@
     </ul>
      {% endfor %}
 </div>
-<hr>
-<div>
-  <p><em>Author: {{object.author}} on {{object.created_on}}</em></p>
-  <p><em>Edited by: {{object.updated_by}} on {{object.edited_on}}</em></p>
-</div>
+  {% include 'travel/_authortime.html'%}
 <br>
 <a class="btn btn-primary back-button" href="{% url 'trip_list' %}" >Back to Itineraries</a>
 <a class='btn btn-primary' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
