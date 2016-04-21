@@ -69,7 +69,7 @@ def trip_edit(request, pk):
             return redirect('trip_detail', pk=trip.pk)
     else:
         form = TripForm(instance=trip)
-    return render(request, 'travel/trip_form.html', {'form': form})
+    return render(request, 'travel/trip_form.html', {'form': form, 'trip': trip})
 
 @login_required(login_url='/accounts/login/')
 def trip_delete(request, pk):
@@ -119,7 +119,7 @@ def event_edit(request, pk):
             return redirect('event_detail', pk=event.pk)
     else:
         form = EventForm(instance=event)
-    return render(request, 'travel/event_form.html', {'form': form})
+    return render(request, 'travel/event_form.html', {'form': form, 'event': event})
 
 class PrincipalList(LoginRequiredView, ListView):
     model = Principal
@@ -159,7 +159,7 @@ def principal_edit(request, pk):
             return redirect('principal_detail', pk=principal.pk)
     else:
         form = PrincipalForm(instance=principal)
-    return render(request, 'travel/principal_form.html', {'form': form})
+    return render(request, 'travel/principal_form.html', {'form': form, 'principal': principal})
 
 @login_required(login_url='/accounts/login/')
 def dashboard_view(request):

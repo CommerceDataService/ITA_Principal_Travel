@@ -1,4 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'travel/principal_list.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'principal_detail' pk=principal.pk %}">{{principal.first_name}} {{principal.last_name}}</a>
+{% endblock %}
 
 {% block content %}
   <h3>{{principal.first_name}} {{principal.last_name}}</h3>

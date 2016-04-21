@@ -1,6 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'travel/principal_list.html' %}
 {% load crispy_forms_tags %}
-
+{% block breadcrumbs %}
+  {% if form.instance.id %}
+    {{block.super}} » <a href="{% url 'principal_detail' pk=principal.pk %}">{{principal.first_name}} {{principal.last_name}}</a> » <a href="{% url 'principal_edit' pk=principal.pk %}">Edit</a>
+  {% else %}
+    {{block.super}} » <a href="{% url 'principal_new' %}">New Principal</a>
+  {% endif %}
+{% endblock %}
 {% block content %}
 <div class="col-md-6">
   <h2>Add/Edit Principal</h2>
