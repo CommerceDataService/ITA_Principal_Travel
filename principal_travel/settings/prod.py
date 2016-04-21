@@ -7,11 +7,15 @@ from django.core.exceptions import ImproperlyConfigured
 try:
     SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 except KeyError as e:
-    raise ImproperlyConfigured("You must define DJANGO_SECRET_KEY")
+    raise ImproperlyConfigured("You must define DJANGO_SECRET_KEY in .env")
 
-ALLOWED_HOSTS = ['ec2-52-207-245-215.compute-1.amazonaws.com']
+try:
+    AWS_HOSTNAME = os.environ['AWS_HOSTNAME']
+    ALLOWED_HOSTS = [AWS_HOSTNAME]
+except KeyError as e:
+    raise ImproperlyConfigured("You must define AWS_HOSTNAME in .env")
 
 try:
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 except Exception as e:
-    raise ImproperlyConfigured("You must define DATABASE_URL")
+    raise ImproperlyConfigured("You must define DATABASE_URL in .env")
