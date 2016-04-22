@@ -165,7 +165,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 # cities light configuration
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
 #CITIES_LIGHT_INCLUDE_COUNTRIES = ['US']
-CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS']
+
 
 LOGIN_REDIRECT_URL = '/acounts/logout'
 LOGIN_URL = '/accounts/login'
