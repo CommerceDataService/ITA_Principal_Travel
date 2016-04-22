@@ -3,3 +3,4 @@ public/db/principal_travel.json
 sql/ita_data.sql
 principal_travel/settings/local.py
 .coverage
+.env
