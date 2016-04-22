@@ -3,10 +3,13 @@ psycopg2
 pytest-django
 pytest-cov
 codecov
+gunicorn
 djangorestframework
 django-cities-light
 django-registration-redux
 django-debug-toolbar
+django-dotenv
+dj-database-url
 django-jquery
 django-underscore
 django-d3
