@@ -37,6 +37,7 @@ class TripDetail(LoginRequiredView, DetailView):
 class TripList(LoginRequiredView, FilterMixin, ListView):
     model = Trip
     filter_class = TripFilter
+    paginate_by = 10
 
     def get_queryset(self, *args, **kwargs):
         qs = super(TripList, self).get_queryset(*args, **kwargs)
@@ -82,6 +83,7 @@ def trip_delete(request, pk):
 
 class EventList(LoginRequiredView, ListView):
     model = Event
+    paginate_by = 10
 
 class EventDetail(LoginRequiredView, DetailView):
     queryset = Event.objects.all()
@@ -123,6 +125,7 @@ def event_edit(request, pk):
 
 class PrincipalList(LoginRequiredView, ListView):
     model = Principal
+    paginate_by = 10
 
 class PrincipalDetail(LoginRequiredView, DetailView):
     queryset = Principal.objects.all()

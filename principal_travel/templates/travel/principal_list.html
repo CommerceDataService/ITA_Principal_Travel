@@ -23,5 +23,8 @@
       {% endfor%}
     </tbody>
   </table>
+  {% if is_paginated %}
+  {% include 'travel/_pagination.html' %}
+  {% endif %}
 </div>
 {% endblock %}
