@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+<div>
   <h3>{{principal.first_name}} {{principal.last_name}}</h3>
   <p>Title: {{principal.title}}</p>
   <p>Office: {{principal.office.short_name}} ({{principal.office.long_name}})</p>
@@ -13,7 +14,9 @@
   {% for trip in trips %}
   <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.end_date}} : {{trip.country}}</a></p>
   {% endfor %}
-  <br>
+</div>
+  {% include 'travel/_authortime.html'%}
+<br>
   <a href="{% url 'principal_edit' pk=principal.pk %}" class="btn btn-primary">Edit</a>
-   <a href="{% url 'principal_list' %}" class="btn btn-primary">Back to Principals</a>
+  <a href="{% url 'principal_list' %}" class="btn btn-primary">Back to Principals</a>
 {% endblock %}

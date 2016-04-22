@@ -3,7 +3,7 @@
   {{block.super}} » <a href="{% url 'event_detail' pk=event.pk %}">{{event.name}}</a>
 {% endblock %}
 {% block content %}
-
+<div>
   <h3>{{event.name}}</h3>
   <p>Description: {{event.description}}</p>
   <p>Type: {{event.event_type}}</p>
@@ -16,6 +16,9 @@
   {% for trip in trips %}
       <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.principal.title}} {{trip.principal.last_name}}</a></p>
   {% endfor %}
+</div>
+  {% include 'travel/_authortime.html'%}
+<br>
 <a href="{% url 'event_edit' pk=event.pk %}" class="btn btn-primary">Edit</a>
 <a href="{% url 'event_list' %}" class="btn btn-primary">Back to Events</a>
 
