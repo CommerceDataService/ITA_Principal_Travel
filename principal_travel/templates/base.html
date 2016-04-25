@@ -29,6 +29,7 @@
     <div class="header-left">
         <a href="{% url 'home_view' %}"><img src="{% static "img/doc-logo-small.png" %}" class="doc-logo" alt="Department of Commerce logo">
         <h3 class="header-text"> Principal Travel Tracker </h3></a>
+        <p class='subheader-text'><i>a Commerce Data Service beta product</i></p>
     </div>
 
 
@@ -66,7 +67,7 @@
       {% endfor %}
     </ul>
     {% endif %}
-    {% block breadcrumbs %}Home{% endblock %}
+    <div class="container breadcrumbs">{% block breadcrumbs %}Home{% endblock %}</div>
     <div class="container">{% block content %}{% endblock %}</div>
 
     <div>{% block home %} {% endblock %}</div>
@@ -75,11 +76,12 @@
 
 
 
-<footer class="footer">
-<div class="footer-text">
-          <p>Site created by the Commerce Data Service |
-          <a href="https://github.com/CommerceDataService/ITA_Principal_Travel" >View on GitHub  </a><i class="fa fa-github"></i></p>
-      </div>
+<footer>
+  <div class="footer-content">
+    <img src="{% static 'img/CDS-logo.png' %}">
+    <p><a href="https://www.commerce.gov/dataservice/"> Commerce Data Service</a></p>
+    <a class="footer-text" href="https://github.com/CommerceDataService/ITA_Principal_Travel"><i class="fa fa-github"></i> Github Repository</a>
+  </div>
 </footer>
 {% block footer %}{% endblock %}
 
