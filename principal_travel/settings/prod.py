@@ -11,7 +11,7 @@ except KeyError as e:
 
 try:
     AWS_HOSTNAME = os.environ['AWS_HOSTNAME']
-    ALLOWED_HOSTS = [AWS_HOSTNAME]
+    ALLOWED_HOSTS = [AWS_HOSTNAME, 'travel.cds.commerce.gov', '.cds.commerce.gov']
 except KeyError as e:
     raise ImproperlyConfigured("You must define AWS_HOSTNAME in .env")
 

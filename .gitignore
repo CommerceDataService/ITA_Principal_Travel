@@ -5,3 +5,4 @@ principal_travel/settings/local.py
 .coverage
 .env
 *.log
+nginx/htpasswd

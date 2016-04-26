@@ -7,18 +7,6 @@ from registration.models import RegistrationProfile
 from registration.users import UserModel
 
 
-class HeaderResponseTestCase(TestCase):
-    def test_content_length(self):
-        c = Client()
-        response = c.get('/')
-        self.assertTrue(int(response['Content-Length']) > 0)
-        print(response['Content-Length'])
-
-        response = c.get('/account/login/')
-        self.assertTrue(int(response['Content-Length']) > 0)
-        print(response['Content-Length'])
-
-
 # Test Cases for User Registration
 class RegistrationModelTests(TestCase):
     user_info = {   'username': 'docemployee',
