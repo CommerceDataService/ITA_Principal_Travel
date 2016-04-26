@@ -21,7 +21,7 @@ class TimeStampedModel(models.Model):
 class Event(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     host = models.CharField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255,blank=True, null=True)
+    name = models.CharField(max_length=255, null=True)
     description = models.TextField(blank=True, null=True)
     event_type = models.ForeignKey('EventType',null=True)
     press = models.NullBooleanField()
@@ -35,9 +35,9 @@ class Event(TimeStampedModel):
 @with_author
 class Principal(TimeStampedModel):
     id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=255, blank=True, null=True)
-    last_name = models.CharField(max_length=255, blank=True, null=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
+    first_name = models.CharField(max_length=255, null=True)
+    last_name = models.CharField(max_length=255, null=True)
+    title = models.CharField(max_length=255, null=True)
     office = models.ForeignKey('Office', null=True)
     career = models.BooleanField(default=False)
     region = models.ForeignKey('Region', null=True)
