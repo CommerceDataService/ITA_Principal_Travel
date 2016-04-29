@@ -6,17 +6,17 @@
     <meta charset="utf-8">
     <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static " leaflet/leaflet.css " %}">
+    <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script src="{% static " js/jquery.js " %}"></script>
-    <script src="{% static " lib/underscore/underscore.js " %}"></script>
-    <script src="{% static " js/d3.js " %}"></script>
-    <script src="{% static " handlebars.js " %}"></script>
-    <script src="{% static " leaflet/leaflet.js " %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'lib/underscore/underscore.js' %}"></script>
+    <script src="{% static 'js/d3.js' %}"></script>
+    <script src="{% static 'handlebars.js' %}"></script>
+    <script src="{% static 'leaflet/leaflet.js' %}"></script>
     {% bootstrap_css %} {% bootstrap_javascript %}
-    <script src="{% static " js/bootstrap-datetimepicker.js " %}"></script>
-    <link rel="stylesheet" href="{% static " css/master.css " %}">
+    <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> {% block head %}{% endblock %}
 </head>
@@ -25,7 +25,7 @@
     <header>
         <section>
             <div class="header-left">
-                <a href="{% url 'home_view' %}"><img src="{% static " img/doc-logo-small.png " %}" class="doc-logo" alt="Department of Commerce logo">
+                <a href="{% url 'home_view' %}"><img src="{% static 'img/doc-logo-small.png' %}" class="doc-logo" alt="Department of Commerce logo">
                     <h3 class="header-text"> Principal Travel Tracker </h3></a>
                 <p class='subheader-text'><i>a Commerce Data Service beta product</i></p>
             </div>
