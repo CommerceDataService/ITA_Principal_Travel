@@ -119,14 +119,19 @@ h1, h2, h3 {
 	padding: 20px;
 }
 
+main {
+    padding-bottom: 75px; /* equal to footer height */
+}
+
 footer {
-  height: 75px;
-  background-color: #112e51;
-  color: white;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-	clear: both;
+    height: 75px;
+    background-color: #112e51;
+    color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    clear: both;
+    margin-top: -75px; /* equal to footer height */
 }
 .footer-content>p{
 	font-size: 1.35em;
