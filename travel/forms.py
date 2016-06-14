@@ -19,7 +19,7 @@ class EventForm(forms.ModelForm):
     cities_light_city = forms.ModelChoiceField(
         queryset=City.objects.all(),
         widget=autocomplete.ModelSelect2(url='city-autocomplete'),
-        label="City/Cities"
+        label="City"
     )
     class Meta:
         model = Event
