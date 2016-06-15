@@ -4,9 +4,11 @@
   {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
 {% endblock %}
 {% block home %}
-<div class="container border-box dashboardViewBuffer">
-    <div class="col-lg-6">
-      <div id="map"></div>
+<div class="container dashboardViewBuffer">
+    <div class="row col-lg-8">
+      <h3 class="destinationTitle">Event Map</h3>
+      <div id="map">
+      <div class="col-md-4 col-lg-offset-12">
       <fieldset class="">
         <ul class="" id="timefilter">
           <li>
@@ -27,18 +29,20 @@
           </li>
         </ul>
       </fieldset>
+      </div></div>
     </div>
 
-    <div class="col-lg-6  ">
-    <form class="dropdown dashboardDropdownStyle " style="">
+    <div class="col-lg-6">
+        <div id='chart'>
+      <h3 class="destinationTitle">Top Destinations</h3>
+      <form class="dropdown dashboardDropdownStyle " style="">
         <select name="options" id="options">
           <option value="country">Top Countries</option>
           <option value="principal">Top Travelers</option>
           <option value="eventType">Event Types</option>
         </select>
       </form>
-    <div id='chart'>
-      <h3 class="destinationTitle">Top Destinations</h3>
+
 
     </div>
   </div>

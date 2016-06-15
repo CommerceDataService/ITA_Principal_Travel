@@ -238,11 +238,12 @@ fieldset {
 
 #map {
 	width:100%;
-	height: 300px;
+	height: 400px;
+	z-index: 5px;
 }
 
 #timefilter > li{
-	display: inline-block;
+	/*display: inline-block;*/
 	margin-right: 10px;
 }
 
@@ -291,6 +292,7 @@ ul li:before {
 }
 
 .container.dashboardViewBuffer {
+	padding-top: 30px;
 	padding-bottom: 0px;
 }
 
@@ -302,7 +304,7 @@ ul li:before {
 .dropdown.dashboardDropdownStyle {
 	position: initial;
 	display: inline-block;
-	padding-left: 0px;
+	padding-left: 20px;
 }
 
 .container.dashboardBottomContainer {
