@@ -20,9 +20,9 @@ class LoginRequiredView(LoginRequiredMixin):
 
 
 class HealthCheckView(TemplateView):
-    ''' This is primarily for the ELB to be able to check that the instance is still up.
-        We need a separate URL to let ELB bypass HTTP Auth, or else it will stop routing
-        traffic to our instance.
+    ''' This is primarily for the ELB to be able to check that the instance is
+        still up. We need a separate URL to let ELB bypass HTTP Auth, or else it
+        will stop routing traffic to our instance.
     '''
     template_name = 'health.html'
 
@@ -218,12 +218,8 @@ class ReportView(LoginRequiredView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ReportView, self).get_context_data(**kwargs)
-        current_year = self.request.GET.get('year')
-        report_type = self.request.GET.get('by')
-        if current_year is None:
-            current_year = (date.today()).year
-        if report_type is None:
-            report_type = 'country'
+        current_year = self.request.GET.get('year', date.today().year)
+        report_type = self.request.GET.get('by', 'country')
         # Generating lists for template use
         unique_reporting_years = []
         years = Trip.objects.dates('start_date', 'year')
