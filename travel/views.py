@@ -77,8 +77,28 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
     def get_context_data(self,**kwargs):
         context = super(TripList, self).get_context_data(**kwargs)
         page_URL = self.request.GET
+        
+        month = page_URL['month']
+        region = page_URL['region']
+        principal_title = page_URL['principal_title']
+        date_range_end = page_URL['date_range_end']
+        date_range_start = page_URL['date_range_start']
+        country = page_URL['country']
+        principal_name = page_URL['principal_name']
+        event_type = page_URL['event_type']
+        year = page_URL['year']
+        quick_dates = page_URL['quick_dates']
 
         context['message'] = page_URL
+        context['month'] = month
+        context['region'] = region
+        context['principal_title'] = principal_title
+        context['country'] = country
+        context['principal_name'] = principal_name
+        context['event_type'] = event_type
+        context['year'] = year
+        context['quick_dates'] = quick_dates
+        
         return context 
     # def get(self, request, *args, **kwargs):
     #     context = self.get_context_data(**kwargs)
