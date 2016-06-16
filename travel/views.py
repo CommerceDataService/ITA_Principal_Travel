@@ -205,8 +205,16 @@ class TripViewSet(LoginRequiredView, viewsets.ModelViewSet):
 
 
 class EventViewSet(LoginRequiredView, viewsets.ModelViewSet):
-    queryset = Event.objects.all()
     serializer_class = EventSerializer
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        destination = self.request.query_params.get('destination', None)
+        if destination is not None:
+            if destination == "international":
+                queryset = queryset.exclude(cities_light_country__id=234)
+            elif destination == "domestic":
+                queryset = queryset.filter(cities_light_country__id=234)
+        return queryset
 
 
 class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):

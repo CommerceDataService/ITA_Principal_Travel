@@ -27,7 +27,7 @@ from django.contrib.staticfiles import views
 
 router = routers.DefaultRouter()
 router.register(r'trips', TripViewSet, base_name='Trip')
-router.register(r'events', EventViewSet)
+router.register(r'events', EventViewSet, base_name='Event')
 
 urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home_view'),
