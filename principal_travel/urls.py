@@ -20,7 +20,7 @@ from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, \
     principal_new, trip_edit, trip_delete, event_edit, EventList, \
     EventDetail, dashboard_view, TripViewSet, EventViewSet, \
     CityAutocomplete, PrincipalList, PrincipalDetail, principal_edit, \
-    ReportView, HealthCheckView, search
+    ReportView, HealthCheckView
 from rest_framework import routers
 from django.contrib.staticfiles import views
 

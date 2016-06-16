@@ -29,7 +29,8 @@
 <div>
   <h1>Filters: </h1>
   <p> {{ message }}</p>
-  <p> Principal Title : {{ principal_title }}</p>
+  <p> {{ query }}</p>
+  <p> Principal Title : <p id="principal_list"> {{ principal_title }} </p> </p>
   <p> Principal Last Name: {{ principal_name }}</p>
   <p> Quick Dates: {{ quick_dates }}</p>
   <p> Month : {{ month }}</p>
@@ -68,3 +69,7 @@
   {% endif %}
 </div>
 {% endblock%}
+
+{% block footer %}
+<script type="text/javascript" src="{ % static 'js/trip_list.js' % }"></script>
+{% endblock %}
