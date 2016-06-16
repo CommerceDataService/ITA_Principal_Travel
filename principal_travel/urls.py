@@ -20,7 +20,7 @@ from travel.views import HomeView, TripDetail, TripList, trip_new, event_new, \
     principal_new, trip_edit, trip_delete, event_edit, EventList, \
     EventDetail, dashboard_view, TripViewSet, EventViewSet, \
     CityAutocomplete, PrincipalList, PrincipalDetail, principal_edit, \
-    ReportView, HealthCheckView
+    ReportView, HealthCheckView, search
 from rest_framework import routers
 from django.contrib.staticfiles import views
 
@@ -30,6 +30,7 @@ router.register(r'trips', TripViewSet)
 router.register(r'events', EventViewSet)
 
 urlpatterns = [
+    url(r'^search/$', search, name='search'),
     url(r'^$', HomeView.as_view(), name='home_view'),
     url(r'^health/', HealthCheckView.as_view(), name='health_view'),
     url(r'^admin/', admin.site.urls),

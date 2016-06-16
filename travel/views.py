@@ -12,8 +12,17 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from django.http import HttpResponse
 import calendar
+import datetime
 
+def search(request):
+    page_URL = request.get_full_path()
+    # q = request.GET['q']
+    message = 'This is the URL %r' % request.get_full_path() 
+    # {'message': message, 'query': q}
+    
+    return HttpResponse(message)
 
 class LoginRequiredView(LoginRequiredMixin):
     login_url = '/accounts/login/'
@@ -51,6 +60,9 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(TripList, self).get_queryset(*args, **kwargs)
         return qs
+
+    # def current_url_view(request)
+    #     return HttpResponse("this is the page %s" % request.get_full_path)
 
 
 @login_required(login_url='/accounts/login/')

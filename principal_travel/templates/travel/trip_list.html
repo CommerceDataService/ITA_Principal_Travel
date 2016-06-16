@@ -17,13 +17,18 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-        <form action="" method="get">
+        <form action="/search/" method="get">
             {{ filter.form|crispy }}
             <input type="submit" />
         </form>
       </div>
     </div>
   </div>
+</div>
+
+<div>
+  <p> {{ message }}</p>
+  <p> {{ query }}</p>
 </div>
 
 <div>
