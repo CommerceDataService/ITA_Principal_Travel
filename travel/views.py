@@ -16,13 +16,15 @@ from django.http import HttpResponse
 import calendar
 import datetime
 
+
+
 def search(request):
     page_URL = request.get_full_path()
     # q = request.GET['q']
     message = 'This is the URL %r' % request.get_full_path() 
     # {'message': message, 'query': q}
     
-    return HttpResponse(message)
+    return render(request, 'travel/trip_list.html', { 'message' : message })
 
 class LoginRequiredView(LoginRequiredMixin):
     login_url = '/accounts/login/'
@@ -63,6 +65,26 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
 
     # def current_url_view(request)
     #     return HttpResponse("this is the page %s" % request.get_full_path)
+
+    # def get_context_data(self, **kwargs):
+    #     response = self.request    
+    #     # page_URL = request.get_full_path()
+    # # q = request.GET['q']
+    #     message = 'This is the URL %r' % response.get_full_path() 
+    # # {'message': message, 'query': q}
+    #     return message
+
+    def get_context_data(self,**kwargs):
+        context = super(TripList, self).get_context_data(**kwargs)
+        page_URL = self.request.GET
+
+        context['message'] = page_URL
+        return context 
+    # def get(self, request, *args, **kwargs):
+    #     context = self.get_context_data(**kwargs)
+    #     page_URL = request.get_full_path()
+    #     context['message'] = page_URL
+    #     return self.render_to_response(context)
 
 
 @login_required(login_url='/accounts/login/')
