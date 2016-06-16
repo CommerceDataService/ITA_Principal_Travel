@@ -5,12 +5,10 @@
 {% endblock %}
 {% block home %}
 <div class="container dashboardViewBuffer">
-    <div class="row col-lg-8">
-      <h3 class="destinationTitle">Event Map</h3>
-      <div id="map">
-      <div class="col-md-4 col-lg-offset-12">
-      <fieldset class="">
-        <ul class="" id="timefilter">
+    <div class="event-map row border-box col-lg-12">
+    <div class="display-inline"><h3 class="destinationTitle">Event Map</h3>
+      <!-- <fieldset class=""> -->
+        <ul class="display-inline" id="timefilter">
           <li>
             <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
             <label for="futureMarkers">Upcoming Events</label>
@@ -28,11 +26,11 @@
             <label for="allPastMarkers">All Past Events</label>
           </li>
         </ul>
-      </fieldset>
-      </div></div>
+      <!-- </fieldset> --></div>
+      <div id="map"></div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-8 top-destinations border-box" >
         <div id='chart'>
       <h3 class="destinationTitle">Top Destinations</h3>
       <form class="dropdown dashboardDropdownStyle " style="">
