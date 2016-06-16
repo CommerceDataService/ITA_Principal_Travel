@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load app_filters %}
 
 {% block content %}
 <div class="btn-group dropup">
@@ -39,7 +40,12 @@
         <td class="col-md-1">
           {{attribute.0}}
         </td>
-        {% for month in months %}<td class="col-md-1">{% for data in data_list %}{% if data.attribute_id == attribute.1 %}{% if data.month == month.0|slugify and data.count != 0 %}<a href="{% url 'trip_list' %}?month={{month.0}}&amp;year={{year}}&amp;{{query_string}}={{data.attribute_id}}">{{data.count}}</a>{% endif %}{% endif %}{% endfor %}</td>{% endfor %}
+        {% for month in months %}
+        <td class="col-md-1">
+            {% if data_list|get_item:attribute.0|length > 0 %}
+            {% with data_list|get_item:attribute.0|get_item:month.0 as count %}
+            {% if count > 0 %}
+            <a href="{% url 'trip_list' %}?month={{month.0}}&amp;year={{year}}{% if attribute.1 %}&amp;{{query_string}}={{attribute.1}}{% endif %}">{{count}}</a>{% endif %}{% endwith %}{% endif %}</td>{% endfor %}
       {% endfor %}
       </tr>
   </tbody>
