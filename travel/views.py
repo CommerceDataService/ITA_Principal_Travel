@@ -73,28 +73,27 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
 
         if page_URL_length > 13 :         
 
-            month = page_query_dict['month']
-            context['month'] = month
-        # region = page_URL['region']
-        # principal_title = page_URL['principal_title']
-        # date_range_end = page_URL['date_range_end']
-        # date_range_start = page_URL['date_range_start']
-        # country = page_URL['country']
-        # principal_name = page_URL['principal_name']
-        # event_type = page_URL['event_type']
-        # year = page_URL['year']
-        # quick_dates = page_URL['quick_dates']
+            month = page_query_dict['month']            
+            region = page_query_dict['region']
+            principal_title = page_query_dict['principal_title']
+            date_range_end = page_query_dict['date_range_end']
+            date_range_start = page_query_dict['date_range_start']
+            country = page_query_dict['country']
+            principal_name = page_query_dict['principal_name']
+            event_type = page_query_dict['event_type']
+            year = page_query_dict['year']
+            quick_dates = page_query_dict['quick_dates']
 
-        context['message'] = page_query_dict
-        context['query'] = len(page_URL)
-        
-        # context['region'] = region
-        # context['principal_title'] = principal_title
-        # context['country'] = country
-        # context['principal_name'] = principal_name
-        # context['event_type'] = event_type
-        # context['year'] = year
-        # context['quick_dates'] = quick_dates
+            context['message'] = page_query_dict
+            context['query'] = len(page_URL)
+            context['month'] = month
+            context['region'] = region
+            context['principal_title'] = principal_title
+            context['country'] = country
+            context['principal_name'] = principal_name
+            context['event_type'] = event_type
+            context['year'] = year
+            context['quick_dates'] = quick_dates
 
         return context 
     # def get(self, request, *args, **kwargs):

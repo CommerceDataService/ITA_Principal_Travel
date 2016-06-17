@@ -317,3 +317,7 @@ ul li:before {
 .breadcrumbs.container{
 	margin-top:5px;
 }
+
+.btn-danger {
+	width: inherit;
+}
