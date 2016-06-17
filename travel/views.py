@@ -79,7 +79,9 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             date_range_end = page_query_dict['date_range_end']
             date_range_start = page_query_dict['date_range_start']
             country_ID = page_query_dict['country']
-            country = Country.objects.get(id=country_ID)
+            country_ID_2 = int(country_ID)
+            # country_ID = int(country_ID)
+            country = Country.objects.get(id=country_ID_2)
             principal_name = page_query_dict['principal_name']
             event_type = page_query_dict['event_type']
             year = page_query_dict['year']
