@@ -1,6 +1,2 @@
 
-$(document).ready(function() {
-	$('#principal_list').css('font-size', '200%');
-})
-
-// $('#filters').css('background-color', 'blue');
+$('.info_desc').addClass('col-md-5')

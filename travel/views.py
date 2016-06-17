@@ -84,8 +84,8 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             year = page_query_dict['year']
             quick_dates = page_query_dict['quick_dates']
 
-            context['message'] = page_query_dict
-            context['query'] = len(page_URL)
+            # context['message'] = page_query_dict
+            # context['query'] = len(page_URL)
             context['month'] = month
             context['region'] = region
             context['principal_title'] = principal_title

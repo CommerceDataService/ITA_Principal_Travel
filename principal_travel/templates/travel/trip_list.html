@@ -5,9 +5,7 @@
   {{block.super}} » <a href="{% url 'trip_list' %}">Itineraries</a>
 {% endblock %}
 {% block content%}
-<h3>Itineraries<a href="{% url 'trip_new' %}" class="btn btn-success add-button">Add</a></h3>
-
-<h3><a href="{% url 'trip_list' %}" class="btn btn-danger add-button" id="filter_button">Clear Filters</a></h3>
+<h3>Itineraries<a href="{% url 'trip_new' %}" class="btn btn-success add-button">Add</a><a href="{% url 'trip_list' %}" class="btn btn-danger add-button" id="filter_button">Clear Filters</a></h3>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
@@ -29,20 +27,34 @@
   </div>
 </div>
 
-<div id="filters">
-  <h1>Filters: </h1>
-  <p> {{ message }}</p>
-  <p> {{ query }}</p>
-  <p> Principal Title : <p id="principal_list"> {{ principal_title }} </p> </p>
-  <p> Principal Last Name: <p id="principal_name"> {{ principal_name }} </p></p>
-  <p> Quick Dates: <p id="quick_dates">{{ quick_dates }}</p> </p>
-  <p> Month : <p id="month">{{ month }}</p></p>
-  <p> Year : <p id="year">{{ year }}</p></p>
-  <p> Region : <p id="region">{{ region }}</p></p>
-  <p> Country : <p id="country">{{ country }} </p></p>
-  <p> Event Type : <p id="event_type">{{ event_type }} </p></p>
+<h1>Filters: </h1>
 
-</div>
+<table id="filter_table">
+  <tr>
+    <td class="info_desc"><p> Principal Title : </p></td>
+    <td><p id="principal_list"> {{ principal_title }} </p></td> 
+    <td class="info_desc"><p> Year : </p></td>
+    <td><p id="year">{{ year }}</p></td>
+  </tr>
+  <tr>
+    <td class="info_desc"><p> Principal Last Name: </p></td>
+    <td><p id="principal_name"> {{ principal_name }} </p></td>
+    <td class="info_desc"><p> Region : </p></td>
+    <td><p id="region">{{ region }}</p></td>
+  </tr>
+  <tr>
+    <td class="info_desc"><p> Quick Dates: </p></td>
+    <td><p id="quick_dates">{{ quick_dates }}</p></td> 
+    <td class="info_desc"><p> Country : </p></td>
+    <td><p id="country">{{ country }} </p></td>
+  </tr>
+  <tr>
+    <td class="info_desc"><p> Month : </p></td>
+    <td><p id="month">{{ month }}</p></td>
+    <td class="info_desc"><p> Event Type : </p></td>
+    <td><p id="event_type">{{ event_type }} </p></td>
+  </tr>
+</table>
 
 <div>
   <table class="table table-hover">
