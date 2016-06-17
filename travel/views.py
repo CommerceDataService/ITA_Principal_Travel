@@ -5,7 +5,7 @@ from .serializers import TripSerializer, EventSerializer
 from rest_framework import viewsets
 from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
-from cities_light.models import City
+from cities_light.models import City, Country
 from .mixins import FilterMixin
 from .filters import TripFilter
 from django.contrib import messages
@@ -78,7 +78,8 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             principal_title = page_query_dict['principal_title']
             date_range_end = page_query_dict['date_range_end']
             date_range_start = page_query_dict['date_range_start']
-            country = page_query_dict['country']
+            country_ID = page_query_dict['country']
+            country = Country.objects.get(id=country_ID)
             principal_name = page_query_dict['principal_name']
             event_type = page_query_dict['event_type']
             year = page_query_dict['year']

@@ -321,11 +321,3 @@ ul li:before {
 .btn-danger {
 	width: inherit;
 }
-
-#filter_col_1 p {
-	display: inline;
-}
-
-#filter_col_2 p {
-	display: inline;
-}
