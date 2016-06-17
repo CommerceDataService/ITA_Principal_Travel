@@ -4,6 +4,21 @@
   {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
 {% endblock %}
 {% block home %}
+<!-- <input type="checkbox" checked data-toggle="toggle" data-on="International" data-off="Domestic" data-size="large" data-onstyle="primary" data-offstyle="danger"> -->
+
+<div class="container">
+  <h3>Travel Dashboard
+      <input class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
+  </h3>
+</div>
+
+<script>
+    $(function(argument) {
+      $ (".form-control")
+      $('[type="checkbox"]').bootstrapSwitch();
+    })
+</script>
+
 <div class="container border-box dashboardViewBuffer">
     <div class="col-lg-6">
       <div id="map"></div>
@@ -56,6 +71,7 @@
     </div>
   </div>
 </div>
+
 
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script src={% static "js/script.js" %}></script>
