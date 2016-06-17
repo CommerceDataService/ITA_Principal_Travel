@@ -7,7 +7,7 @@
 {% block content%}
 <h3>Itineraries<a href="{% url 'trip_new' %}" class="btn btn-success add-button">Add</a></h3>
 
-<h3><a href="" class="btn btn-danger add-button">Clear Filters</a></h3>
+<h3><a href="{% url 'trip_list' %}" class="btn btn-danger add-button" id="filter_button">Clear Filters</a></h3>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
