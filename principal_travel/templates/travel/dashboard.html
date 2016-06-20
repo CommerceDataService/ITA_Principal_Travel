@@ -4,11 +4,11 @@
   {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
 {% endblock %}
 {% block home %}
-<div class="container border-box dashboardViewBuffer">
-    <div class="col-lg-6">
-      <div id="map"></div>
-      <fieldset class="">
-        <ul class="" id="timefilter">
+<div class="container dashboardViewBuffer">
+    <div class="event-map row border-box col-lg-12">
+    <div class="display-inline"><h3 class="destinationTitle">Event Map</h3>
+      <!-- <fieldset class=""> -->
+        <ul class="display-inline" id="timefilter">
           <li>
             <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
             <label for="futureMarkers">Upcoming Events</label>
@@ -26,33 +26,33 @@
             <label for="allPastMarkers">All Past Events</label>
           </li>
         </ul>
-      </fieldset>
+      <!-- </fieldset> -->
+      </div>
+      <div id="map"></div>
     </div>
 
-    <div class="col-lg-6  ">
-    <form class="dropdown dashboardDropdownStyle " style="">
+  <div class="col-lg-8 top-destinations border-box" >
+    <div id='chart'>
+      <h3 class="destinationTitle">Top Destinations</h3>
+      <form class="dropdown dashboardDropdownStyle " style="">
         <select name="options" id="options">
           <option value="country">Top Countries</option>
           <option value="principal">Top Travelers</option>
           <option value="eventType">Event Types</option>
         </select>
       </form>
-    <div id='chart'>
-      <h3 class="destinationTitle">Top Destinations</h3>
-
     </div>
   </div>
-</div>
 
 
-
-<div class="container dashboardBottomContainer">
-  <div class ="">
-    <div class="col-lg-6" id="upcoming">
-      <h3>Upcoming Itineraries</h3>
-    </div>
-    <div class="col-lg-6" id="recent">
-      <h3>Recent Itineraries</h3>
+  <div class="border-box dashboardBottomContainer col-lg-4">
+    <div class="dashboardBottomContainer-text">
+      <div class="" id="upcoming">
+        <h3>Upcoming Itineraries</h3>
+      </div>
+      <div class="" id="recent">
+        <h3>Recent Itineraries</h3>
+      </div>
     </div>
   </div>
 </div>
