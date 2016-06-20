@@ -341,3 +341,52 @@ ul li:before {
 .breadcrumbs.container{
 	margin-top:5px;
 }
+
+/*Toggle Button*/
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+  color: #fff;
+  background: #205493;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary:hover,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary:hover {
+  color: #fff;
+  background: #205493;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info {
+  color: #fff;
+  background: #323a45;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info:hover,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info:hover {
+  color: #fff;
+  background: #323a45;
+}
+
+.bootstrap-switch.bootstrap-switch-focused {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: inset none;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inherit;
+  height: 100%;
+  padding: 6px 12px;
+  font-size: 17px;
+  font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+  line-height: 20px;
+}
+

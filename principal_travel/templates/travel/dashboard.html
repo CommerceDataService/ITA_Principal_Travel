@@ -4,25 +4,32 @@
   {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
 {% endblock %}
 {% block home %}
+
+<div class="container">
+  <h3>Travel Dashboard
+      <input class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
+  </h3>
+</div>
+
 <div class="container dashboardViewBuffer">
     <div class="event-map row border-box col-lg-12">
     <div class="display-inline"><h3 class="destinationTitle">Event Map</h3>
       <!-- <fieldset class=""> -->
         <ul class="display-inline" id="timefilter">
           <li>
-            <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
+            <input class="destroy-switch" id="futureMarkers" type="checkbox" value="futureMarkers" checked>
             <label for="futureMarkers">Upcoming Events</label>
           </li>
           <li>
-            <input id="monthMarkers" type="checkbox" value="monthMarkers" checked>
+            <input class="destroy-switch" id="monthMarkers" type="checkbox" value="monthMarkers" checked>
             <label for="monthMarkers">Past Month Events</label>
           </li>
           <li>
-            <input id="yearMarkers" type="checkbox" value="yearMarkers" checked>
+            <input class="destroy-switch" id="yearMarkers" type="checkbox" value="yearMarkers" checked>
             <label for="yearMarkers">Past Year Events</label>
           </li>
           <li>
-            <input id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
+            <input class="destroy-switch" id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
             <label for="allPastMarkers">All Past Events</label>
           </li>
         </ul>
@@ -56,6 +63,14 @@
     </div>
   </div>
 </div>
+
+
+<script>
+    $(function(argument) {
+      $('[type="checkbox"]').bootstrapSwitch();
+      $('.destroy-switch').bootstrapSwitch('destroy');
+    })
+</script>
 
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script src={% static "js/script.js" %}></script>
