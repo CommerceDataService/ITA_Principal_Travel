@@ -54,17 +54,6 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
         qs = super(TripList, self).get_queryset(*args, **kwargs)
         return qs
 
-    # def current_url_view(request)
-    #     return HttpResponse("this is the page %s" % request.get_full_path)
-
-    # def get_context_data(self, **kwargs):
-    #     response = self.request    
-    #     # page_URL = request.get_full_path()
-    # # q = request.GET['q']
-    #     message = 'This is the URL %r' % response.get_full_path() 
-    # # {'message': message, 'query': q}
-    #     return message
-
     def get_context_data(self,**kwargs):
         context = super(TripList, self).get_context_data(**kwargs)
         page_query_dict = self.request.GET
@@ -80,19 +69,14 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             date_range_start = page_query_dict['date_range_start']
             country_ID = page_query_dict['country']
             country_ID_2 = len(country_ID)
-            # country_ID_2 = int(country_ID)
-            # country = Country.objects.get(id='')
             principal_name = page_query_dict['principal_name']
             event_type = page_query_dict['event_type']
             year = page_query_dict['year']
             quick_dates = page_query_dict['quick_dates']
 
-            # context['message'] = page_query_dict
-            # context['query'] = len(page_URL)
             context['month'] = month
             context['region'] = region
             context['principal_title'] = principal_title
-            # context['country'] = country_ID_2
             context['principal_name'] = principal_name
             context['event_type'] = event_type
             context['year'] = year
@@ -103,14 +87,8 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
                 context['country'] = country
             else :
                 context['country'] = country_ID
-            
 
         return context 
-    # def get(self, request, *args, **kwargs):
-    #     context = self.get_context_data(**kwargs)
-    #     page_URL = request.get_full_path()
-    #     context['message'] = page_URL
-    #     return self.render_to_response(context)
 
 
 @login_required(login_url='/accounts/login/')
