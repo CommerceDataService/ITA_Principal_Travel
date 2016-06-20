@@ -1,2 +1,2 @@
 
-$('.info_desc').addClass('col-md-5')
+$('#filter_table td').addClass('col-md-4')
