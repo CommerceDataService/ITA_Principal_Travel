@@ -110,9 +110,10 @@ var renderMap = function(tripData){
     id: 'noonkay.f59d9773',
     // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
-    noWrap: true,
+    scrollwheel: false,
+    noWrap: false,
     minZoom: 2,
-    maxZoom: 3
+    maxZoom: 4
   }).addTo(map);
 
   futureMarkers = L.layerGroup([]).addTo(map);
