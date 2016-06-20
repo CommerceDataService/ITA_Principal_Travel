@@ -14,6 +14,8 @@ class TripFilter(django_filters.FilterSet):
     region = django_filters.ModelChoiceFilter(queryset = Region.objects.all(), name='events__cities_light_country__custom_region')
     country = django_filters.ModelChoiceFilter(queryset = Country.objects.all(), name='events__cities_light_country__name')
     event_type = django_filters.ModelChoiceFilter(queryset = EventType.objects.all(), name='events__event_type', label='Event Type')
+    event_name = django_filters.CharFilter(lookup_expr='icontains', name='events__name', label='Event Name')
+    event_description = django_filters.CharFilter(lookup_expr='icontains', name='events__description', label='Event Description')
 
     class Meta:
         model = Trip
