@@ -12,32 +12,25 @@
   </h3>
 </div>
 
-<script>
-    $(function(argument) {
-      $ (".form-control")
-      $('[type="checkbox"]').bootstrapSwitch();
-    })
-</script>
-
 <div class="container border-box dashboardViewBuffer">
     <div class="col-lg-6">
       <div id="map"></div>
       <fieldset class="">
         <ul class="" id="timefilter">
           <li>
-            <input id="futureMarkers" type="checkbox" value="futureMarkers" checked>
+            <input class="destroy-switch" id="futureMarkers" type="checkbox" value="futureMarkers" checked>
             <label for="futureMarkers">Upcoming Events</label>
           </li>
           <li>
-            <input id="monthMarkers" type="checkbox" value="monthMarkers" checked>
+            <input class="destroy-switch" id="monthMarkers" type="checkbox" value="monthMarkers" checked>
             <label for="monthMarkers">Past Month Events</label>
           </li>
           <li>
-            <input id="yearMarkers" type="checkbox" value="yearMarkers" checked>
+            <input class="destroy-switch" id="yearMarkers" type="checkbox" value="yearMarkers" checked>
             <label for="yearMarkers">Past Year Events</label>
           </li>
           <li>
-            <input id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
+            <input class="destroy-switch" id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
             <label for="allPastMarkers">All Past Events</label>
           </li>
         </ul>
@@ -72,6 +65,13 @@
   </div>
 </div>
 
+
+<script>
+    $(function(argument) {
+      $('[type="checkbox"]').bootstrapSwitch();
+      $('.destroy-switch').bootstrapSwitch('destroy');
+    })
+</script>
 
 <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script src={% static "js/script.js" %}></script>
