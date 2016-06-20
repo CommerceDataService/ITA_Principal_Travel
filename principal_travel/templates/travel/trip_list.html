@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load staticfiles %}
 {% load crispy_forms_tags %}
 {% block breadcrumbs %}
   {{block.super}} » <a href="{% url 'trip_list' %}">Itineraries</a>
@@ -84,7 +83,3 @@
   {% endif %}
 </div>
 {% endblock%}
-
-{% block footer %}
-<script src="{% static 'js/trip_list.js' %}" type="text/javascript" ></script>
-{% endblock %}
