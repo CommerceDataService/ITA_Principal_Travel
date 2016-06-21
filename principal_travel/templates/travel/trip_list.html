@@ -4,7 +4,7 @@
   {{block.super}} » <a href="{% url 'trip_list' %}">Itineraries</a>
 {% endblock %}
 {% block content%}
-<h3>Itineraries<a href="{% url 'trip_new' %}" class="btn btn-success add-button">Add</a><a href="{% url 'trip_list' %}" class="btn btn-danger add-button" id="filter_button">Clear Filters</a></h3>
+<h3>Itineraries<a href="{% url 'trip_new' %}" class="btn btn-success add-button">Add</a><a href="{% url 'trip_list' %}" class="btn  add-button btn-danger" id="filter_button">Clear Filters</a></h3>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
