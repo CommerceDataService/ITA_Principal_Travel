@@ -4,7 +4,6 @@
   {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
 {% endblock %}
 {% block home %}
-
 <div class="container">
   <h3>Travel Dashboard
       <input class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
@@ -14,7 +13,6 @@
 <div class="container dashboardViewBuffer">
     <div class="event-map row border-box col-lg-12">
     <div class="display-inline"><h3 class="destinationTitle">Event Map</h3>
-      <!-- <fieldset class=""> -->
         <ul class="display-inline" id="timefilter">
           <li>
             <input class="destroy-switch" id="futureMarkers" type="checkbox" value="futureMarkers" checked>
@@ -33,7 +31,6 @@
             <label for="allPastMarkers">All Past Events</label>
           </li>
         </ul>
-      <!-- </fieldset> -->
       </div>
       <div id="map"></div>
     </div>
@@ -43,9 +40,6 @@
       <h3 class="destinationTitle">Top Destinations</h3>
       <form class="dropdown dashboardDropdownStyle " style="">
         <select name="options" id="options">
-          <option value="country">Top Countries</option>
-          <option value="principal">Top Travelers</option>
-          <option value="eventType">Event Types</option>
         </select>
       </form>
     </div>
@@ -84,5 +78,10 @@
   <p>{{description}}</p>
   <p>{{cities_light_city.name}}, {{cities_light_country.name}}</p>
 </script>
+
+<script type="text/x-handlebars-template" id="chart-types">
+  <option value={{type}}>{{title}}</option>
+</script>
+
 {% endverbatim %}
 {% endblock %}

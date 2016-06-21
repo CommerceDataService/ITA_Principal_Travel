@@ -78,6 +78,8 @@ var pairSortSlice = function(object){
 };
 
 var renderTable = function(tripData){
+  $('#upcoming').empty();
+  $('#recent').empty();
   var template = Handlebars.compile($('#table').html());
   var sortedTrips = _(tripData).chain().sortBy(function(trip){
     start = new Date(trip.start_date);
@@ -102,20 +104,20 @@ var renderTable = function(tripData){
   });
 };
 
-var renderMap = function(tripData){
-  var map = L.map('map')
-  .setView([33, -8], 2);
 
+var renderMap = function(tripData){
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     id: 'noonkay.f59d9773',
     // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
-    scrollwheel: false,
-    noWrap: false,
+    noWrap: true,
     minZoom: 2,
-    maxZoom: 4
+    maxZoom: 3
   }).addTo(map);
-
+  map.removeLayer(futureMarkers);
+  map.removeLayer(monthMarkers);
+  map.removeLayer(yearMarkers);
+  map.removeLayer(allPastMarkers);
   futureMarkers = L.layerGroup([]).addTo(map);
   monthMarkers = L.layerGroup([]).addTo(map);
   yearMarkers = L.layerGroup([]).addTo(map);
@@ -153,15 +155,29 @@ var renderMap = function(tripData){
   });
 };
 
-var renderChart = function(tripData, eventData){
+var renderChart = function(tripData, eventData, reports){
+  $('#chart').empty();
+  $('#options').empty();
+  var tripevents = _.map(tripData, function(trip){
+    return trip.events;
+  });
+  tripevents = _.flatten(tripevents);
   var principalCount = _.countBy(tripData, function(trip){
     return trip.principal.title;
   });
-  var countryCount = _.countBy(eventData, function(event){
+  var countryCount = _.countBy(tripevents, function(event){
     return event.cities_light_country.name;
   });
-  var eventTypeCount = _.countBy(eventData, function(event){
+  var eventTypeCount = _.countBy(tripevents, function(event){
     return event.event_type.name;
+  });
+  var regionCount= _.countBy(tripevents, function(event){
+    return event.cities_light_city.region.name;
+  });
+
+  var template =Handlebars.compile($('#chart-types').html());
+  _.each(reports, function(report){
+    $('#options').append(template(report));
   });
 
   drawBarGraph(pairSortSlice(countryCount));
@@ -175,20 +191,41 @@ var renderChart = function(tripData, eventData){
     } else if (this.value == "eventType"){
       $('#chart').empty().append('<h3>Top Event Types</h3>');
       drawBarGraph(pairSortSlice(eventTypeCount));
+    } else if (this.value == "state"){
+      $('#chart').empty().append('<h3>Top Event Types</h3>');
+      drawBarGraph(pairSortSlice(regionCount));
     }
   });
 };
 
 $(document).ready(function(){
   var tripData, eventData;
-  $.getJSON('/api/events')
+  map = new L.map('map')
+  .setView([33, -8], 2);
+  var reports = [{type: 'country', title: 'Top Countries'},
+  {type: 'state', title: 'Top States'}, {type: 'principal', title: 'Top Travelers'}, {type: 'eventType', title: 'Top Event Types'}];
+
+  $('.dashtoggle').on('click', function(){
+    $.getJSON('/api/events?destination=domestic')
+      .done(function(data){
+      eventData = data;
+      $.getJSON('/api/trips?destination=domestic')
+      .done(function(data){
+        tripData = data;
+        renderTable(tripData);
+        renderChart(tripData, eventData,reports);
+        renderMap(tripData);
+      });
+    });
+  })
+  $.getJSON('/api/events?destination=international')
     .done(function(data){
     eventData = data;
-    $.getJSON('/api/trips')
+    $.getJSON('/api/trips?destination=international')
     .done(function(data){
       tripData = data;
       renderTable(tripData);
-      renderChart(tripData, eventData);
+      renderChart(tripData, eventData, reports);
       renderMap(tripData);
     });
   });
