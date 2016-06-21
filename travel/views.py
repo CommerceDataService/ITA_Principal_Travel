@@ -73,7 +73,11 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             event_type = page_query_dict['event_type']
             year = page_query_dict['year']
             quick_dates = page_query_dict['quick_dates']
+            event_name = page_query_dict['event_name']
+            event_description = page_query_dict['event_description']
 
+            context['event_name'] = event_name
+            context['event_description'] = event_description
             context['date_range_start'] = date_range_start
             context['date_range_end'] = date_range_end
             context['month'] = month
