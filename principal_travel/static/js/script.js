@@ -230,3 +230,8 @@ $(document).ready(function(){
     });
   });
 });
+
+$(function(argument) {
+  $('[type="checkbox"]').bootstrapSwitch();
+  $('.destroy-switch').bootstrapSwitch('destroy');
+})
