@@ -6,7 +6,7 @@
 {% block home %}
 <div class="container">
   <h3>Travel Dashboard
-      <input class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
+      <input id="dashtoggle" class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
   </h3>
 </div>
 
@@ -36,12 +36,12 @@
     </div>
 
   <div class="col-lg-8 top-destinations border-box" >
+    <form class="dropdown dashboardDropdownStyle " style="">
+      <select name="options" id="options">
+      </select>
+    </form>
     <div id='chart'>
       <h3 class="destinationTitle">Top Destinations</h3>
-      <form class="dropdown dashboardDropdownStyle " style="">
-        <select name="options" id="options">
-        </select>
-      </form>
     </div>
   </div>
 

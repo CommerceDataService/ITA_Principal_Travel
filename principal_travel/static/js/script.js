@@ -14,7 +14,6 @@ var drawBarGraph = function(data){
   .attr('width', '100%')
   .attr('height', '300');
 
-
   var tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-10, 0])
@@ -156,8 +155,8 @@ var renderMap = function(tripData){
 };
 
 var renderChart = function(tripData, eventData, reports){
-  $('#chart').empty();
   $('#options').empty();
+  $('#chart').empty();
   var tripevents = _.map(tripData, function(trip){
     return trip.events;
   });
@@ -180,7 +179,6 @@ var renderChart = function(tripData, eventData, reports){
     $('#options').append(template(report));
   });
 
-  drawBarGraph(pairSortSlice(countryCount));
   $("#options").on('change', function(event){
     if (this.value == "country"){
       $('#chart').empty().append('<h3>Top Countries</h3>');
@@ -192,46 +190,52 @@ var renderChart = function(tripData, eventData, reports){
       $('#chart').empty().append('<h3>Top Event Types</h3>');
       drawBarGraph(pairSortSlice(eventTypeCount));
     } else if (this.value == "state"){
-      $('#chart').empty().append('<h3>Top Event Types</h3>');
+      $('#chart').empty().append('<h3>Top States</h3>');
       drawBarGraph(pairSortSlice(regionCount));
     }
   });
 };
 
-$(document).ready(function(){
+var getData = function(destination){
   var tripData, eventData;
-  map = new L.map('map')
-  .setView([33, -8], 2);
-  var reports = [{type: 'country', title: 'Top Countries'},
-  {type: 'state', title: 'Top States'}, {type: 'principal', title: 'Top Travelers'}, {type: 'eventType', title: 'Top Event Types'}];
-
-  $('.dashtoggle').on('click', function(){
-    $.getJSON('/api/events?destination=domestic')
-      .done(function(data){
-      eventData = data;
-      $.getJSON('/api/trips?destination=domestic')
-      .done(function(data){
-        tripData = data;
-        renderTable(tripData);
-        renderChart(tripData, eventData,reports);
-        renderMap(tripData);
-      });
-    });
-  })
-  $.getJSON('/api/events?destination=international')
+  var reports = [{type: 'principal', title: 'Top Travelers'}, {type: 'eventType', title: 'Top Event Types'}];
+  if (destination === 'domestic'){
+    reports.push({type: 'state', title: 'Top States'});
+  } else if (destination === 'international'){
+    reports.push({type: 'country', title: 'Top Countries'});
+  }
+  $.getJSON('/api/events?destination='+destination)
     .done(function(data){
     eventData = data;
-    $.getJSON('/api/trips?destination=international')
+    $.getJSON('/api/trips?destination='+destination)
     .done(function(data){
       tripData = data;
       renderTable(tripData);
       renderChart(tripData, eventData, reports);
       renderMap(tripData);
+      $('#options').change();
     });
   });
-});
+};
 
-$(function(argument) {
-  $('[type="checkbox"]').bootstrapSwitch();
-  $('.destroy-switch').bootstrapSwitch('destroy');
-})
+var loadDefaults = function(){
+  getData('international');
+};
+
+$(document).ready(function(){
+  map = new L.map('map') //initializes the map
+  .setView([33, -8], 2);
+  $(function(argument) { //initializes the toggle button
+    $('[type="checkbox"]').bootstrapSwitch();
+    $('.destroy-switch').bootstrapSwitch('destroy');
+  });
+
+  $('#dashtoggle').on('switchChange.bootstrapSwitch', function(event, state) {
+    if(state){ //true state is the default: international
+      getData('internaional');
+    } else {
+      getData('domestic');
+    }
+  });
+  loadDefaults();
+});
