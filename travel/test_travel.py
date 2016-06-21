@@ -1,6 +1,7 @@
 from django.utils import six
-from django.test import TestCase, Client
+from django.test import TestCase, RequestFactory
 from .models import *
+from .templatetags.app_filters import current_url
 
 # Create your tests here.
 from registration.models import RegistrationProfile
@@ -99,3 +100,9 @@ class ModelStringReprTestCase(TestCase):
         office = Office.objects.create(**self.office_info)
         self.assertEqual('NRU', str(office))
 
+
+class TemplateTagTests(TestCase):
+    def test_current_url_returns_get_params_with_appended_page_param(self):
+        req = RequestFactory().get('/foo?bar=baz')
+        # should return just a relative link with GET parameters only
+        self.assertIn(current_url(req, 'page', 1), ['bar=baz&page=1', 'page=1&bar=baz'])
