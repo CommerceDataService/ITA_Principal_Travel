@@ -5,14 +5,16 @@ from .serializers import TripSerializer, EventSerializer
 from rest_framework import viewsets
 from django.shortcuts import render, redirect, get_object_or_404
 from dal import autocomplete
-from cities_light.models import City
+from cities_light.models import City, Country
 from .mixins import FilterMixin
 from .filters import TripFilter
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from datetime import date
+from django.http import HttpResponse
 import calendar
+import datetime
 
 
 class LoginRequiredView(LoginRequiredMixin):
@@ -51,6 +53,48 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(TripList, self).get_queryset(*args, **kwargs)
         return qs
+
+    def get_context_data(self,**kwargs):
+        context = super(TripList, self).get_context_data(**kwargs)
+        page_query_dict = self.request.GET
+        page_URL = self.request.get_full_path()
+        page_URL_length = len(page_URL)
+
+        if page_URL_length > 13 :         
+
+            month = page_query_dict['month']            
+            region = page_query_dict['region']
+            principal_title = page_query_dict['principal_title']
+            date_range_end = page_query_dict['date_range_end']
+            date_range_start = page_query_dict['date_range_start']
+            country_ID = page_query_dict['country']
+            country_ID_2 = len(country_ID)
+            principal_name = page_query_dict['principal_name']
+            event_type = page_query_dict['event_type']
+            year = page_query_dict['year']
+            quick_dates = page_query_dict['quick_dates']
+            event_name = page_query_dict['event_name']
+            event_description = page_query_dict['event_description']
+
+            context['event_name'] = event_name
+            context['event_description'] = event_description
+            context['date_range_start'] = date_range_start
+            context['date_range_end'] = date_range_end
+            context['month'] = month
+            context['region'] = region
+            context['principal_title'] = principal_title
+            context['principal_name'] = principal_name
+            context['event_type'] = event_type
+            context['year'] = year
+            context['quick_dates'] = quick_dates
+
+            if country_ID_2 > 0 :
+                country = Country.objects.get(id=country_ID)
+                context['country'] = country
+            else :
+                context['country'] = country_ID
+
+        return context 
 
 
 @login_required(login_url='/accounts/login/')

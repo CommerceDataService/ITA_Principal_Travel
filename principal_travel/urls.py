@@ -30,6 +30,7 @@ router.register(r'trips', TripViewSet)
 router.register(r'events', EventViewSet)
 
 urlpatterns = [
+    # url(r'^search/$', search, name='search'),
     url(r'^$', HomeView.as_view(), name='home_view'),
     url(r'^health/', HealthCheckView.as_view(), name='health_view'),
     url(r'^admin/', admin.site.urls),
