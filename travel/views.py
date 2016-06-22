@@ -256,6 +256,12 @@ class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
 
         return qs
 
+class EventNameAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Event.objects.all()
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+        return qs
 
 class ReportView(LoginRequiredView, TemplateView):
     template_name = 'travel/report.html'

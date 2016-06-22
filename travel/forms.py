@@ -6,6 +6,10 @@ from cities_light.models import City
 from datetimewidget.widgets import DateWidget
 
 class TripForm(forms.ModelForm):
+    events = forms.ModelMultipleChoiceField(
+        queryset = Event.objects.all(),
+        widget=autocomplete.ModelSelect2Multiple(url='event-autocomplete')
+    )
     start_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     end_date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
     class Meta:
