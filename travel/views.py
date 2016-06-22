@@ -1,3 +1,5 @@
+import itertools
+from django import template
 from .models import Trip, Event, Principal
 from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
@@ -215,11 +217,16 @@ class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
 
 class ReportView(LoginRequiredView, TemplateView):
     template_name = 'travel/report.html'
-
+#class CycleNode(template.Node)
     def get_context_data(self, **kwargs):
         context = super(ReportView, self).get_context_data(**kwargs)
         current_year = self.request.GET.get('year')
         report_type = self.request.GET.get('by')
+            self.cyclevars = cyclevars
+
+            if self not in context.render_context:
+                context.render_context[self] = itertools.cycle(self.cyclevars)
+            cycle_iter = context.render_context[self]
         if current_year is None:
             current_year = (date.today()).year
         if report_type is None:
@@ -272,4 +279,5 @@ class ReportView(LoginRequiredView, TemplateView):
         context['months'] = month_names
         context['annual_report_list'] = unique_reporting_years
         context['report_type_list'] = ['country', 'region', 'event']
+        context['cycle'] = next(cycle_iter)
         return context

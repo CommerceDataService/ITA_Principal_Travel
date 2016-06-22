@@ -19,7 +19,7 @@ var drawBarGraph = function(data){
           {
           document.f1.slvalue.selectedIndex=value ;
           }
-  } //console.log(selectedValue());
+  } 
   var tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-10, 0])
@@ -115,10 +115,9 @@ var renderMap = function(tripData){
     id: 'noonkay.f59d9773',
     // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
-    scrollwheel: false,
-    noWrap: false,
+    noWrap: true,
     minZoom: 2,
-    maxZoom: 4
+    maxZoom: 3
   }).addTo(map);
 
   futureMarkers = L.layerGroup([]).addTo(map);

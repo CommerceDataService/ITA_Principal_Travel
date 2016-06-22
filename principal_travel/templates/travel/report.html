@@ -1,34 +1,32 @@
-{% extends 'base.html' %}
+% extends 'base.html' %}
 
 {% block content %}
-<div class="dropdown">
-  <input type="button" name="selectedValue" value="show"/>
-  <button class="dropdown-menu" type="button" data-toggle="dropdown" onclick="selectedValue()">
-    Year
+<div class="btn-group dropup">
+  <form action="action_page.php">
+  <input list="options" name="selectedValue" value="Year">
+  <select name="Year"></select>
     <span class="caret"></span>
-  </button>
+  </form>
   <ul class="dropdown-menu" aria-labelledby="dLabel">
     {% for annual_report in annual_report_list %}
-    <li><a  id="dLabel" data-target="#" href="{% url 'report' %}?year={{annual_report}}" data-toggle="dropdown" role="button">{{annual_report}}</a></li>
+    <li><a  id="dLabel" data-target="#" href="{% url 'report' %}?year={{annual_report}}" data-toggle="dropdown" role="button" onclick="selectedValue()">>{{annual_report}}</a></li>
     {% endfor %}
   </ul>
 </div>
+<form action="action_page.php">
 <div class="btn-group dropup">
-  <input type="button" name="selectedValue" value="show"/>
-  <button class="dropdown-menu" type="button" data-toggle="dropdown" onclick="selectedValue()">
-    Report Type
+  <input list"options" name="selectedValue" value="Report"/>
+    <select name="Report Type"></select>
     <span class="caret"></span>
-  </button>
+  </form>
   <ul class="dropdown-menu" aria-labelledby="dLabel">
     {% for report_type in report_type_list %}
-    <li><a id="dLabel" data-target="#" href="{% url 'report' %}?by={{report_type}}" data-toggle="dropdown" role="button">{{report_type}}</a></li>
+    <li><a id="dLabel" data-target="#" href="{% url 'report' %}?by={{report_type}}" data-toggle="dropdown" role="button" onclick="selectedValue()">>{{report_type}}</a></li>
     {% endfor %}
   </ul>
-</div>
-<div>
-  <button type="submit" href="{% url 'report' %}?year={{annual_report}}+?by={{report_type}}">
+  <button type="submit" href="{% url 'report' %}?year={{annual_report}}&?by={{report_type}}">
     Submit
-  </submit>
+  </button>
 </div>
 <div>
   <table class="table table-bordered" id="report-table">
@@ -41,6 +39,7 @@
       </tr>
     </thead>
     <tbody>
+      {% for annual_report in annual_report_list %}<tr class="{% cycle '{% url 'report' %}?year={{annual_report}}' '{% url 'report' %}?by={{report_type}}'}"></tr>{% endfor %}
       {% for attribute in attributes %}
       <tr>
         <td class="col-md-1">
