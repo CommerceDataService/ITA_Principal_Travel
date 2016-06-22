@@ -232,7 +232,7 @@ $(document).ready(function(){
 
   $('#dashtoggle').on('switchChange.bootstrapSwitch', function(event, state) {
     if(state){ //true state is the default: international
-      getData('internaional');
+      getData('international');
     } else {
       getData('domestic');
     }
