@@ -9,7 +9,7 @@
   </button>
   <ul class="dropdown-menu">
     {% for annual_report in annual_report_list %}
-    <li><a href="{% url 'report' %}?year={{annual_report}}">{{annual_report}}</a></li>
+    <li><a href="?{% current_url request 'year' annual_report %}">{{annual_report}}</a></li>
     {% endfor %}
   </ul>
 </div>
@@ -20,7 +20,7 @@
   </button>
   <ul class="dropdown-menu">
     {% for report_type in report_type_list %}
-    <li><a href="{% url 'report' %}?by={{report_type}}">{{report_type}}</a></li>
+    <li><a href="?{% current_url request 'by' report_type %}"> {{report_type}}</a></li>
     {% endfor %}
   </ul>
 </div>
