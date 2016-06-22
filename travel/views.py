@@ -59,8 +59,15 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
         page_query_dict = self.request.GET
         page_URL = self.request.get_full_path()
         page_URL_length = len(page_URL)
+        query_items = self.request.GET.copy()
+        query_items = query_items.dict()
+        length = len(query_items)
 
-        if page_URL_length > 13 :         
+        if page_query_dict.__contains__('page') and length == 1:
+            context['page_query'] = page_query_dict
+            context['length'] = length
+            return context
+        elif page_URL_length > 13 :         
 
             month = page_query_dict['month']            
             region = page_query_dict['region']
@@ -93,9 +100,9 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
                 context['country'] = country
             else :
                 context['country'] = country_ID
-
-        return context 
-
+            return context 
+        else :
+            return context
 
 @login_required(login_url='/accounts/login/')
 def trip_new(request):
