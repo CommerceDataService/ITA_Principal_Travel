@@ -109,10 +109,10 @@ var renderMap = function(tripData){
     id: 'noonkay.f59d9773',
     // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
-    noWrap: true,
     minZoom: 2,
-    maxZoom: 3
+    maxZoom: 4
   }).addTo(map);
+  map.setMaxBounds([[-90, -185],[90, 185]]);
   map.removeLayer(futureMarkers);
   map.removeLayer(monthMarkers);
   map.removeLayer(yearMarkers);
