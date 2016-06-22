@@ -235,25 +235,37 @@ def dashboard_view(request):
 
 
 class TripViewSet(LoginRequiredView, viewsets.ModelViewSet):
-    queryset = Trip.objects.all()
     serializer_class = TripSerializer
+    def get_queryset(self):
+        queryset = Trip.objects.all()
+        destination = self.request.query_params.get('destination', None)
+        if destination is not None:
+            if destination == "international":
+                queryset = queryset.exclude(events__cities_light_country__id=234)
+            elif destination == "domestic":
+                queryset = queryset.filter(events__cities_light_country__id=234)
+        return queryset
+
 
 
 class EventViewSet(LoginRequiredView, viewsets.ModelViewSet):
-    queryset = Event.objects.all()
     serializer_class = EventSerializer
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        destination = self.request.query_params.get('destination', None)
+        if destination is not None:
+            if destination == "international":
+                queryset = queryset.exclude(cities_light_country__id=234)
+            elif destination == "domestic":
+                queryset = queryset.filter(cities_light_country__id=234)
+        return queryset
 
 
 class CityAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        # Don't forget to filter out results depending on the visitor !
-        # if not self.request.user.is_authenticated():
-        #     return City.objects.none()
-
         qs = City.objects.all()
         if self.q:
             qs = qs.filter(name__istartswith=self.q)
-
         return qs
 
 class EventNameAutocomplete(LoginRequiredView, autocomplete.Select2QuerySetView):
