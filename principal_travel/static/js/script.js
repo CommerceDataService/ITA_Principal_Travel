@@ -14,7 +14,6 @@ var drawBarGraph = function(data){
   .attr('width', '100%')
   .attr('height', '300');
 
-
   var tip = d3.tip()
     .attr("class", "d3-tip")
     .offset([-10, 0])
@@ -78,6 +77,8 @@ var pairSortSlice = function(object){
 };
 
 var renderTable = function(tripData){
+  $('#upcoming').empty();
+  $('#recent').empty();
   var template = Handlebars.compile($('#table').html());
   var sortedTrips = _(tripData).chain().sortBy(function(trip){
     start = new Date(trip.start_date);
@@ -102,19 +103,20 @@ var renderTable = function(tripData){
   });
 };
 
-var renderMap = function(tripData){
-  var map = L.map('map')
-  .setView([33, -8], 2);
 
+var renderMap = function(tripData){
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     id: 'noonkay.f59d9773',
     // id: 'noonkay.pfg0o793',
     accessToken: 'pk.eyJ1Ijoibm9vbmtheSIsImEiOiJjaWo4cHhpa2UwMDFidXhseDg3eGMwejBuIn0.tBWxkbD9BloELWmccA1UyQ',
-    noWrap: true,
     minZoom: 2,
-    maxZoom: 3
+    maxZoom: 4
   }).addTo(map);
-
+  map.setMaxBounds([[-90, -185],[90, 185]]);
+  map.removeLayer(futureMarkers);
+  map.removeLayer(monthMarkers);
+  map.removeLayer(yearMarkers);
+  map.removeLayer(allPastMarkers);
   futureMarkers = L.layerGroup([]).addTo(map);
   monthMarkers = L.layerGroup([]).addTo(map);
   yearMarkers = L.layerGroup([]).addTo(map);
@@ -152,18 +154,31 @@ var renderMap = function(tripData){
   });
 };
 
-var renderChart = function(tripData, eventData){
+var renderChart = function(tripData, eventData, reports){
+  $('#options').empty();
+  $('#chart').empty();
+  var tripevents = _.map(tripData, function(trip){
+    return trip.events;
+  });
+  tripevents = _.flatten(tripevents);
   var principalCount = _.countBy(tripData, function(trip){
     return trip.principal.title;
   });
-  var countryCount = _.countBy(eventData, function(event){
+  var countryCount = _.countBy(tripevents, function(event){
     return event.cities_light_country.name;
   });
-  var eventTypeCount = _.countBy(eventData, function(event){
+  var eventTypeCount = _.countBy(tripevents, function(event){
     return event.event_type.name;
   });
+  var regionCount= _.countBy(tripevents, function(event){
+    return event.cities_light_city.region.name;
+  });
 
-  drawBarGraph(pairSortSlice(countryCount));
+  var template =Handlebars.compile($('#chart-types').html());
+  _.each(reports, function(report){
+    $('#options').append(template(report));
+  });
+
   $("#options").on('change', function(event){
     if (this.value == "country"){
       $('#chart').empty().append('<h3>Top Countries</h3>');
@@ -174,21 +189,53 @@ var renderChart = function(tripData, eventData){
     } else if (this.value == "eventType"){
       $('#chart').empty().append('<h3>Top Event Types</h3>');
       drawBarGraph(pairSortSlice(eventTypeCount));
+    } else if (this.value == "state"){
+      $('#chart').empty().append('<h3>Top States</h3>');
+      drawBarGraph(pairSortSlice(regionCount));
     }
   });
 };
 
-$(document).ready(function(){
+var getData = function(destination){
   var tripData, eventData;
-  $.getJSON('/api/events')
+  var reports = [{type: 'principal', title: 'Top Travelers'}, {type: 'eventType', title: 'Top Event Types'}];
+  if (destination === 'domestic'){
+    reports.push({type: 'state', title: 'Top States'});
+  } else if (destination === 'international'){
+    reports.push({type: 'country', title: 'Top Countries'});
+  }
+  $.getJSON('/api/events?destination='+destination)
     .done(function(data){
     eventData = data;
-    $.getJSON('/api/trips')
+    $.getJSON('/api/trips?destination='+destination)
     .done(function(data){
       tripData = data;
       renderTable(tripData);
-      renderChart(tripData, eventData);
+      renderChart(tripData, eventData, reports);
       renderMap(tripData);
+      $('#options').change();
     });
   });
+};
+
+var loadDefaults = function(){
+  getData('international');
+};
+
+$(document).ready(function(){
+  map = new L.map('map') //initializes the map
+  .setView([33, -8], 2);
+  $(function(argument) { //initializes the toggle button
+    $('[type="checkbox"]').bootstrapSwitch();
+    $('.destroy-switch').bootstrapSwitch('destroy');
+  });
+
+  $('#dashtoggle').on('switchChange.bootstrapSwitch', function(event, state) {
+    if(state){ //true state is the default: international
+      getData('internaional');
+    } else {
+      getData('domestic');
+    }
+  });
+  loadDefaults();
 });

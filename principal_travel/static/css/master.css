@@ -201,11 +201,11 @@ footer {
 
 .border-box{
     box-sizing: border-box;
-    background-color: #d6d7d9;
-    box-shadow: 0 -1px 0 #f1f1f2,0 0 2px rgba(0,0,0,.05),0 2px 4px rgba(0,0,0,.09);
-    padding: 1em;
-    margin-top: 2em;
+    background-color: #f1f1f1;
+    box-shadow: 7px 7px 5px #d6d7d9 ;
+    padding-top: 1em;
     position: relative;
+    /*border-radius: 5px;*/
 }
 
 table {
@@ -238,12 +238,16 @@ fieldset {
 
 #map {
 	width:100%;
-	height: 300px;
+	height: 450px;
+	z-index: 5px;
+	margin-bottom: 20px;
 }
 
 #timefilter > li{
 	display: inline-block;
 	margin-right: 10px;
+	padding: 20px;
+	font-size: 17px;
 }
 
 .dropdown{
@@ -291,6 +295,7 @@ ul li:before {
 }
 
 .container.dashboardViewBuffer {
+	padding-top: 30px;
 	padding-bottom: 0px;
 }
 
@@ -302,18 +307,89 @@ ul li:before {
 .dropdown.dashboardDropdownStyle {
 	position: initial;
 	display: inline-block;
-	padding-left: 0px;
+	padding-left: 20px;
+	font-size: 20px;
+	padding-bottom: 20px;
 }
 
-.container.dashboardBottomContainer {
-	padding-bottom: 50px;
-	padding-top: 30px;
+.dashboardBottomContainer {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.dashboardBottomContainer-text{
+	margin-top: -20px;
 }
 
 #report-table td{
    text-align: center;
 }
 
+.top-destinations{
+	margin-top: 20px;
+	margin-left: -20px;
+}
+
+.display-inline{
+	display: inline;
+}
+
+.upcoming-itineraries{
+	margin-right: 20px;
+}
+
 .breadcrumbs.container{
 	margin-top:5px;
+}
+
+.btn-danger {
+	width: inherit;
+}
+
+/*Toggle Button*/
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+  color: #fff;
+  background: #205493;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary:hover,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary:hover {
+  color: #fff;
+  background: #205493;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info {
+  color: #fff;
+  background: #323a45;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info:hover,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info:hover {
+  color: #fff;
+  background: #323a45;
+}
+
+.bootstrap-switch.bootstrap-switch-focused {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: inset none;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on,
+.bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inherit;
+  height: 100%;
+  padding: 6px 12px;
+  font-size: 17px;
+  font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+  line-height: 20px;
 }
