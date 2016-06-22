@@ -1,4 +1,4 @@
-from .models import Trip, Event, Principal
+from .models import Trip, Event, Principal, EventType
 from .forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
 from .serializers import TripSerializer, EventSerializer
@@ -60,15 +60,13 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
         page_URL = self.request.get_full_path()
         page_URL_length = len(page_URL)
         query_items = self.request.GET.copy()
-        query_items = query_items.dict()
+        # query_items = query_items.dict()
         length = len(query_items)
+        query = query_items.items()
 
         if page_query_dict.__contains__('page') and length == 1:
-            context['page_query'] = page_query_dict
-            context['length'] = length
             return context
-        elif page_URL_length > 13 :         
-
+        elif page_URL_length > 13:         
             month = page_query_dict['month']            
             region = page_query_dict['region']
             principal_title = page_query_dict['principal_title']
@@ -82,6 +80,8 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             quick_dates = page_query_dict['quick_dates']
             event_name = page_query_dict['event_name']
             event_description = page_query_dict['event_description']
+
+            event_type = EventType.objects.filter(id=event_type).values()[0]['name']
 
             context['event_name'] = event_name
             context['event_description'] = event_description
@@ -100,9 +100,10 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
                 context['country'] = country
             else :
                 context['country'] = country_ID
-            return context 
-        else :
             return context
+        else:
+            return context
+
 
 @login_required(login_url='/accounts/login/')
 def trip_new(request):
