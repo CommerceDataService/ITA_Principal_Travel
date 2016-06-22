@@ -230,17 +230,29 @@ class ReportView(LoginRequiredView, TemplateView):
         for i in range(1, 13):
             month_names.append([i, calendar.month_name[i]])
         # Generating reports
-        data = []
         countries = None
         eventtypes = None
         regions = None
         if report_type == 'country':
-            countries = Trip.objects.filter(start_date__year=current_year).values_list('events__cities_light_country__name', 'events__cities_light_country__id').distinct()
+            countries = Trip.objects.filter(start_date__year=current_year) \
+                .values_list(
+                    'events__cities_light_country__name',
+                    'events__cities_light_country__id'
+                ).distinct()
         elif report_type == 'event':
-            eventtypes = Trip.objects.filter(start_date__year=current_year).values_list('events__event_type__name', 'events__event_type__id').distinct()
+            eventtypes = Trip.objects.filter(start_date__year=current_year) \
+                .values_list(
+                    'events__event_type__name',
+                    'events__event_type__id'
+                ).distinct()
         elif report_type == 'region':
-            regions = Trip.objects.filter(start_date__year=current_year).values_list('events__cities_light_country__agency_region__name', 'events__cities_light_country__agency_region__id').distinct()
+            regions = Trip.objects.filter(start_date__year=current_year) \
+                .values_list(
+                    'events__cities_light_country__agency_region__name',
+                    'events__cities_light_country__agency_region__id'
+                ).distinct()
             print(regions)
+            print(regions.query)
 
         if countries:
             context['attributes'] = list(countries)
@@ -272,13 +284,12 @@ class ReportView(LoginRequiredView, TemplateView):
         elif regions:
             context['attributes'] = list(regions)
             context['query_string'] = 'region'
-            queryset = Trip.objects \
-                .filter(
-                    Q(start_date__year=current_year) & (
-                        Q(events__cities_light_country__agency_region__name__in=[x[0] for x in regions])
-                        | Q(events__cities_light_country__agency_region__isnull=True)
-                    )
-                )
+            queryset = Trip.objects.filter(Q(start_date__year=current_year)
+                & (
+                    Q(events__cities_light_country__agency_region__name__in=[x[0] for x in regions])
+                    | Q(events__cities_light_country__agency_region__isnull=True)
+                   )
+            )
             resultset = _group_by_and_count(
                 queryset=queryset,
                 orig_name='events__cities_light_country__agency_region__name',

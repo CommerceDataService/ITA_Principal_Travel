@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from author.decorators import with_author
+from cities_light.models import Country
 
 
 class TimeStampedModel(models.Model):
@@ -53,15 +54,15 @@ class Trip(TimeStampedModel):
 
     @property
     def country(self):
-        city_List = [x.cities_light_country for x in self.events.all()]
-        update_city_List = [str(name) for name in city_List]
-        return ', '.join(update_city_List)
+        country_list = [x.cities_light_country for x in self.events.all()]
+        update_country_list = [str(name) for name in country_list]
+        return ', '.join(update_country_list)
 
     @property
     def event_name(self):
-        event_List = [x.name for x in self.events.all()]
-        update_event_List = [str(name) for name in event_List]
-        return ', '.join(update_event_List)
+        event_list = [x.name for x in self.events.all()]
+        update_event_list = [str(name) for name in event_list]
+        return ', '.join(update_event_list)
 
     def __str__(self):
         return "{} - {}".format(self.start_date, self.end_date)
@@ -71,7 +72,7 @@ class Region(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     agency = models.ForeignKey('Agency', null=True)
-    country = models.ForeignKey('cities_light.Country', related_name='agency_region', null=True)
+    countries = models.ManyToManyField(Country, related_name="agency_region")
 
     def __str__(self):
         return "{}".format(self.name)
