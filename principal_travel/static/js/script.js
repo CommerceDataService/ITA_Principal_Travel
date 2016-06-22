@@ -200,9 +200,9 @@ var getData = function(destination){
   var tripData, eventData;
   var reports = [{type: 'principal', title: 'Top Travelers'}, {type: 'eventType', title: 'Top Event Types'}];
   if (destination === 'domestic'){
-    reports.push({type: 'state', title: 'Top States'});
+    reports.unshift({type: 'state', title: 'Top States'});
   } else if (destination === 'international'){
-    reports.push({type: 'country', title: 'Top Countries'});
+    reports.unshift({type: 'country', title: 'Top Countries'});
   }
   $.getJSON('/api/events?destination='+destination)
     .done(function(data){
