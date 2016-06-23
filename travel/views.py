@@ -15,6 +15,7 @@ from datetime import date
 from django.http import HttpResponse
 import calendar
 import datetime
+from django_filters import DateRangeFilter
 
 
 class LoginRequiredView(LoginRequiredMixin):
@@ -79,9 +80,25 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
             year = page_query_dict['year']
             quick_dates = page_query_dict['quick_dates']
             event_name = page_query_dict['event_name']
+            event_type_2 = len(event_type)
             event_description = page_query_dict['event_description']
+            
+            quick_dates_2 = len(quick_dates)
 
-            event_type = EventType.objects.filter(id=event_type).values()[0]['name']
+            if quick_dates_2 > 0:
+                quick_dates = int(quick_dates)
+                quick_dates = DateRangeFilter.options[quick_dates][0]
+                context['quick_dates'] = quick_dates
+            else:
+                context['quick_dates'] = quick_dates
+            # quick_dates_2 = get_quick_dates_display()
+            # context['quick_dates_2'] = quick_dates_2
+
+            if event_type_2 > 0:         
+                event_type = EventType.objects.filter(id=event_type).values()[0]['name']
+                context['event_type'] = event_type
+            else: 
+                context['event_type'] = event_type
 
             context['event_name'] = event_name
             context['event_description'] = event_description
