@@ -5,7 +5,7 @@ from datetimewidget.widgets import DateWidget
 
 class TripFilter(django_filters.FilterSet):
     principal_title = django_filters.CharFilter(lookup_expr='icontains', name='principal__title', label='Principal Title')
-    principal_name = django_filters.CharFilter(lookup_expr='icontains', name='principal__last_name', label='Principal Lastname')
+    principal_name = django_filters.CharFilter(lookup_expr='icontains', name='principal__last_name', label='Principal Last Name')
     quick_dates = django_filters.DateRangeFilter(label='Quick Dates', name='start_date')
     date_range_start = django_filters.DateFilter(lookup_expr='gte', name='start_date', widget=DateWidget(usel10n=True, bootstrap_version=3), label='Custom Date Range - From')
     date_range_end = django_filters.DateFilter(lookup_expr='lte', name='start_date', widget=DateWidget(usel10n=True, bootstrap_version=3), label='Custom Date Range - To')
