@@ -317,7 +317,7 @@ class ReportView(LoginRequiredView, TemplateView):
             print(regions)
             print(regions.query)
         elif report_type == 'principal':
-            principals = Trip.objects.filter(start_date__year=current_year)
+            principals = Trip.objects.filter(start_date__year=current_year) \
                 .values_list(
                     'principal__last_name', 'principal__id'
                 ).distinct()
