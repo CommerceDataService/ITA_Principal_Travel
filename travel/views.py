@@ -1,4 +1,4 @@
-from travel.models import Trip, Event, Principal
+from travel.models import Trip, Event, Principal, EventType
 from travel.forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.db.models import Q, Count, Func, F, Value
@@ -16,6 +16,7 @@ from datetime import date
 from django.http import HttpResponse
 import calendar
 import datetime
+from django_filters import DateRangeFilter
 
 
 class LoginRequiredView(LoginRequiredMixin):
@@ -57,47 +58,27 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
 
     def get_context_data(self,**kwargs):
         context = super(TripList, self).get_context_data(**kwargs)
-        page_query_dict = self.request.GET
-        page_URL = self.request.get_full_path()
-        page_URL_length = len(page_URL)
+        page_query_dict = self.request.GET.copy()
 
-        if page_URL_length > 13 :
-
-            month = page_query_dict['month']
-            region = page_query_dict['region']
-            principal_title = page_query_dict['principal_title']
-            date_range_end = page_query_dict['date_range_end']
-            date_range_start = page_query_dict['date_range_start']
-            country_ID = page_query_dict['country']
-            country_ID_2 = len(country_ID)
-            principal_name = page_query_dict['principal_name']
-            event_type = page_query_dict['event_type']
-            year = page_query_dict['year']
-            quick_dates = page_query_dict['quick_dates']
-            event_name = page_query_dict['event_name']
-            event_description = page_query_dict['event_description']
-
-            context['event_name'] = event_name
-            context['event_description'] = event_description
-            context['date_range_start'] = date_range_start
-            context['date_range_end'] = date_range_end
-            context['month'] = month
-            context['region'] = region
-            context['principal_title'] = principal_title
-            context['principal_name'] = principal_name
-            context['event_type'] = event_type
-            context['year'] = year
-            context['quick_dates'] = quick_dates
-
-            if country_ID_2 > 0 :
-                country = Country.objects.get(id=country_ID)
-                context['country'] = country
-            else :
-                context['country'] = country_ID
+        for key, value in page_query_dict.items():
+            if key == 'country' and value != '':
+                value = Country.objects.get(id=value)
+                context[key] = value
+            elif key == 'event_type' and value != '':
+                value = EventType.objects.filter(id=value).values()[0]['name']
+                context[key] = value
+            elif key == 'quick_dates':
+                if value != '':
+                    value = int(value)
+                    value = DateRangeFilter.options[value][0]
+                    context[key] = value
+                else:
+                    context[key] = value
+            else:
+                context[key] = value
 
         return context
-
-
+        
 @login_required(login_url='/accounts/login/')
 def trip_new(request):
     if request.method == "POST":
