@@ -2,8 +2,10 @@ Django
 psycopg2
 pytest-django
 pytest-cov
+pytest-timeout
 codecov
 gunicorn
+model-mommy
 djangorestframework
 django-cities-light
 django-registration-redux
