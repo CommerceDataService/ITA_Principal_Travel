@@ -57,69 +57,91 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
 
     def get_context_data(self,**kwargs):
         context = super(TripList, self).get_context_data(**kwargs)
-        page_query_dict = self.request.GET
-        page_URL = self.request.get_full_path()
-        page_URL_length = len(page_URL)
-        query_items = self.request.GET.copy()
-        # query_items = query_items.dict()
-        length = len(query_items)
-        query = query_items.items()
+        page_query_dict = self.request.GET.copy()
 
-        if page_query_dict.__contains__('page') and length == 1:
-            return context
-        elif page_URL_length > 13:         
-            month = page_query_dict['month']            
-            region = page_query_dict['region']
-            principal_title = page_query_dict['principal_title']
-            date_range_end = page_query_dict['date_range_end']
-            date_range_start = page_query_dict['date_range_start']
-            country_ID = page_query_dict['country']
-            country_ID_2 = len(country_ID)
-            principal_name = page_query_dict['principal_name']
-            event_type = page_query_dict['event_type']
-            year = page_query_dict['year']
-            quick_dates = page_query_dict['quick_dates']
-            event_name = page_query_dict['event_name']
-            event_type_2 = len(event_type)
-            event_description = page_query_dict['event_description']
-            
-            quick_dates_2 = len(quick_dates)
-
-            if quick_dates_2 > 0:
-                quick_dates = int(quick_dates)
-                quick_dates = DateRangeFilter.options[quick_dates][0]
-                context['quick_dates'] = quick_dates
+        for key, value in page_query_dict.items():
+            if key == 'country' and value != '':
+                value = Country.objects.get(id=value)
+                context[key] = value
+            elif key == 'event_type' and value != '':
+                value = EventType.objects.filter(id=value).values()[0]['name']
+                context[key] = value
+            elif key == 'quick_dates':
+                if value != '':
+                    value = int(value)
+                    value = DateRangeFilter.options[value][0]
+                    context[key] = value
+                else:
+                    context[key] = value
             else:
-                context['quick_dates'] = quick_dates
-            # quick_dates_2 = get_quick_dates_display()
-            # context['quick_dates_2'] = quick_dates_2
+                context[key] = value
+        
+        return context
+        # page_query_dict = self.request.GET
+        # page_URL = self.request.get_full_path()
+        # page_URL_length = len(page_URL)
+        # query_items = self.request.GET.copy()
 
-            if event_type_2 > 0:         
-                event_type = EventType.objects.filter(id=event_type).values()[0]['name']
-                context['event_type'] = event_type
-            else: 
-                context['event_type'] = event_type
+        # length = len(query_items)
+        # query = query_items.items()
 
-            context['event_name'] = event_name
-            context['event_description'] = event_description
-            context['date_range_start'] = date_range_start
-            context['date_range_end'] = date_range_end
-            context['month'] = month
-            context['region'] = region
-            context['principal_title'] = principal_title
-            context['principal_name'] = principal_name
-            context['event_type'] = event_type
-            context['year'] = year
-            context['quick_dates'] = quick_dates
 
-            if country_ID_2 > 0 :
-                country = Country.objects.get(id=country_ID)
-                context['country'] = country
-            else :
-                context['country'] = country_ID
-            return context
-        else:
-            return context
+
+        # if page_query_dict.__contains__('page') and length == 1:
+        #     return context
+        # elif page_URL_length > 13:         
+        #     month = page_query_dict['month']            
+        #     region = page_query_dict['region']
+        #     principal_title = page_query_dict['principal_title']
+        #     date_range_end = page_query_dict['date_range_end']
+        #     date_range_start = page_query_dict['date_range_start']
+        #     country_ID = page_query_dict['country']
+        #     country_ID_2 = len(country_ID)
+        #     principal_name = page_query_dict['principal_name']
+        #     event_type = page_query_dict['event_type']
+        #     year = page_query_dict['year']
+        #     quick_dates = page_query_dict['quick_dates']
+        #     event_name = page_query_dict['event_name']
+        #     event_type_2 = len(event_type)
+        #     event_description = page_query_dict['event_description']
+            
+        #     quick_dates_2 = len(quick_dates)
+
+        #     if quick_dates_2 > 0:
+        #         quick_dates = int(quick_dates)
+        #         quick_dates = DateRangeFilter.options[quick_dates][0]
+        #         context['quick_dates'] = quick_dates
+        #     else:
+        #         context['quick_dates'] = quick_dates
+        #     # quick_dates_2 = get_quick_dates_display()
+        #     # context['quick_dates_2'] = quick_dates_2
+
+        #     if event_type_2 > 0:         
+        #         event_type = EventType.objects.filter(id=event_type).values()[0]['name']
+        #         context['event_type'] = event_type
+        #     else: 
+        #         context['event_type'] = event_type
+
+        #     context['event_name'] = event_name
+        #     context['event_description'] = event_description
+        #     context['date_range_start'] = date_range_start
+        #     context['date_range_end'] = date_range_end
+        #     context['month'] = month
+        #     context['region'] = region
+        #     context['principal_title'] = principal_title
+        #     context['principal_name'] = principal_name
+        #     context['event_type'] = event_type
+        #     context['year'] = year
+        #     context['quick_dates'] = quick_dates
+
+        #     if country_ID_2 > 0 :
+        #         country = Country.objects.get(id=country_ID)
+        #         context['country'] = country
+        #     else :
+        #         context['country'] = country_ID
+        #     return context
+        # else:
+        #     return context
 
 
 @login_required(login_url='/accounts/login/')
