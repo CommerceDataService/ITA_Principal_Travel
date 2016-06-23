@@ -353,12 +353,12 @@ class ReportView(LoginRequiredView, TemplateView):
             context['attributes'] = list(principals)
             context['query_string'] = 'principal'
             resultset = _report_queryset_by_attr(
-            current_year=current_year,
-            attr_set=[x[0] for x in principals],
-            orig_name='principal__last_name',
-            orig_id='principal__id',
-            new_name='principal_name',
-            new_id='principal_id'
+                current_year=current_year,
+                attr_set=[x[0] for x in principals],
+                orig_name='principal__last_name',
+                orig_id='principal__id',
+                new_name='principal_name',
+                new_id='principal_id'
             )
             data = _munge_data(resultset, 'principal_name')
 
