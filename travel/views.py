@@ -1,4 +1,4 @@
-from travel.models import Trip, Event, Principal
+from travel.models import Trip, Event, Principal, EventType
 from travel.forms import TripForm, EventForm, PrincipalForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.db.models import Q, Count, Func, F, Value
