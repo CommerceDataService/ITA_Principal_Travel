@@ -89,10 +89,10 @@ var renderTable = function(tripData){
   _.each(sortedTrips, function(trip, index){
     var now = new Date();
     var start = new Date(trip.start_date);
-    if(start>=now && index>l-5){
+    if(start>=now && index>l-6){
       $('#upcoming').append(template(trip));
       index--;
-    } else if (index>l-10){
+    } else if (index>l-11){
       $('#recent').append(template(trip));
       index--;
     }
