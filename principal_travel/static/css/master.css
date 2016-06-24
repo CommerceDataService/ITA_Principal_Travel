@@ -160,10 +160,10 @@ footer {
 	height: 45px;
 	float: left;
 }
-.background-image {
+.home-text {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     text-align: center;
     color: #fff;
     background-image: url(../img/night-lights.png);
@@ -172,7 +172,7 @@ footer {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    padding: 275px;
+    padding: 310px;
 }
 
 .pagination, 
