@@ -119,9 +119,10 @@ h1, h2, h3 {
 	padding: 20px;
 }
 
-main {
-    padding-bottom: 75px; /* equal to footer height */
-}
+/*main {
+    padding-bottom: 75px;   equal to footer height 
+}*/
+
 
 footer {
     height: 75px;
@@ -131,7 +132,7 @@ footer {
     width: 100%;
     bottom: 0;
     clear: both;
-    margin-top: -75px; /* equal to footer height */
+    /*margin-top: -75px;  equal to footer height */
 }
 .footer-content>p{
 	font-size: 1.35em;
@@ -172,6 +173,12 @@ footer {
     background-size: cover;
     -o-background-size: cover;
     padding: 275px;
+}
+
+.pagination, 
+#report-table,
+.dashboardViewBuffer {
+	margin-bottom: 75px;
 }
 
 .home-heading{
