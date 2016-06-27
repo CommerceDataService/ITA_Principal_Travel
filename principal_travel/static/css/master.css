@@ -177,7 +177,8 @@ footer {
 
 .pagination, 
 #report-table,
-.dashboardViewBuffer {
+.dashboardViewBuffer,
+.end-button {
 	margin-bottom: 75px;
 }
 
