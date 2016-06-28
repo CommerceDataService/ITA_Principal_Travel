@@ -17,6 +17,8 @@
 </div>
   {% include 'travel/_authortime.html'%}
 <br>
+<div>
   <a href="{% url 'principal_edit' pk=principal.pk %}" class="btn btn-primary">Edit</a>
   <a href="{% url 'principal_list' %}" class="btn btn-primary">Back to Principals</a>
+</div>
 {% endblock %}
