@@ -52,9 +52,6 @@ class Trip(TimeStampedModel):
     principal = models.ForeignKey('Principal', null=False)
     events = models.ManyToManyField('Event')
 
-    class Meta:
-        ordering = ["-start_date"]
-        
     @property
     def country(self):
         country_list = [x.cities_light_country for x in self.events.all()]
