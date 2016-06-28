@@ -3,7 +3,7 @@
 {% block breadcrumbs %}
   {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
 {% endblock %}
-{% block home %}
+{% block content %}
 <div class="container">
   <h3>Travel Dashboard
       <input id="dashtoggle" class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
@@ -51,7 +51,6 @@
       <h3>Upcoming Itineraries</h3>
       <div class="" id="upcoming">
       </div>
-      <hr>
       <h3>Recent Itineraries</h3>
       <div class="" id="recent">
       </div>

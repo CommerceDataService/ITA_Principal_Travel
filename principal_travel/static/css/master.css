@@ -119,9 +119,10 @@ h1, h2, h3 {
 	padding: 20px;
 }
 
-main {
-    padding-bottom: 75px; /* equal to footer height */
-}
+/*main {
+    padding-bottom: 75px;   equal to footer height 
+}*/
+
 
 footer {
     height: 75px;
@@ -131,7 +132,7 @@ footer {
     width: 100%;
     bottom: 0;
     clear: both;
-    margin-top: -75px; /* equal to footer height */
+    /*margin-top: -75px;  equal to footer height */
 }
 .footer-content>p{
 	font-size: 1.35em;
@@ -159,10 +160,10 @@ footer {
 	height: 45px;
 	float: left;
 }
-.background-image {
+.home-text {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     text-align: center;
     color: #fff;
     background-image: url(../img/night-lights.png);
@@ -171,7 +172,13 @@ footer {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    padding: 275px;
+    padding: 310px;
+}
+
+.pagination, 
+#report-table,
+.dashboardViewBuffer {
+	margin-bottom: 75px;
 }
 
 .home-heading{
@@ -252,8 +259,8 @@ fieldset {
 
 .dropdown{
 	position: absolute;
-	right: 2em;
-	top: 1em;
+	left: 11em;
+	top: 1.75em;
 }
 
 td > a{
@@ -305,7 +312,7 @@ ul li:before {
 }
 
 .dropdown.dashboardDropdownStyle {
-	position: initial;
+	position: absolute;
 	display: inline-block;
 	padding-left: 20px;
 	font-size: 20px;
