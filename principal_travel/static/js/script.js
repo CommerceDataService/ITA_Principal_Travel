@@ -139,15 +139,6 @@ var renderMap = function(tripData){
       }
     });
   });
-
-  $( "input" ).on('click', function( event ) {
-    var layerClicked = window[event.target.value];
-    if (map.hasLayer(layerClicked)) {
-      map.removeLayer(layerClicked);
-    } else {
-      map.addLayer(layerClicked);
-    }
-  });
 };
 
 var renderChart = function(tripData, eventData, reports){
@@ -215,17 +206,27 @@ var getData = function(destination){
 };
 
 var loadDefaults = function(){
-  getData('international');
-};
-
-$(document).ready(function(){
   map = new L.map('map') //initializes the map
   .setView([33, -8], 2);
+
   $(function(argument) { //initializes the toggle button
     $('[type="checkbox"]').bootstrapSwitch();
     $('.destroy-switch').bootstrapSwitch('destroy');
   });
 
+  getData('international');
+
+  $( "input" ).on('click', function( event ) {
+    var layerClicked = window[event.target.value];
+    if (map.hasLayer(layerClicked)) {
+      map.removeLayer(layerClicked);
+    } else {
+      map.addLayer(layerClicked);
+    }
+  });
+};
+
+$(document).ready(function(){
   $('#dashtoggle').on('switchChange.bootstrapSwitch', function(event, state) {
     if(state){ //true state is the default: international
       getData('international');
