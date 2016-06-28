@@ -119,9 +119,9 @@ h1, h2, h3 {
 	padding: 20px;
 }
 
-/*main {
-    padding-bottom: 75px;   equal to footer height 
-}*/
+main {
+    padding-bottom: 75px;   /*equal to footer height */
+}
 
 
 footer {
@@ -132,7 +132,7 @@ footer {
     width: 100%;
     bottom: 0;
     clear: both;
-    /*margin-top: -75px;  equal to footer height */
+    margin-top: -75px;  /*equal to footer height */
 }
 .footer-content>p{
 	font-size: 1.35em;
@@ -175,12 +175,20 @@ footer {
     padding: 310px;
 }
 
-.pagination, 
+.home-container {
+	margin-bottom: -75px;
+}
+
+.home-container:empty{
+	display: none;
+}
+
+/*.pagination, 
 #report-table,
 .dashboardViewBuffer,
 .end-button {
 	margin-bottom: 75px;
-}
+}*/
 
 .home-heading{
 	font-family: 'Raleway', sans-serif;
