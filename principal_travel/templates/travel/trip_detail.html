@@ -24,7 +24,7 @@
 </div>
   {% include 'travel/_authortime.html'%}
 <br>
-<div class="end-button">
+<div>
 <a class="btn btn-primary back-button" href="{% url 'trip_list' %}" >Back to Itineraries</a>
 <a class='btn btn-primary' href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
 <a class='btn btn-primary' href="{% url 'trip_delete' pk=trip.pk %}">Delete</a>
