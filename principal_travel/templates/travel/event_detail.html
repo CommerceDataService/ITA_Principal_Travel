@@ -1,0 +1,26 @@
+{% extends 'travel/event_list.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'event_detail' pk=event.pk %}">{{event.name}}</a>
+{% endblock %}
+{% block content %}
+<div>
+  <h3>{{event.name}}</h3>
+  <p>Description: {{event.description}}</p>
+  <p>Type: {{event.event_type}}</p>
+  {% if event.host %}
+    <p>Host: {{event.host}}</p>
+  {% endif %}
+  <p>Location: {{event.cities_light_city.name}}, {{event.cities_light_country.name}}</p>
+  <p>Press: {{event.press}} <span>{{event.press_note}}</span></p>
+  <h4>Itineraries for this event</h4>
+  {% for trip in trips %}
+      <p><a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.start_date}} - {{trip.principal.title}} {{trip.principal.last_name}}</a></p>
+  {% endfor %}
+</div>
+  {% include 'travel/_authortime.html'%}
+<br>
+<div>
+<a href="{% url 'event_edit' pk=event.pk %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'event_list' %}" class="btn btn-primary">Back to Events</a>
+</div>
+{% endblock %}

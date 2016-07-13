@@ -1,10 +1,25 @@
-{% extends 'base.html' %}
-
+{% extends 'travel/event_list.html' %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs %}
+  {% if form.instance.id %}
+    {{block.super}} » <a href="{% url 'event_detail' pk=event.pk %}">{{event.name}}</a> » <a href="{% url 'event_edit' pk=event.pk %}">Edit</a>
+  {% else %}
+    {{block.super}} » <a href="{% url 'event_new' %}">New Event</a>
+  {% endif %}
+{% endblock %}
 {% block content %}
-  <h2>New Event</h2>
+<div class="col-md-6">
+  <h2>Add/Edit Event</h2>
+
   <form method="POST">
     {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+      {{ form|crispy }}
+      <button type="submit" class="save btn btn-success">Save</button>
   </form>
+ </div>
+
+{% endblock %}
+
+{% block footer %}
+{{ form.media }}
 {% endblock %}

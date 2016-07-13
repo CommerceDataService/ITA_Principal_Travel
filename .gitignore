@@ -2,3 +2,8 @@ public/db/principal_travel.json
 *.pyc
 sql/ita_data.sql
 principal_travel/settings/local.py
+travel/fixtures/real_data_dump.json
+.coverage
+.env
+*.log
+nginx/htpasswd

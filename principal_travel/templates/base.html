@@ -1,69 +1,93 @@
-{% load staticfiles %}
+{% load staticfiles %} {% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
-  <head>
-   <meta charset="utf-8">
-   <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
-   <link rel="stylesheet" href="{% static "css/normalize.min.css" %}">
-   <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
-    <link rel="stylesheet" href="{% static "css/main.css" %}">
-    <link rel="stylesheet" href="{% static "css/master.css" %}">
-    <script src="{% static "js/vendor/jquery-1.11.3.min.js" %}"></script>
-    <script src="{% static "js/components.js" %}"></script>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Principal Travel Tracker{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'lib/underscore/underscore.js' %}"></script>
+    <script src="{% static 'js/d3.js' %}"></script>
+    <script src="{% static 'handlebars.js' %}"></script>
+    <script src="{% static 'leaflet/leaflet.js' %}"></script>
+    {% bootstrap_css %} {% bootstrap_javascript %}
+    <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+    <script src="{% static 'js/bootstrap-switch.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-switch.css' %}">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> 
     {% block head %}{% endblock %}
-  </head>
+</head>
 
 <body>
-<header>
-  <section class="usa-grid-full">
-    <div class="usa-width-one-sixth">
-        <img src="{% static "img/doc-logo.png" %}" class="doc-logo">
-  </div>
-
-  <nav>
-      <h1 class="header-text">Principal Travel Tracker </h1>
-
-          {% if user.id == None %}
-      <div class="landing-page-buttons">
-        <a class="usa-button" href="/accounts/login">Login</a>
-        <a class="usa-button" href="/accounts/register">Register</a>
-      </div>
-          {% else%}
-      <div class="usa-width-one-whole">
-          <a class="usa-button" href="/admin"> Admin Interface </a>
-          <a class="usa-button" href="/trips/new"> Create New Trip Record </a>
-          <a class="usa-button" href="/trips"> View Itineraries </a>
-          <a class="usa-button" id="not-live" href="#"> Update Existing Record </a>
-          <div><a class="usa-button usa-button-outline logout-button" href="/accounts/logout">Logout</a></div>
-      </div>
-
-          {% endif %}
+    <header>
+        <section>
+            <div class="header-left">
+                <a href="{% url 'home_view' %}"><img src="{% static 'img/doc-logo-small.png' %}" class="doc-logo" alt="Department of Commerce logo">
+                    <h3 class="header-text"> Principal Travel Tracker </h3></a>
+                <p class='subheader-text'><i>a Commerce Data Service beta product</i></p>
+            </div>
 
 
 
-     </nav>
-     </section>
-   </header>
-   <main class="usa-grid-full">
-     <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-   </main>
+            <nav>
 
-<footer>
-<div class="usa-footer-primary-section">
-      <div class="usa-grid-full">
-        <div class="usa-footer-nav usa-width-one-half">
-          <p>International Trade Administration</p>
+
+                {% if user.id == None %}
+                <div class="nav-buttons">
+                    <a class="btn btn-default my-button" href="/accounts/login">Login</a>
+                    <a class="btn btn-default my-button" href="/accounts/register">Register</a>
+                </div>
+                {% else%}
+                <div class="nav-buttons">
+                    <a class="btn btn-default my-button" href="{% url 'dashboard' %}"> Dashboard </a>
+                    <a class="btn btn-default my-button" href="{% url 'trip_list' %}"> Itineraries </a>
+                    <a class="btn btn-default my-button" href="{% url 'event_list' %}"> Events </a>
+                    <a class="btn btn-default my-button" href="{% url 'principal_list' %}"> Principals </a>
+                    <a class="btn btn-default my-button" href="{% url 'report' %}"> Reports </a>
+                    <a class="btn btn-default my-button" href="{% url 'auth_logout' %}?next={% url 'home_view' %}">Logout</a>
+                </div>
+
+                <div class="mobile_button">&#9776; Menu </div>
+
+                {% endif %}
+
+            </nav>
+        </section>
+    </header>
+    <main>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="alert alert-{{message.level_tag}}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="container breadcrumbs">{% block breadcrumbs %}Home{% endblock %}</div>
+        <div class="container">{% block content %}{% endblock %}</div>
+
+        <div class="home-container">{% block home %}{% endblock %}</div>
+
+    </main>
+
+
+
+    <footer>
+        <div class="footer-content">
+            <img src="{% static 'img/CDS-logo.png' %}">
+            <p><a href="https://www.commerce.gov/dataservice/"> Commerce Data Service</a></p>
+            <a class="footer-text" href="https://github.com/CommerceDataService/ITA_Principal_Travel"><i class="fa fa-github"></i> Github Repository</a>
         </div>
-        <div class="usa-footer-nav footer-text">
-          <p><a href="www.trade.gov">www.trade.gov</a></p>
-        </div>
-        </div>
-      </div>
-    </div>
-</footer>
+    </footer>
+    {% block footer %}{% endblock %}
 
- </body>
+
+</body>
+
+
 </html>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'event_list' %}">Events</a>
+{% endblock %}
+{% block content %}
+<h3>Events   <a href="{% url 'event_new' %}" class="btn btn-success add-button">Add</a></h3>
+<div>
+  <table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <th scope='col'> Name </th>
+        <th scope='col'> Type </th>
+        <th scope='col'> City </th>
+        <th scope='col'> Country </th>
+      </tr>
+    </thead>
+    <tbody onclick="getElementById('row-info').click()" style="cursor: pointer">
+      {% for event in object_list %}
+      <tr>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.event_type}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.cities_light_city.name}}</a></td>
+        <td><a class="table-links" href="{% url 'event_detail' pk=event.pk %}" id="row-info">{{event.cities_light_country.name}}</a></td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+  {% if is_paginated %}
+  {% include 'travel/_pagination.html' %}
+  {% endif %}
+</div>
+{% endblock %}

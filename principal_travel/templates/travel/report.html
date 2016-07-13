@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load app_filters %}
+
+{% block content %}
+<div class="btn-group dropup">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    Year
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    {% for annual_report in annual_report_list %}
+    <li><a href="?{% current_url request 'year' annual_report %}">{{annual_report}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="btn-group dropup">
+  <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+    Report Type
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    {% for report_type in report_type_list %}
+    <li><a href="?{% current_url request 'by' report_type %}"> {{report_type}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+<div>
+  <table class="table table-bordered" id="report-table">
+    <thead class="thead-default">
+      <tr>
+        <th scope='col'>{{year}}</th>
+        {% for month in months %}
+        <th scope='col' >{{month.1}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for attribute in attributes %}
+      <tr>
+        <td class="col-md-1">
+          {{attribute.0}}
+        </td>
+        {% for month in months %}
+        <td class="col-md-1">
+            {% if data_list|get_item:attribute.0|length > 0 %}
+            {% with data_list|get_item:attribute.0|get_item:month.0 as count %}
+            {% if count > 0 %}
+            <a href="{% url 'trip_list' %}?month={{month.0}}&amp;year={{year}}{% if attribute.1 %}&amp;{{query_string}}={{attribute.1}}{% endif %}">{{count}}</a>{% endif %}{% endwith %}{% endif %}</td>{% endfor %}
+      {% endfor %}
+      </tr>
+  </tbody>
+  </table>
+</div>
+{% endblock %}

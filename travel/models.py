@@ -1,35 +1,39 @@
-#This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 from django.db import models
+from author.decorators import with_author
 from cities_light.models import Country
 
 
-class Event(models.Model):
+class TimeStampedModel(models.Model):
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    edited_on = models.DateTimeField(auto_now=True, null=True)
+
+    class Meta:
+        abstract = True
+
+
+@with_author  # adds and maintains 'author' and 'updated_by' fields
+class Event(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     host = models.CharField(max_length=255, blank=True, null=True)
-    name = models.CharField(max_length=255,blank=True, null=True)
+    name = models.CharField(max_length=255, null=True)
     description = models.TextField(blank=True, null=True)
-    event_type = models.ForeignKey('EventType',null=True)
+    event_type = models.ForeignKey('EventType', null=True)
     press = models.NullBooleanField()
     press_note = models.CharField(max_length=255, blank=True, null=True)
-    cities_light_city = models.ForeignKey('cities_light.City',null=True)
-    cities_light_country = models.ForeignKey('cities_light.Country',null=True)
+    cities_light_city = models.ForeignKey('cities_light.City', null=True)
+    cities_light_country = models.ForeignKey('cities_light.Country', null=True)
 
     def __str__(self):
         return "{}".format(self.name)
 
 
-class Principal(models.Model):
+@with_author
+class Principal(TimeStampedModel):
     id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=255, blank=True, null=True)
-    last_name = models.CharField(max_length=255, blank=True, null=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
+    first_name = models.CharField(max_length=255, null=True)
+    last_name = models.CharField(max_length=255, null=True)
+    title = models.CharField(max_length=255, null=True)
     office = models.ForeignKey('Office', null=True)
     career = models.BooleanField(default=False)
     region = models.ForeignKey('Region', null=True)
@@ -38,7 +42,8 @@ class Principal(models.Model):
         return "{}, {}, {}".format(self.first_name, self.last_name, self.title)
 
 
-class Trip(models.Model):
+@with_author
+class Trip(TimeStampedModel):
     id = models.AutoField(primary_key=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
@@ -49,17 +54,16 @@ class Trip(models.Model):
 
     @property
     def country(self):
-        city_List = [x.cities_light_country for x in self.events.all()]
-        update_city_List = [str(name) for name in city_List]
-        return ', '.join(update_city_List)
-    
+        country_list = [x.cities_light_country for x in self.events.all()]
+        update_country_list = [str(name) for name in country_list]
+        return ', '.join(update_country_list)
+
     @property
     def event_name(self):
-        event_List = [x.name for x in self.events.all()]
-        update_event_List = [str(name) for name in event_List]
-        return ', '.join(update_event_List)
-    
-    
+        event_list = [x.name for x in self.events.all()]
+        update_event_list = [str(name) for name in event_list]
+        return ', '.join(update_event_list)
+
     def __str__(self):
         return "{} - {}".format(self.start_date, self.end_date)
 
@@ -68,7 +72,7 @@ class Region(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     agency = models.ForeignKey('Agency', null=True)
-    countries = models.ManyToManyField(Country, related_name="custom_region")
+    countries = models.ManyToManyField(Country, related_name="agency_region")
 
     def __str__(self):
         return "{}".format(self.name)

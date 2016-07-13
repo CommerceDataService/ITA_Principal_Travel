@@ -20,7 +20,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -42,10 +41,21 @@ PREREQ_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dal',
+    'dal_select2',
     'rest_framework',
     'cities_light',
-    'designstandards',
     'registration',
+    'jquery',
+    'underscore',
+    'd3',
+    'templatetag_handlebars',
+    'leaflet',
+    'author',
+    'bootstrap3',
+    'crispy_forms',
+    'django_filters',
+    'datetimewidget',
 ]
 
 PROJECT_APPS = [
@@ -54,7 +64,7 @@ PROJECT_APPS = [
 
 # Django-Registration-Redux Settings
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
-REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+REGISTRATION_AUTO_LOGIN = False # Automatically log the user in.
 SEND_ACTIVATION_EMAIL = False
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
@@ -72,6 +82,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'author.middlewares.AuthorDefaultBackendMiddleware',
 ]
 
 ROOT_URLCONF = 'principal_travel.urls'
@@ -91,6 +102,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WSGI_APPLICATION = 'principal_travel.wsgi.application'
 
@@ -133,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
@@ -145,9 +158,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+STATICFILES_DIRS = ['principal_travel/static']
 
 # cities light configuration
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
 #CITIES_LIGHT_INCLUDE_COUNTRIES = ['US']
-CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS']
+
+
+LOGIN_REDIRECT_URL = '/acounts/logout'
+LOGIN_URL = '/accounts/login'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'travel.log'),
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

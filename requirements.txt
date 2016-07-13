@@ -1,8 +1,25 @@
 Django
 psycopg2
+pytest-django
+pytest-cov
+pytest-timeout
+codecov
+gunicorn
+model-mommy
 djangorestframework
--e git+https://github.com/department-of-veterans-affairs/django-designstandards.git#egg=designstandards
 django-cities-light
 django-registration-redux
 django-debug-toolbar
-
+django-dotenv
+dj-database-url
+django-jquery
+django-underscore
+django-d3
+django-templatetag-handlebars
+django-leaflet
+django-author
+django-autocomplete-light
+django-bootstrap3
+django-crispy-forms
+django-filter
+django-datetime-widget

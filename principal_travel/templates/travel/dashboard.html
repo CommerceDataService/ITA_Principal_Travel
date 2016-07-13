@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block breadcrumbs %}
+  {{block.super}} » <a href="{% url 'dashboard' %}">Dashboard</a>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <h3>Travel Dashboard
+      <input id="dashtoggle" class="form-control" type="checkbox" checked data-on-text="International" data-off-text="Domestic" data-on-color="primary" data-off-color="info" data-handle-width="100px" data-label-width="20px">
+  </h3>
+</div>
+
+<div class="container dashboardViewBuffer">
+    <div class="event-map row border-box col-lg-12">
+    <div class="display-inline"><h3 class="destinationTitle">Event Map</h3>
+        <ul class="display-inline" id="timefilter">
+          <li>
+            <input class="destroy-switch" id="futureMarkers" type="checkbox" value="futureMarkers" checked>
+            <label for="futureMarkers">Upcoming Events</label>
+          </li>
+          <li>
+            <input class="destroy-switch" id="monthMarkers" type="checkbox" value="monthMarkers" checked>
+            <label for="monthMarkers">Past Month Events</label>
+          </li>
+          <li>
+            <input class="destroy-switch" id="yearMarkers" type="checkbox" value="yearMarkers" checked>
+            <label for="yearMarkers">Past Year Events</label>
+          </li>
+          <li>
+            <input class="destroy-switch" id="allPastMarkers" type="checkbox"  value="allPastMarkers" checked>
+            <label for="allPastMarkers">All Past Events</label>
+          </li>
+        </ul>
+      </div>
+      <div id="map"></div>
+    </div>
+
+  <div class="col-lg-8 top-destinations border-box" >
+    <form class="dropdown dashboardDropdownStyle " style="">
+      <select name="options" id="options">
+      </select>
+    </form>
+    <div id='chart'>
+      <h3 class="destinationTitle">Top Destinations</h3>
+    </div>
+  </div>
+
+
+  <div class="border-box dashboardBottomContainer col-lg-4">
+    <div class="dashboardBottomContainer-text">
+      <h3>Upcoming Itineraries</h3>
+      <div class="" id="upcoming">
+      </div>
+      <h3>Recent Itineraries</h3>
+      <div class="" id="recent">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script src={% static "js/script.js" %}></script>
+{% verbatim %}
+<script type="text/x-handlebars-template" id="table">
+  <p><a href='itineraries/{{id}}'>{{start_date}}:  {{principal.first_name}} {{principal.last_name}}, {{principal.title}}</a></p>
+</script>
+
+<script type="text/x-handlebars-template" id="popup">
+  <h6><a href="/events/{{id}}">{{name}}</a></h6>
+  <p>{{description}}</p>
+  <p>{{cities_light_city.name}}, {{cities_light_country.name}}</p>
+</script>
+
+<script type="text/x-handlebars-template" id="chart-types">
+  <option value={{type}}>{{title}}</option>
+</script>
+
+{% endverbatim %}
+{% endblock %}

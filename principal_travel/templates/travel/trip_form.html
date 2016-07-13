@@ -1,11 +1,28 @@
-{% extends 'base.html' %}
-
+{% extends 'travel/trip_list.html' %}
+{% load crispy_forms_tags %}
+{% block breadcrumbs %}
+  {% if form.instance.id %}
+    {{block.super}} » <a href="{% url 'trip_detail' pk=trip.pk %}">{{trip.id}}</a> » <a href="{% url 'trip_edit' pk=trip.pk %}">Edit</a>
+  {% else %}
+    {{block.super}} » <a href="{% url 'trip_new' %}">New Itinerary</a>
+  {% endif %}
+{% endblock %}
 {% block content %}
-    <h2>New Itinerary</h2>
-    <a class="usa-button" href="{% url 'event_new' %}">Add a New Event</a>
-    <a class="usa-button" href="{% url 'principal_new' %}">Add a New Principal</a>
-    <form method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+
+<div class="col-md-6">
+<h3>Add/Edit Itinerary</h3>
+    <a class="btn btn-primary" href="{% url 'event_new' %}">Add a New Event</a>
+    <a class="btn btn-primary" href="{% url 'principal_new' %}">Add a New Principal</a>
+    <br>
+    <br>
+    <form method="POST">
+      <form method="POST">{% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="save btn btn-success">Save</button>
+    </form></div>
+{% endblock %}
+
+
+{% block footer %}
+{{ form.media }}
 {% endblock %}
