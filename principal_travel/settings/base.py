@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+try:
+    from .local import *
+except:
+    pass
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,14 +28,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1!xow6kr25gm6@+h7fet5lt1ufsjw417-1=oe0lh^a*t%flivg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
-INSTALLED_APPS = [
+PREREQ_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,8 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'cities_light',
+    'designstandards',
+    'registration',
+]
+
+PROJECT_APPS = [
     'travel',
 ]
+
+# Django-Registration-Redux Settings
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SEND_ACTIVATION_EMAIL = False
+
+INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
 
 REST_FRAMEWORK = {
     'page_size': 10,
@@ -61,7 +79,7 @@ ROOT_URLCONF = 'principal_travel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,8 +141,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# cities light configuration
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
+#CITIES_LIGHT_INCLUDE_COUNTRIES = ['US']
+CITIES_LIGHT_INCLUDE_CITY_TYPES = ['PPL']

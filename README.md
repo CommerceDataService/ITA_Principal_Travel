@@ -18,7 +18,7 @@ docker-compose up -d
 docker-machine ip
 ```
 
-4. Take the output from the last command and access <ip>:8000 in your web browser, where you should see a default Django page.
+4. Take the output from the last command and access `<ip>:8000` in your web browser, where you should see a default Django page.
 
 _* If the `docker-compose build` command hangs, we may need to investigate how to set up and use HTTP_PROXY._
 
@@ -36,6 +36,8 @@ Wipe the database and start fresh:
 
 ## DB Initialization:
 
+### Initial migrations and admin setup
+
 Place the ita_data.sql file (from a CDS team member-- it is .gitignored) in the /sql directory
 
 Run:
@@ -45,3 +47,40 @@ Run:
     docker-compose run web python manage.py createsuperuser
 
 The above will load the existing spreadsheet data and create a super-user in the DB so that you can log into the Django administration console.
+
+### Destination Pre-Loading
+
+Run:
+
+    docker-compose run web python manage.py cities_light
+    
+The above will load the cities and countries from the cities_light module (from geonames.org) into the database tables.
+
+## Troubleshooting
+
+Ongoing development of the app in Docker means you need a few Docker tricks/commands.
+
+If you add a requirement to requirements.txt, install the package via:
+
+    docker-compose build web
+
+If you ever get a ProtocolError during a `docker-compose build`, run:
+
+    docker-machine restart default
+    eval ($docker-machine env)
+
+To check on whether your app containers are running (db and web):
+
+    docker-machine ps
+
+To start them both:
+
+    docker-compose up -d
+
+To restart one of them:
+
+    docker-compose restart <db|web>
+
+If you're trying to load the Django site in the browser and nothing is coming up, that means Django has been unable to start. You can look at Django's logs to diagnose the problem:
+
+    docker-compose logs web
