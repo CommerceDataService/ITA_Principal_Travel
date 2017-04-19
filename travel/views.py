@@ -55,9 +55,49 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(TripList, self).get_queryset(*args, **kwargs).order_by('-start_date')
         return qs
+    queryset = Trip.objects.order_by("-start_date")
+
 
     def get_context_data(self,**kwargs):
         context = super(TripList, self).get_context_data(**kwargs)
+        page_query_dict = self.request.GET
+        page_URL = self.request.get_full_path()
+        page_URL_length = len(page_URL)
+
+        if page_URL_length > 13 :
+
+            month = page_query_dict['month']
+            region = page_query_dict['region']
+            principal_title = page_query_dict['principal_title']
+            date_range_end = page_query_dict['date_range_end']
+            date_range_start = page_query_dict['date_range_start']
+            country_ID = page_query_dict['country']
+            country_ID_2 = len(country_ID)
+            principal_name = page_query_dict['principal_name']
+            event_type = page_query_dict['event_type']
+            year = page_query_dict['year']
+            quick_dates = page_query_dict['quick_dates']
+            event_name = page_query_dict['event_name']
+            event_description = page_query_dict['event_description']
+
+            context['event_name'] = event_name
+            context['event_description'] = event_description
+            context['date_range_start'] = date_range_start
+            context['date_range_end'] = date_range_end
+            context['month'] = month
+            context['region'] = region
+            context['principal_title'] = principal_title
+            context['principal_name'] = principal_name
+            context['event_type'] = event_type
+            context['year'] = year
+            context['quick_dates'] = quick_dates
+
+            if country_ID_2 > 0 :
+                country = Country.objects.get(id=country_ID)
+                context['country'] = country
+            else :
+                context['country'] = country_ID
+
         page_query_dict = self.request.GET.copy()
 
         for key, value in page_query_dict.items():
@@ -76,6 +116,7 @@ class TripList(LoginRequiredView, FilterMixin, ListView):
                     context[key] = value
             else:
                 context[key] = value
+
 
         return context
 
